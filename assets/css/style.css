@@ -1,8 +1,9 @@
 @CHARSET "UTF-8";
 
-#creat #login, #profile{
+#creat, #login, #profile, #edit_page{
 	margin: 0 auto;
 	color:#727272;
+	font-family:  Arial, Helvetica, sans-serif;
 }
 
 h2{
@@ -21,6 +22,8 @@ h4{
 	padding: 0 2%;
 	 
 }
+
+
 
 
 a.button{
@@ -134,13 +137,15 @@ input.valid{
 }
 
 
-.creat_sec input[type=checkbox]{
+
+
+input[type=checkbox]{
 	width: 14px;
 	margin-left: 10px;
 	float:left; 
 }
 
-#subscribe{
+#checkbox{
 	margin-top: 12px;
 	margin-bottom: 50px;
 }
@@ -198,24 +203,26 @@ input.valid{
 	font-weight: bolder;
 }
 
-#profile img{
-	width: 20px;
-}
 
-#profile nav{
+.nav{
 	float:left;
 	width: 19%;
 	padding-top: 30px;
 	padding-left: 2%;
 	padding-right: 2%;
+	
 }
 
-#profile section{
+.nav img{
+	width: 20px;
+}
+
+.sec{
 	float:left;
 	width: 70%;
 }
 
-#edit{
+.edit{
 	font-size: 0.5em;
 	float: right;
 }
@@ -225,9 +232,9 @@ input.valid{
 }
 
 
-#profile h3{
+#profile h3, h5{
 	margin-bottom: 0px;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 
@@ -255,7 +262,7 @@ input.valid{
 	border-right: 1px solid #727272;
 }
 
-#profile article:nth-child(8){
+#profile article:nth-child(9){
 	clear: both;
 	padding-top:30px;
 }
@@ -263,4 +270,47 @@ input.valid{
 
 #address{
 	list-style: none;
+	padding-left: 15px;
+}
+
+.nav a{
+	text-decoration: none;
+	color:#727272;
+}
+
+.nav a:hover{
+	color:#c1121c;
+}
+
+.nav span{
+	font-size: 1.6em;
+	padding-left: 10px;
+}
+
+
+#edit_page form div:nth-child(3){
+	clear: left;
+	padding-top: 10px;
+}
+
+
+#edit_page div{
+	padding-left: 10px;
+}
+
+
+#hidden_pass{
+	display: none;
+}
+
+
+#success_msg{
+	display:none;
+}
+
+
+#edit_submit{
+	float: right;
+	margin-top: 80px;
+	margin-right: 30px;
 }

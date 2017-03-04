@@ -79,7 +79,7 @@
 			
 			
 			<input type="checkbox" name="subscription" value="Yes" />
-			<label id="subscribe">Абониране за бюлетин</label>
+			<label id="checkbox">Абониране за бюлетин</label>
 	
 			<h4>ИНФОРМАЦИЯ ЗА ВХОД</h4>
 			<hr/>
