@@ -1,0 +1,83 @@
+<?php 
+	
+	session_start();
+ 	include_once 'dbconnect.php';
+	
+ 	$email = "";
+		
+ 	
+	if(isset($_POST['login'])){
+		$email = htmlentities(trim($_POST['email']));
+		$password = htmlentities(trim($_POST['password']));
+		$password = hash('sha256', $password);	
+		if(!empty($email) && !empty($password)){
+			$query = mysql_query("SELECT * FROM users WHERE email='$email'");
+	   		$result = mysql_fetch_array($query);
+	   		$count = mysql_num_rows($query);
+	   			
+			$error = false;
+	   		if($count == 1 && $password == $result['password']){
+				$_SESSION['login_user'] = $result['id'];
+				header("Location: profile.php");					
+	   		}else{
+	   			$error = true;
+	   		}
+		}
+		
+   		
+	}
+		
+		
+
+?>
+
+
+
+
+<link href="./assets/css/style.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="./assets/javascript/jquery.min.js"></script>
+<script type="text/javascript" src="./assets/javascript/javascript.js"></script>
+
+<main id="login">
+
+	<h2>Вход или Създаване на профил</h2>
+	<section id="error_msg" style="<?php if($error) echo "display:block;"?>">
+			<p>&#10006;</p>
+			<p>Невалидно потребителско име и/или парола</p>
+	</section>
+	<section class="login_sec">
+		<h4>НОВИ КЛИЕНТИ</h4>
+		<hr/>
+		<p>Чрез създаване на профил в нашия магазин, ще имате достъп
+		   до ускорен процес за потвърждаване на поръчките, ще можете
+		   да съхранявате множество адреси за доставка, да преглеждате
+		   и проследявате заявки и много други.</p>
+		<a href="creat.php" class="button" title="Създай профил">Създай профил</a>
+	</section>
+	
+	<section class="login_sec">
+			<h4>РЕГИСТРИРАНИ ПОТРЕБИТЕЛИ</h4>
+			<hr/>
+			<p>Ако имате създаден акаунт, моля влезте в профила си.</p>
+			<form id="log_in" action="" method="post">
+				<div>
+					<label>E-mail адрес<span class="required"><sup>*</sup></span></label>
+					<input id="login_email" type="text" name="email" value = "<?= $email; ?>"/>
+					<span class="error">Моля въведете валиден email адрес.</span>
+				</div>
+				<div>
+					<label>Парола<span class="required"><sup>*</sup></span></label>
+					<input id="login_password" type="password" name="password"/>
+					<span class="error">Това поле е задължително.</span>
+				</div>
+				<input id="login_submit" class="button" name="login" type="submit" title="Вход" value="Вход" />
+			</form>
+			<p class="required"><sup>*</sup>Задължителни полета</p>
+			<a href="" >Забравена парола?</a>
+	</section>
+
+</main>
+
+
+
+
