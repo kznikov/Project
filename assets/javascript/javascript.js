@@ -14,11 +14,26 @@
 			$('#login_password').on('input', function() {
 				var input=$(this);
 				var is_name=input.val();
-				if(is_name){
+				if(is_name && input.val().length >= 6){
 					input.removeClass("invalid").addClass("valid");
 				}else{
 					input.removeClass("valid").addClass("invalid");
 				}
+			});
+			
+			
+			$("#login_submit").click(function(event){
+				var form_data=$("#log_in").serializeArray();
+					form_data = form_data.slice(0,1);
+					for (var input in form_data){
+						var element=$("#login_"+form_data[input]['name']);
+						if(element.attr('value') != ""){
+							element.addClass("valid");
+						}
+						if(!element.val()){
+							element.removeClass("valid").addClass("invalid");
+						}
+					}
 			});
 			
 			$("#login_submit").click(function(event){
@@ -40,6 +55,11 @@
 				}
 			});
 		});
+		
+		
+		
+		
+		
 		
 		//creat account
 		$(document).ready(function() {
@@ -304,9 +324,26 @@
 				});
 				
 				
+				
+
+				
+			
+				
+				
 			$("#edit_submit").click(function(event){
 				var form_data=$("#edit_data").serializeArray();
 				if(form_data.length == 3){
+					for (var input in form_data){
+						var element=$("#edit_"+form_data[input]['name']);
+						if(element.attr('value') != ""){
+							element.addClass("valid");
+						}
+						if(!element.val()){
+							element.removeClass("valid").addClass("invalid");
+						}
+					}
+				}else{
+					form_data = form_data.slice(0,3);
 					for (var input in form_data){
 						var element=$("#edit_"+form_data[input]['name']);
 						if(element.attr('value') != ""){
@@ -320,17 +357,17 @@
 			});
 				
 				
-				
-				
 			
 			$("#edit_submit").click(function(event){				
 				var form_data=$("#edit_data").serializeArray();
+				
 				//console.log(form_data);
 				if(form_data.length == 7){
-					form_data.splice(3,1)
+					form_data.splice(3,1);	
 				}
 				
-				console.log(form_data); 
+				console.log(form_data); 	
+				
 				var error_free=true;
 				for (var input in form_data){
 					var element=$("#edit_"+form_data[input]['name']);
@@ -346,7 +383,32 @@
 				if (!error_free){
 					event.preventDefault(); 
 				}
+				
 			});
+				
+				
+			$('#edit_confpass').on('input', function() {
+				var confpassword=$(this);
+				var password=$('#edit_newpass');
+				var is_pass=(confpassword.val().length >= 6 && confpassword.val() == password.val());
+				if(is_pass){
+					confpassword.removeClass("invalid").addClass("valid");
+				}else{
+					confpassword.removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			$("#edit_submit").click(function(event){	
+	            var password = $("#edit_newpass").val();
+	            var confirmPassword = $("#edit_confpass").val();
+	            var element=$("#edit_confpass");
+	            var error_element=$("span", element.parent());
+	            if (password != confirmPassword) {
+	            	$("#edit_data div:nth-child(6) div:nth-child(5) span:nth-child(3)").text('Моля уверете се, че паролите съвпадат.');
+	            	error_element.removeClass("error").addClass("error_show"); 
+	            }
+	        });
+			
 			
 			
 		});

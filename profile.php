@@ -36,9 +36,9 @@
 	<section class="sec">
 		<h1>Профил</h1>
 		<hr/>
-		<section id="success_msg" style="<?php if($error) echo "display:block;"?>">
-			<p>&#10006;</p>
-			<p>Вече съществува потребител с такъв e-mail адрес. </p>
+		<section id="success_msg" style="<?php if($_SESSION['success']){$_SESSION['success'] = false; echo "display:block;";}?>">
+			<p>&#10004;</p>
+			<p>Вашият профил е запазен.</p>
 		</section>
 		<h2>Здравейте, <?= $userRow['name']." ".$userRow['lastname'] ?>!</h2>
 		<p>Тук може да прегледате вашата текуща активност и да редактирате профила си.</p>

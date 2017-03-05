@@ -305,8 +305,31 @@ input[type=checkbox]{
 
 
 #success_msg{
-	display:none;
+	background-color:#e9ffca;
+	margin:0px 30px 20px 30px;
+	height: 60px; 
+	display: none;
 }
+
+#success_msg p{
+	display: inline-block;
+	margin:0px;
+	margin-top:8px;
+}
+
+#success_msg p:nth-child(2){
+	margin-left:10px;
+	font-size: 1em;
+	color: #6f953a;	
+}
+
+#success_msg p:FIRST-CHILD{
+	margin-left:30px;
+	font-size: 30px;
+	color: #6f953a;
+	font-weight: bolder;
+}
+
 
 
 #edit_submit{

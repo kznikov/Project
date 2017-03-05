@@ -68,7 +68,8 @@
 				<div>
 					<label>Парола<span class="required"><sup>*</sup></span></label>
 					<input id="login_password" type="password" name="password"/>
-					<span class="error">Това поле е задължително.</span>
+					<span class="error">Моля въведете 6 или повече символа. Празни</br>
+											 места ще бъдат игнорирани.</span>
 				</div>
 				<input id="login_submit" class="button" name="login" type="submit" title="Вход" value="Вход" />
 			</form>

@@ -86,8 +86,8 @@
 			<div class="floated">
 				<label>Парола<span class="required"><sup>*</sup></span></label>
 				<input id="creat_password" type="password" name="password"/>
-				<span class="error">Моля въведете 6 или повече символа. Начални и <br/>крайни празни
-										 места ще бъдат игнорирани.</span>
+				<span class="error">Моля въведете 6 или повече символа. Празни</br>
+											 места ще бъдат игнорирани.</span>
 			</div>
 			<div class="floated">
 				<label>Потвърди парола<span class="required"><sup>*</sup></span></label>

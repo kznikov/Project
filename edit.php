@@ -8,45 +8,50 @@
  			 exit;
 		 }
 		
-
+			$res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
+ 		    $userRow = mysql_fetch_array($res);
  		 
+ 		    var_dump($_POST);
+ 			$error = false;
  		 if(isset($_POST['save'])){
  		 	
- 		 	var_dump($_POST);
- 		 	/*$name = htmlentities(trim($_POST['name']));
- 		 	$lastname = htmlentities(trim($_POST['lastname']));
- 		 	$email = htmlentities(trim($_POST['email']));
- 		 	$oldPass = htmlentities(trim($_POST['curr_password']));
- 		 	$newPass = htmlentities(trim($_POST['new_passwor']));
- 		 	$confNewPass = htmlentities(trim($_POST['confnew_passsword']));
- 		 	var_dump($_POST);
- 		 	if($oldPass === "" && $newPass === "" && $confNewPass === ""){
- 		 		$q = "UPDATE users SET name='".$name."', lastname='".$lastname."',
+ 		 	if(count($_POST) === 4 && $_POST['name'] != "" &&
+ 		 						 $_POST['lastname'] != "" && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+ 		 		$name = htmlentities(trim($_POST['name']));
+	 		 	$lastname = htmlentities(trim($_POST['lastname']));
+	 		 	$email = htmlentities(trim($_POST['email']));
+	 		 	$q = "UPDATE users SET name='".$name."', lastname='".$lastname."',
  		 							 email='".$email."' WHERE id=".$_SESSION['login_user'];
- 		 	}else{
- 		 		$oldPass = hash('sha256', $oldPass);
- 		 		if($userRow['password'] === $oldPass && $newPass === $confNewPass){
- 		 			$newPass = hash('sha256', $newPass);
- 		 			$q = "UPDATE users SET name='".$name."', lastname='".$lastname."', email='".$name."', 
+	 		 	
+ 		 	}elseif($_POST['name'] != "" && $_POST['lastname'] != "" && 
+ 		 			filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && $_POST['oldpass'] != "" && $_POST['newpass'] != ""
+ 		 			 && $_POST['confpass'] != ""){
+ 		 			$name = htmlentities(trim($_POST['name']));
+	 		 		$lastname = htmlentities(trim($_POST['lastname']));
+	 		 		$email = htmlentities(trim($_POST['email']));
+	 		 		$oldPass = htmlentities(trim($_POST['oldpass']));
+ 		 			$newPass = htmlentities(trim($_POST['newpass']));
+ 		 			$confNewPass = htmlentities(trim($_POST['confpass']));
+ 		 			$oldPass = hash('sha256', $oldPass);
+ 		 			if($oldPass != $userRow['password']){
+ 		 				$error = true;
+ 		 			}
+ 		 			
+ 		 			if(!$error && $newPass == $confNewPass){
+ 		 				$newPass = hash('sha256', $newPass);
+ 		 				$q = "UPDATE users SET name='".$name."', lastname='".$lastname."', email='".$email."', 
  		 				password='".$newPass."' WHERE id=".$_SESSION['login_user'];
- 		 		}
- 		 		
+ 		 			}
+ 		 			
  		 	}
- 		 	
- 				if(mysql_query($q)){
- 		 			$_SESSION['success'] = true;
- 		 			 header("Location: profile.php");
- 		 		}else{
- 		 			$_SESSION['success'] = false;
- 		 			 header("Location: profile.php");
- 		 		}*/
  		 }
- 		 
- 		 
- 		 
- 		 
- 		  $res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
- 		  $userRow = mysql_fetch_array($res);
+ 		 	
+ 		if(mysql_query($q)){
+  			$_SESSION['success'] = true;
+  			 header("Location: profile.php");
+ 		}
+ 		
+ 		
 ?>
 
 
@@ -73,6 +78,10 @@
 	<section class="sec">
 		<h1>Редакция на акаунт</h1>
 		<hr/>
+		<section id="error_msg" style="<?php if($error) echo "display:block;"?>">
+			<p>&#10006;</p>
+			<p>Невалидна текуща парола.</p>
+		</section>
 		<h3>ДЕТАЙЛИ</h3>
 		<hr/>
 		<article>
@@ -88,9 +97,8 @@
 					<span class="error">Това поле е задължително.</span>
 				</div>
 				<div>
-					<label>E-mail адрес<span class="required"><sup>*</sup></span></label>
-					<input id="edit_email" type="text" name="email" value="<?=$userRow['email'] ?>"/>
-					<span class="error">Моля въведете валиден email адрес.</span>
+					<label>E-mail адрес</label>
+					<input id="edit_email" type="text" readonly="readonly" name="email" value="<?=$userRow['email']?>"/>
 				</div>
 			
 				
@@ -103,13 +111,13 @@
 					<div >
 						<label>Текуща парола<span class="required"><sup>*</sup></span></label>
 						<input id="edit_oldpass" type="password" name="oldpass"/>
-						<span class="error">Моля въведете 6 или повече символа. Начални и <br/>крайни празни
+						<span class="error">Моля въведете 6 или повече символа. Празни</br>
 											 места ще бъдат игнорирани.</span>
 					</div>
 					<div class="floated">
 						<label>Нова парола<span class="required"><sup>*</sup></span></label>
 						<input id="edit_newpass" type="password" name="newpass"/>
-						<span class="error">Моля въведете 6 или повече символа. Начални и <br/>крайни празни
+						<span class="error">Моля въведете 6 или повече символа. Празни</br>
 											 места ще бъдат игнорирани.</span>
 					</div>
 					<div class="floated">
