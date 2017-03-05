@@ -1,0 +1,240 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 5, 2017, 9:12:50 AM
+    Author     : user
+*/
+
+/*-------------FOOTER-------------*/
+
+body{
+    margin: 0;
+}
+
+.footer-wrapper{
+    width: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    background-color: #D7CEC7;
+    font-size: 12px;
+    color: #565656;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+.footer-section{
+    width: 1170px;
+    box-sizing: border-box;
+    margin: 0% 10%;
+    display: inline-block;
+    background-color: #D7CEC7;
+    padding: 0.5% 2%;
+}
+
+.group1{
+    background-color: white;
+    border-bottom: solid #565656 1px;
+    border-left: solid #565656 1px;
+    border-right: solid #565656 1px;    
+}
+
+.footer-column{
+    width: 24.5%;
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: left;
+    vertical-align: text-top;
+}
+
+ol.chooseUs {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+ol.chooseUs > li {
+  counter-increment: customlistcounter;
+  margin-bottom: 1em;
+}
+
+ol.chooseUs > li:before {
+  content: counter(customlistcounter);
+  color: #fff;
+  font-weight: bold;
+  background-color: #a83c51;
+  margin-right: .3em;
+  padding: .6em .9em;
+  border-radius: 100%;
+}
+
+ol.chooseUs > li > span{
+    display: inline-block;
+    width: 75%;
+    vertical-align: middle;
+
+}
+
+ul.social-icons{
+    width: 40%;
+    box-sizing: border-box;
+    display: inline-block;
+    float:left;
+    padding: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 2%;
+}
+
+.social-icons li i{
+    font-size:40px;
+    color:#565656;
+}
+
+.subscribe-form{
+    width: 40%;
+    box-sizing: border-box;
+    display: inline-block;
+    float: right;
+    text-align: right;
+    padding: 2% 1%;
+    height:100%;
+}
+
+#subscribe-button{
+    color: white;
+    background-color: #a83c51;
+    line-height: 2em;   
+}
+
+.subscribe-form label{
+    line-height: 2em;   
+    font-size: 16px;
+}
+
+#subscription-mail{
+    font-size: 10px;
+    line-height: 2.5em;
+    padding-left: 1%;
+}
+
+.footer-column ul, .footer-column ol{
+    padding: 0;
+}
+
+.footer-column ul a{
+    text-decoration: none;
+    color: #565656;
+    padding: 0;
+}
+
+.footer-column ul a:hover{
+    color: crimson;
+}
+
+.footer-column ul li{
+    list-style: none;
+    padding: 0.5% 0;
+}
+
+ul.footer-ul > li:before {
+  content: ">";
+  color: black;
+  font-size: 0.75em;
+  margin-right: .2em;
+  padding: .5em .7em .6em;
+}
+
+ul.footer-ul > li:hover:before {
+  content: ">";
+  color: black;
+  font-size: 0.75em;
+  margin-left: .3em;
+  margin-right: -.2em;
+  padding: .5em .7em .6em;
+}
+
+span.footer-contacts{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2% 0;
+}
+
+.footer-column h4{
+    color: #565656;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.footer-column article{
+    text-align: justify;
+    padding-right: 5%;
+}
+
+.fa-stack-2x{
+    color: #a83c51;
+    font-size: 2em;
+}
+
+.fa-stack-1x{
+    color: white;
+}
+
+.fa-info-circle{
+    vertical-align: text-top;
+    display: inline;
+    color: #a83c51;
+    font-size: 3em;
+    float: left;
+    margin: 1% 2%;
+}
+
+#aboutUs-info{
+    display: inline;
+    vertical-align: top
+}
+
+.footer-column article a{
+    text-decoration: none;
+    color:#565656;
+}
+
+.footer-column article a:hover{
+    color:crimson;
+}
+
+#aboutUs-more-info:after{
+    content: ">";
+    margin: 0 3%;
+}
+
+hr{
+    color: #D7CEC7;
+    opacity: 0.2;
+}
+
+/*---------MAIN-----------*/
+.main{
+    width: 1170px;
+    box-sizing: border-box;
+    margin: 0% 10%;
+    display: inline-block;
+    padding: 0.5% 2%;
+    font-size: 12px;
+    color: black;
+    font-family: Arial,Helvetica,sans-serif;
+    border-top: solid #565656 1px;
+    border-left: solid #565656 1px;
+    border-right: solid #565656 1px;
+}
+
+.main a{
+    text-decoration: none;
+    color:#680418;
+}
+
+.main a:hover{
+    color: crimson;
+}
