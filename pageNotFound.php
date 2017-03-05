@@ -17,3 +17,7 @@ function goBack() {
     window.history.back();
 }
 </script>
+
+<script>
+    document.title = "404 Page Not Found";
+</script>

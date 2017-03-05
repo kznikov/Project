@@ -91,8 +91,8 @@
 
                 <form class="subscribe-form" method="post" action="">
                     <label for="email"> Бюлетин </label>
-                    <input type="email" name="subscription-mail" id="subscription-mail" placeholder="Въведете Вашия e-mail">
-                    <input type="submit" name="subscribe-button" id="subscribe-button" value="Абониране">
+                    <input type="email" name="subscription-mail" id="subscription-mail" placeholder="Въведете Вашия e-mail" title="Абонирай се за бюлетин">
+                    <input type="submit" name="subscribe-button" id="subscribe-button" value="Абониране" title="Абониране">
                 </form>
         </div>
         <div class="footer-wrapper">	
@@ -139,7 +139,7 @@
 
                 </div>
             </div>
-            <div class="copy_right">
+            <div class="copy-right">
                 <p>© 1997-2016 MOST Computers. Всички права запазени.</p>
             </div>
         </div>
