@@ -25,7 +25,7 @@
 		<ul>
 			<li><a href="./profile.php">ПРОФИЛ</a></li>
 			<li><a href="./edit.php">ДЕТАЙЛИ</a></li>
-			<li><a href="./shipping.php">ПЛАЩАНЕ И ДОСТАВКА</a></li>
+			<li><a href="./address.php">ПЛАЩАНЕ И ДОСТАВКА</a></li>
 			<li><a href="./orders.php">ПОРЪЧКИ</a></li>
 			<li><a href="./wishlist.php">ЖЕЛАНИ</a></li>
 			<li><a href="./newsletter.php">БЮЛЕТИН</a></li>
@@ -36,9 +36,15 @@
 	<section class="sec">
 		<h1>Профил</h1>
 		<hr/>
-		<section id="success_msg" style="<?php if($_SESSION['success']){$_SESSION['success'] = false; echo "display:block;";}?>">
+		<section class="success_msg" style="<?php if($_SESSION['success'] || $_SESSION['subs']){echo "display:block;";}?>">
 			<p>&#10004;</p>
-			<p>Вашият профил е запазен.</p>
+			<?php if($_SESSION['success']){
+				echo "<p>Вашият профил е запазен.</p>";
+				$_SESSION['success']=false;
+			}else{
+				echo "<p>Абонамента е запазен.</p>";
+				$_SESSION['subs']=false;
+			}?>
 		</section>
 		<h2>Здравейте, <?= $userRow['name']." ".$userRow['lastname'] ?>!</h2>
 		<p>Тук може да прегледате вашата текуща активност и да редактирате профила си.</p>
@@ -60,15 +66,15 @@
 		
 		<article>
 		
-		<h3>Плащане и доставка<a class="edit" href="./shipping.php">Редактирай</a></h3>
+		<h3>Плащане и доставка<a class="edit" href="./address.php">Редактирай</a></h3>
 		<hr/>
 		<?php if($userRow['address'] == ""){?>
 			<p>Не е добавена информация.</p>
 		<?php }else{
-			echo "<ul id='address'>";
+			echo "<ul class='address'>";
 				echo "<li>Име: ".$userRow['name']." ".$userRow['lastname']."</li>";
 				echo "<li>Адрес: ".$userRow['address']."</li>";
-				echo "<li>Населено място: ".$userRow['place']."</li>";
+				echo "<li>Населено място: ".$userRow['place'].", ".$userRow['postcode']."</li>";
 				echo "<li>Държава: ".$userRow['country']."</li>";
 				echo "<li>Телефон: ".$userRow['phone_number']."</li>";
 			echo "</ul>";

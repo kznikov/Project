@@ -22,6 +22,7 @@
 			});
 			
 			
+			
 			$("#login_submit").click(function(event){
 				var form_data=$("#log_in").serializeArray();
 					form_data = form_data.slice(0,1);
@@ -35,6 +36,7 @@
 						}
 					}
 			});
+			
 			
 			$("#login_submit").click(function(event){
 				var form_data=$("#log_in").serializeArray();
@@ -54,6 +56,11 @@
 					event.preventDefault(); 
 				}
 			});
+			
+			
+			
+			
+			
 		});
 		
 		
@@ -202,6 +209,10 @@
 	        });
 			
 			
+			
+			//edit profile
+			
+			
 			$("#hidden_pass").hide();
 			$("#change_pass").click(function() {
 			    if($(this).is(":checked")) {
@@ -323,10 +334,7 @@
 				    $(this).val(str);
 				});
 				
-				
-				
-
-				
+								
 			
 				
 				
@@ -408,6 +416,114 @@
 	            	error_element.removeClass("error").addClass("error_show"); 
 	            }
 	        });
+			
+			
+			//edit address
+			
+			
+			$("#hide_address").hide();
+			$("#change_address").click(function() {
+			    if($(this).is(":checked")) {
+			        $("#hide_address").show();	
+			    } else {
+			        $("#hide_address").hide();
+			       		       
+			    }
+			});
+			
+			
+			$('#edit_street').on('input', function() {
+				var input=$(this);
+				var is_name=input.val();
+				if(is_name){
+					input.removeClass("invalid").addClass("valid");
+				}else{
+					input.removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			$('#edit_place').on('input', function() {
+				var input=$(this);
+				var is_name=input.val();
+				if(is_name){
+					input.removeClass("invalid").addClass("valid");
+				}else{
+					input.removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			
+			$('#edit_phone').on('input', function() {
+				var input=$(this);
+				var is_name=input.val();
+				if(is_name){
+					input.removeClass("invalid").addClass("valid");
+				}else{
+					input.removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			
+			$('#edit_postcode').on('input', function() {
+				var input=$(this);
+				var is_name=input.val();
+				if(is_name){
+					input.removeClass("invalid").addClass("valid");
+				}else{
+					input.removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			$('#edit_country').on('input', function() {
+				var input=$(this);
+				var is_name=input.val();
+				if(is_name){
+					input.removeClass("invalid").addClass("valid");
+				}else{
+					input.removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			
+			
+			
+			$("#address_submit").click(function(event){
+				var form_data=$("#address_data").serializeArray();
+					for (var input in form_data){
+						var element=$("#edit_"+form_data[input]['name']);
+						if(element.attr('value') != ""){
+							element.addClass("valid");
+						}
+						if(!element.val()){
+							element.removeClass("valid").addClass("invalid");
+						}
+					}
+			});
+			
+			
+			
+			
+			$("#address_submit").click(function(event){				
+				var form_data=$("#address_data").serializeArray();
+				var error_free=true;
+				for (var input in form_data){
+					var element=$("#edit_"+form_data[input]['name']);
+					var valid=element.hasClass("valid");
+					var error_element=$("span", element.parent());
+					if (!valid){
+						error_element.removeClass("error").addClass("error_show"); 
+						error_free=false;
+					}else{
+						error_element.removeClass("error_show").addClass("error");
+					}
+				}
+				if (!error_free){
+					event.preventDefault(); 
+				}
+				
+			});
+			
+			
 			
 			
 			

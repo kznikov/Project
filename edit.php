@@ -11,7 +11,7 @@
 			$res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
  		    $userRow = mysql_fetch_array($res);
  		 
- 		    var_dump($_POST);
+ 		   
  			$error = false;
  		 if(isset($_POST['save'])){
  		 	
@@ -67,7 +67,7 @@
 		<ul>
 			<li><a href="./profile.php">ПРОФИЛ</a></li>
 			<li><a href="./edit.php">ДЕТАЙЛИ</a></li>
-			<li><a href="./shipping.php">ПЛАЩАНЕ И ДОСТАВКА</a></li>
+			<li><a href="./address.php">ПЛАЩАНЕ И ДОСТАВКА</a></li>
 			<li><a href="./orders.php">ПОРЪЧКИ</a></li>
 			<li><a href="./wishlist.php">ЖЕЛАНИ</a></li>
 			<li><a href="./newsletter.php">БЮЛЕТИН</a></li>
@@ -103,7 +103,7 @@
 			
 				
 				<input id="change_pass" type="checkbox" name="change_pass" value="Yes" />
-				<label id="checkbox">Промени парола</label>
+				<label class="checkbox">Промени парола</label>
 				
 				<div id="hidden_pass">
 					<h3>ПРОМЕНИ ПАРОЛА</h3>
