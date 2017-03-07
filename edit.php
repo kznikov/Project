@@ -102,10 +102,10 @@
 				</div>
 			
 				
-				<input id="change_pass" type="checkbox" name="change_pass" value="Yes" />
+				<input class="hide_check" type="checkbox" name="change_pass" value="Yes" />
 				<label class="checkbox">Промени парола</label>
 				
-				<div id="hidden_pass">
+				<div class="hide">
 					<h3>ПРОМЕНИ ПАРОЛА</h3>
 					<hr/>
 					<div >

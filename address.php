@@ -77,9 +77,9 @@
 		
 				}?>
 		</article>
-		<input id="change_address" type="checkbox" name="change_address" />
+		<input class="hide_check" type="checkbox" name="change_address" />
 		<label class="checkbox">Промени адреса на доставка</label>
-		<article id="hide_address">
+		<article class="hide" style="margin-left:20px;">
 			<form id="address_data" action="" method="post">
 					<div >
 						<label>Адрес<span class="required"><sup>*</sup></span></label>

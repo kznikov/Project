@@ -299,10 +299,6 @@ input[type=checkbox]{
 }
 
 
-#hidden_pass{
-	display: none;
-}
-
 
 .success_msg{
 	background-color:#e9ffca;
@@ -369,10 +365,6 @@ input[type=checkbox]{
 }
 
 
-#hide_address{
-	margin-left:20px;
-	display:none;
-}
 
 #change_address{
 	margin-left: 20px;
