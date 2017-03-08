@@ -111,8 +111,8 @@
                 <div class="footer-column">
                     <h4>Онлайн клиенти</h4>
                     <ul class="footer-ul">
-                        <li><a href="#">Вход</a></li>
-                        <li><a href="#">Регистрация</a></li>
+                        <li><a href="./?page=login">Вход</a></li>
+                        <li><a href="./?page=create">Регистрация</a></li>
                         <li><a href="#">Условия за ползване</a></li>
                         <li><a href="#">Поръчки и доставки</a></li>
                     </ul>

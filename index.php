@@ -7,6 +7,8 @@ and open the template in the editor.
 
 <?php
 
+ob_start();
+
 include_once('./header.php');
 
 if(isset($_GET['page'])){

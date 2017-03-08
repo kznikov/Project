@@ -1,9 +1,8 @@
 <?php
-		session_start();
 		include_once 'dbconnect.php';
 		
 		 if(!isset($_SESSION['login_user']) ) {
- 			 header("Location: login.php");
+ 			 header("Location: ./?page=login");
  			 exit;
 		 }
 		 
@@ -14,22 +13,18 @@
 ?>
 
 
-<link href="./assets/css/style.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="./assets/javascript/jquery.min.js"></script>
-<script type="text/javascript" src="./assets/javascript/javascript.js"></script>
-
 <main id="profile">
 	<nav class="nav">
 		<h5><img alt="user" src="./assets/images/user.png"/><span>Профил</span></h5>
 		<hr/>
 		<ul>
-			<li><a href="./profile.php">ПРОФИЛ</a></li>
-			<li><a href="./edit.php">ДЕТАЙЛИ</a></li>
-			<li><a href="./address.php">ПЛАЩАНЕ И ДОСТАВКА</a></li>
-			<li><a href="./orders.php">ПОРЪЧКИ</a></li>
-			<li><a href="./wishlist.php">ЖЕЛАНИ</a></li>
-			<li><a href="./newsletter.php">БЮЛЕТИН</a></li>
-			<li><a href="./logout.php">ИЗХОД</a></li>
+			<li><a href="./?page=profile">ПРОФИЛ</a></li>
+			<li><a href="./?page=edit">ДЕТАЙЛИ</a></li>
+			<li><a href="./?page=address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
+			<li><a href="./?page=orders">ПОРЪЧКИ</a></li>
+			<li><a href="./?page=wishlist">ЖЕЛАНИ</a></li>
+			<li><a href="./?page=newsletter">БЮЛЕТИН</a></li>
+			<li><a href="./?page=logout">ИЗХОД</a></li>
 		</ul>
 	</nav>
 	
@@ -46,19 +41,19 @@
 				$_SESSION['subs']=false;
 			}?>
 		</section>
-		<h2>Здравейте, <?= $userRow['name']." ".$userRow['lastname'] ?>!</h2>
+		<h2>Здравейте, <?= $_SESSION['name'] ?>!</h2>
 		<p>Тук може да прегледате вашата текуща активност и да редактирате профила си.</p>
 		<h2>Детайли</h2>
 		<hr/>
 		<article>
 			<div>
-				<h3>Информация за контакт<a class="edit" href="./edit.php">Редактирай</a></h3>
+				<h3>Информация за контакт<a class="edit" href="./?page=edit">Редактирай</a></h3>
 				<hr/>
 				<p><?= $userRow['name']." ".$userRow['lastname']?><br/><?= $userRow['email'] ?></p>
-				<a href="./edit.php">Промени парола</a>
+				<a href="./?page=edit">Промени парола</a>
 			</div>
 			<div>
-				<h3>Бюлетини<a class="edit" href="./newsletter.php">Редактирай</a></h3>
+				<h3>Бюлетини<a class="edit" href="./?page=newsletter">Редактирай</a></h3>
 				<hr/>
 				<p><?= ($userRow['subscription'] === "no" ? "Не е направен абонамент за бюлетин." : "Направен е абонамент за 'Основен абонамент'.") ?></p>
 			</div>
@@ -66,7 +61,7 @@
 		
 		<article>
 		
-		<h3>Плащане и доставка<a class="edit" href="./address.php">Редактирай</a></h3>
+		<h3>Плащане и доставка<a class="edit" href="./?page=address">Редактирай</a></h3>
 		<hr/>
 		<?php if($userRow['address'] == ""){?>
 			<p>Не е добавена информация.</p>

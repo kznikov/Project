@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#creat, #login, #profile, #edit_page, #edit_address, #edit_newsletter{
+#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter{
 	margin: 0 auto;
 	color:#727272;
 	font-family:  Arial, Helvetica, sans-serif;
@@ -20,6 +20,7 @@ h4{
 	float: left;
 	width: 46%;
 	padding: 0 2%;
+	margin-bottom: 90px;
 	 
 }
 
@@ -119,11 +120,11 @@ input.valid{
 
 
 
-.creat_sec{
+.create_sec{
 	padding: 0px 2%;
 }
 
-#creat div{
+#create div{
 	padding-left: 10px;
 }
 
@@ -131,7 +132,7 @@ input.valid{
 	float:left;
 }
 
-.creat_sec form div:nth-child(3){
+.create_sec form div:nth-child(3){
 	clear: left;
 	padding-top: 10px;
 }
@@ -150,13 +151,13 @@ input[type=checkbox]{
 	margin-bottom: 50px;
 }
 
-#creat_submit{
+#create_submit{
 	float: right;
 	margin-top: 80px;
 	margin-right: 30px;
 }
 
-#creat_submit p{
+#create_submit p{
 	margin-bottom: 3px;
 }
 
@@ -171,7 +172,7 @@ input[type=checkbox]{
 }
 
 
-#creat a{
+#create a{
 	display:block;
 	clear:both;
 	text-decoration: none;

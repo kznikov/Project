@@ -1,10 +1,9 @@
 <?php 
 	
-	session_start();
  	include_once 'dbconnect.php';
 	
  	$email = "";
-		
+
  	
 	if(isset($_POST['login'])){
 		$email = htmlentities(trim($_POST['email']));
@@ -18,25 +17,17 @@
 			$error = false;
 	   		if($count == 1 && $password == $result['password']){
 				$_SESSION['login_user'] = $result['id'];
-				header("Location: profile.php");					
+				$_SESSION['name'] = $result['name']." ".$result['lastname'];		
+				header("Location: ./?page=profile");					
 	   		}else{
 	   			$error = true;
 	   		}
 		}
-		
-   		
-	}
-		
+	}		
 		
 
 ?>
 
-
-
-
-<link href="./assets/css/style.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="./assets/javascript/jquery.min.js"></script>
-<script type="text/javascript" src="./assets/javascript/javascript.js"></script>
 
 <main id="login">
 
@@ -52,7 +43,7 @@
 		   до ускорен процес за потвърждаване на поръчките, ще можете
 		   да съхранявате множество адреси за доставка, да преглеждате
 		   и проследявате заявки и много други.</p>
-		<a href="creat.php" class="button" title="Създай профил">Създай профил</a>
+		<a href="?page=create" class="button" title="Създай профил">Създай профил</a>
 	</section>
 	
 	<section class="login_sec">

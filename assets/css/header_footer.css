@@ -146,9 +146,6 @@ form.search-form{
     margin-top: 1%;
 }
 
-.toggle, li.toggle{
-    display: none;
-}
 .dropdown-currency{
     float: right;
     display: none;
@@ -249,7 +246,7 @@ ol.chooseUs > li:before {
   border-radius: 100%;
 }
 
-ol.chooseUs > li > span{
+ol.chooseUs > li > {
     display: inline-block;
     width: 75%;
     vertical-align: middle;

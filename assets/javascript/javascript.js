@@ -1,4 +1,4 @@
-		$(document).ready(function() {
+		$(document).ready(function(){
 			$('input[name="email"]').on('input', function() {
 				var input=$(this);
 				var re =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -42,21 +42,14 @@
 			
 			
 			$("#login_submit").click(function(event){
-				var form_data=$("#log_in").serializeArray();
-					form_data = form_data.slice(0,1);
-					for (var input in form_data){
-						var element=$("#login_"+form_data[input]['name']);
-						if(element.attr('value') != ""){
-							element.addClass("valid");
-						}
-						if(!element.val()){
-							element.removeClass("valid").addClass("invalid");
-						}
-					}
-			});
-			
-			
-			$("#login_submit").click(function(event){
+				var element=$("#login_email");
+				if(element.attr('value') != ""){
+					element.addClass("valid");
+				}
+				if(!element.val()){
+					element.removeClass("valid").addClass("invalid");
+				}
+				
 				var form_data=$("#log_in").serializeArray();
 				var error_free=true;
 				for (var input in form_data){
@@ -77,9 +70,9 @@
 			
 					
 			
-			$('#creat_confpass').on('input', function() {
+			$('#create_confpass').on('input', function() {
 				var confpassword=$(this);
-				var password=$('#creat_password');
+				var password=$('#create_password');
 				var is_pass=(confpassword.val().length >= 6 && confpassword.val() == password.val());
 				if(is_pass){
 					confpassword.removeClass("invalid").addClass("valid");
@@ -89,10 +82,10 @@
 			});
 			
 			
-			$("#creat_submit").click(function(event){	
-	            var password = $("#creat_password").val();
-	            var confirmPassword = $("#creat_confpass").val();
-	            var element=$("#creat_confpass");
+			$("#create_submit").click(function(event){	
+	            var password = $("#create_password").val();
+	            var confirmPassword = $("#create_confpass").val();
+	            var element=$("#create_confpass");
 	            var error_element=$("span", element.parent());
 	            if (password != confirmPassword) {
 	            	$("#personal_data div:nth-child(9) span:nth-child(3)").text('Моля уверете се, че паролите съвпадат.');
@@ -102,7 +95,7 @@
 			
 			
 			
-			$("#creat_submit").click(function(event){
+			$("#create_submit").click(function(event){
 				var form_data=$("#personal_data").serializeArray();
 				if(form_data.length == 6){
 					form_data.splice(3,1);
@@ -111,7 +104,7 @@
 				console.log(form_data); 
 				var error_free=true;
 				for (var input in form_data){
-					var element=$("#creat_"+form_data[input]['name']);
+					var element=$("#create_"+form_data[input]['name']);
 					var valid=element.hasClass("valid");
 					var error_element=$("span", element.parent());
 					if (!valid){
@@ -177,7 +170,6 @@
 					}
 				}
 			});
-				
 				
 			
 			$("#edit_submit").click(function(event){				
@@ -274,4 +266,9 @@
 				}
 			});
 		});
+		
+//---------------------------------------------------------------------------
+		
+		
+		
 	
