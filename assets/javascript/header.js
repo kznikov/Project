@@ -1,28 +1,17 @@
-var selectedCurrency = "BGN";
-$(document).ready(function(){   
+$(document).ready(function(){
+    //search option:
     $("#search").mouseenter(function(){
         $("#search-button").css("background-color", "white");
     });
     $("#search").mouseleave(function(){
         $("#search-button").css("background-color", "#efeded");
     });
+    
+    //currency selector:
     $("#currency-selector, .dropdown-currency").mouseenter(function(){
-        $(".dropdown-currency").css("display", "inline-block");
+        $(".dropdown-currency").css("display", "block");
     });
-    $(".dropdown-currency").mouseleave(function(){
+    $("#currency-selector, .dropdown-currency").mouseleave(function(){
         $(".dropdown-currency").css("display", "none");
     });
-    
-    //doesn't work:
-    $("#EUR").click(function() {
-        selectedCurrency = "EUR";
-    });
-    $("#BGN").click(function() {
-        selectedCurrency = "BGN";
-    });
 });
-
-
-
-
-

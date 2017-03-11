@@ -120,6 +120,7 @@ form.search-form{
         border:0.5px solid #bab6b6;
         padding: 1% 0 1% 2%;
         color: #918c8c;
+        display: inline-block;
 }
 
 #search:hover{
@@ -141,16 +142,22 @@ form.search-form{
     color: black;
 }
 
-.header-nav2{
+.header-nav2, .show{
     float: right;
-    margin-top: 1%;
+}
+
+.show{
+     margin-top: 0%;
 }
 
 .dropdown-currency{
     float: right;
     display: none;
-    margin-top: -7%;
-    padding-top: 4%;
+    margin-top: 0%;
+    position: absolute;
+    background-color: white;
+    border: solid #dbd6d6 1px;
+    padding: 0 0.3%;
 }
 
 .dropdown-currency li{
@@ -160,6 +167,8 @@ form.search-form{
 
 .dropdown-currency li:hover{
     color: crimson;
+    cursor: pointer;
+
 }
 
 .header-row4{
@@ -244,13 +253,14 @@ ol.chooseUs > li:before {
   margin-right: .3em;
   padding: .6em .9em;
   border-radius: 100%;
+  display: inline-block;
+  float: left;
 }
 
-ol.chooseUs > li > {
+ol.chooseUs > li {
     display: inline-block;
-    width: 75%;
+    width: 80%;
     vertical-align: middle;
-
 }
 
 ul.social-icons{
@@ -284,22 +294,38 @@ ul.social-icons{
 #subscribe-button{
     color: white;
     background-color: #a83c51;
-    line-height: 2em;   
+    float: right;
+    line-height: 2.5em;
+    margin-left: 1%;
+    display: inline-block;
+    width: 25%;
+    height: 3em;
+    vertical-align: middle;
+    font-size: 11px;
 }
 
 #subscribe-button:hover{
     background-color: #842d3e;
+    cursor: pointer;
 }
 
 .subscribe-form label{
-    line-height: 2em;   
-    font-size: 16px;
+    line-height: 1.5em;   
+    font-size: 14px;
+    display: inline-block;
+    width: 30%;
+    margin-top: 0;
 }
 
 #subscription-mail{
-    font-size: 10px;
+    font-size: 11px;
     line-height: 2.5em;
     padding-left: 1%;
+    display: inline-block;
+    width: 30%;
+    height: 2.7em;
+    vertical-align: middle;
+    margin-left: 1%;
 }
 
 .footer-column ul, .footer-column ol{
@@ -346,13 +372,14 @@ span.footer-contacts{
 
 .footer-column h4{
     color: #565656;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: normal;
 }
 
 .footer-column article{
     text-align: justify;
     padding-right: 5%;
+    padding-top: 2%;
 }
 
 .fa-stack-2x{
@@ -375,7 +402,7 @@ span.footer-contacts{
 
 #aboutUs-info{
     display: inline;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .footer-column article a{
