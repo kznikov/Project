@@ -17,7 +17,7 @@
  		 
  		if(mysql_query($q)){
   			$_SESSION['subs'] = true;
-  			 header("Location: profile.php");
+  			 header("Location: ./?page=profile");
  		}
  		
  		 $res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);

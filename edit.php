@@ -1,54 +1,64 @@
 <?php
 
 		include_once 'dbconnect.php';
-		
+	
 		 if(!isset($_SESSION['login_user']) ) {
  			  header("Location: ./?page=login");
  			 exit;
 		 }
 		
-			$res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
- 		    $userRow = mysql_fetch_array($res);
- 		 
- 		   
- 			$error = false;
+		$res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
+ 	    $userRow = mysql_fetch_array($res);
+ 	 
+ 	   
+ 		 $email_error = false;
+ 		 $pass_error = false;
  		 if(isset($_POST['save'])){
  		 	
- 		 	if(count($_POST) === 4 && $_POST['name'] != "" &&
- 		 						 $_POST['lastname'] != "" && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
- 		 		$name = htmlentities(trim($_POST['name']));
-	 		 	$lastname = htmlentities(trim($_POST['lastname']));
-	 		 	$email = htmlentities(trim($_POST['email']));
+	 		 $email = htmlentities(trim($_POST['email']));
+			 $query = mysql_query("SELECT * FROM users WHERE id<>'".$_SESSION['login_user']."' AND email LIKE '$email'");
+		   	 $count = mysql_num_rows($query);
+		   	 
+			 if($count > 0){
+				$email_error = true;
+			 }
+ 		 	
+			 $name = htmlentities(trim($_POST['name']));
+	 		 $lastname = htmlentities(trim($_POST['lastname']));
+	 		 $email = htmlentities(trim($_POST['email']));
+			
+			 
+ 		 	if(!$email_error && count($_POST) === 4 && $name != "" && $lastname != ""
+ 		 					 && filter_var($email, FILTER_VALIDATE_EMAIL)){
+ 		 		
 	 		 	$q = "UPDATE users SET name='".$name."', lastname='".$lastname."',
- 		 							 email='".$email."' WHERE id=".$_SESSION['login_user'];
+ 		 							 email='".$email."' WHERE id='".$_SESSION['login_user']."'";
 	 		 	
- 		 	}elseif($_POST['name'] != "" && $_POST['lastname'] != "" && 
- 		 			filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && $_POST['oldpass'] != "" && $_POST['newpass'] != ""
+ 		 	}elseif(!$email_error && $name != "" && $lastname != "" && 
+ 		 			filter_var($email, FILTER_VALIDATE_EMAIL) && $_POST['oldpass'] != "" && $_POST['newpass'] != ""
  		 			 && $_POST['confpass'] != ""){
- 		 			$name = htmlentities(trim($_POST['name']));
-	 		 		$lastname = htmlentities(trim($_POST['lastname']));
-	 		 		$email = htmlentities(trim($_POST['email']));
+ 		 			 	
 	 		 		$oldPass = htmlentities(trim($_POST['oldpass']));
  		 			$newPass = htmlentities(trim($_POST['newpass']));
  		 			$confNewPass = htmlentities(trim($_POST['confpass']));
  		 			$oldPass = hash('sha256', $oldPass);
  		 			if($oldPass != $userRow['password']){
- 		 				$error = true;
+ 		 				$pass_error = true;
  		 			}
  		 			
- 		 			if(!$error && $newPass == $confNewPass){
+ 		 			if(!$pass_error && $newPass == $confNewPass){
  		 				$newPass = hash('sha256', $newPass);
  		 				$q = "UPDATE users SET name='".$name."', lastname='".$lastname."', email='".$email."', 
  		 				password='".$newPass."' WHERE id=".$_SESSION['login_user'];
  		 			}
  		 			
  		 	}
- 		 }
- 		 	
- 		if(mysql_query($q)){
-  			$_SESSION['success'] = true;
-  			 header("Location: ./?page=profile");
- 		}
+ 	 }
+ 	 	
+ 	if(mysql_query($q)){
+  		$_SESSION['success'] = true;
+  		 header("Location: ./?page=profile");
+ 	}
  		
  		
 ?>
@@ -72,9 +82,15 @@
 	<section class="sec">
 		<h1>Редакция на акаунт</h1>
 		<hr/>
-		<section id="error_msg" style="<?php if($error) echo "display:block;"?>">
+		<section id="error_msg" style="<?php if($email_error || $pass_error) echo "display:block;"?>">
 			<p>&#10006;</p>
-			<p>Невалидна текуща парола.</p>
+			<?php if($pass_error){
+				echo "<p>Невалидна текуща парола.</p>";
+			}else{
+				echo "<p>Вече съществува потребител с такъв e-mail адрес. </p>";
+			}
+			?>
+			
 		</section>
 		<h3>ДЕТАЙЛИ</h3>
 		<hr/>
@@ -92,10 +108,10 @@
 				</div>
 				<div>
 					<label>E-mail адрес</label>
-					<input id="edit_email" type="text" readonly="readonly" name="email" value="<?=$userRow['email']?>"/>
+					<input id="edit_email" type="text" name="email" value="<?=$userRow['email']?>"/>
+					<span class="error">Моля въведете валиден email адрес.</span>
 				</div>
 			
-				
 				<input class="hide_check" type="checkbox" name="change_pass" value="Yes" />
 				<label class="checkbox">Промени парола</label>
 				

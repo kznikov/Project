@@ -1,4 +1,4 @@
-		$(document).ready(function(){
+$(document).ready(function(){
 			$('input[name="email"]').on('input', function() {
 				var input=$(this);
 				var re =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -21,6 +21,7 @@
 					input.removeClass("valid").addClass("invalid");
 				}
 			});
+			
 	
 			
 			$('input[name*="pass"]').keyup(function() {
@@ -39,6 +40,9 @@
 					input.removeClass("valid").addClass("invalid");
 				}
 			});
+			
+			
+			
 			
 			
 			$("#login_submit").click(function(event){
@@ -68,7 +72,23 @@
 				}
 			});
 			
-					
+		
+			
+			$("#create_submit").click(function(event){
+				var form_data=$("#personal_data").serializeArray();
+				form_data = form_data.slice(0,3);
+					for (var input in form_data){
+						var element=$("#create_"+form_data[input]['name']);
+						if(element.attr('value') != ""){
+							element.addClass("valid");
+						}
+						if(!element.val()){
+							element.removeClass("valid").addClass("invalid");
+						}
+					}
+			});
+			
+			
 			
 			$('#create_confpass').on('input', function() {
 				var confpassword=$(this);
@@ -118,8 +138,9 @@
 					event.preventDefault(); 
 				}
 			});
-		
 			
+			
+	
 			
 			$(".hide").hide();
 			$(".hide_check").click(function() {
@@ -170,6 +191,7 @@
 					}
 				}
 			});
+		
 				
 			
 			$("#edit_submit").click(function(event){				
@@ -178,6 +200,16 @@
 				if(form_data.length == 7){
 					form_data.splice(3,1);	
 				}
+				
+				var input=$('#edit_email');
+				var re =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				var is_email=re.test(input.val());
+				if(is_email){
+					input.removeClass("invalid").addClass("valid");
+				}else{
+					input.removeClass("valid").addClass("invalid");
+				}
+				
 				
 				console.log(form_data); 	
 				
@@ -197,7 +229,7 @@
 					event.preventDefault(); 
 				}
 			});
-				
+				 
 				
 			$('#edit_confpass').on('input', function() {
 				var confpassword=$(this);
@@ -266,9 +298,4 @@
 				}
 			});
 		});
-		
-//---------------------------------------------------------------------------
-		
-		
-		
-	
+

@@ -144,5 +144,10 @@
             </div>
         </div>
     </div>
+    
+    
+    <script src="https://use.fontawesome.com/0a902a9652.js"></script>
+    <script src="assets/javascript/header.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./assets/javascript/javascript.js"></script>
 </body>
 </html>

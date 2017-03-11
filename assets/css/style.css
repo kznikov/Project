@@ -1,9 +1,15 @@
 @CHARSET "UTF-8";
 
 #create, #login, #profile, #edit_page, #edit_address, #edit_newsletter{
+	font-size:1.2em;
 	margin: 0 auto;
 	color:#727272;
 	font-family:  Arial, Helvetica, sans-serif;
+}
+
+
+div.main{
+	padding-bottom: 90px;
 }
 
 h2{
@@ -20,7 +26,6 @@ h4{
 	float: left;
 	width: 46%;
 	padding: 0 2%;
-	margin-bottom: 90px;
 	 
 }
 
@@ -64,13 +69,15 @@ input{
 	outline: none;
 }
 
+
 input:hover{
 	border:1px solid grey;
 }
 
 input:focus{
-	border:1.5px solid grey;
+	border: 1px solid grey;
 }
+
 
 
 label{
@@ -214,6 +221,13 @@ input[type=checkbox]{
 	
 }
 
+nav ul{
+	padding-left: 20px;
+}
+nav li{
+	margin-bottom: 7px;
+}
+
 .nav img{
 	width: 20px;
 }
@@ -224,7 +238,7 @@ input[type=checkbox]{
 }
 
 .edit{
-	font-size: 0.5em;
+	font-size: 0.6em;
 	float: right;
 }
 
@@ -281,6 +295,9 @@ input[type=checkbox]{
 
 .nav a:hover{
 	color:#c1121c;
+}
+.nav a:visited {
+    color: #727272;
 }
 
 .nav span{
@@ -355,7 +372,7 @@ input[type=checkbox]{
 	float: right;
 	margin-top: 80px;
 	margin-right: 30px;
-	margin-bottom: 60px;
+	
 }
 
 
@@ -383,4 +400,18 @@ input[type=checkbox]{
 	margin-top: -7px;
 }
 
+
+#page_error{
+	padding-bottom: 130px;
+	color:#727272;
+	font-family:  Arial, Helvetica, sans-serif;
+}
+
+#page_error p{
+	font-weight: bold;
+}
+
+#page_error h1{
+	font-size: 2.4em;
+}
 

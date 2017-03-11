@@ -31,17 +31,20 @@
 	<section class="sec">
 		<h1>Профил</h1>
 		<hr/>
-		<section class="success_msg" style="<?php if($_SESSION['success'] || $_SESSION['subs']){echo "display:block;";}?>">
+		<section class="success_msg" style="<?php if($_SESSION['success'] || $_SESSION['created'] || $_SESSION['subs']){echo "display:block;";}?>">
 			<p>&#10004;</p>
 			<?php if($_SESSION['success']){
 				echo "<p>Вашият профил е запазен.</p>";
 				$_SESSION['success']=false;
-			}else{
+			}elseif($_SESSION['subs']){
 				echo "<p>Абонамента е запазен.</p>";
 				$_SESSION['subs']=false;
+			}else{
+				echo "<p>Благодарим Ви за направената регистрация в сайта на MOST Computers.</p>";
+				$_SESSION['created']=false;
 			}?>
 		</section>
-		<h2>Здравейте, <?= $_SESSION['name'] ?>!</h2>
+		<h2>Здравейте, <?= $userRow['name']." ".$userRow['lastname']; ?>!</h2>
 		<p>Тук може да прегледате вашата текуща активност и да редактирате профила си.</p>
 		<h2>Детайли</h2>
 		<hr/>
