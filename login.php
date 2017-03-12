@@ -10,14 +10,14 @@
 		$password = htmlentities(trim($_POST['password']));
 		$password = hash('sha256', $password);	
 		if(!empty($email) && !empty($password)){
-			$query = mysql_query("SELECT * FROM users WHERE email LIKE '$email'");
-	   		$result = mysql_fetch_array($query);
-	   		$count = mysql_num_rows($query);
+			$query = mysqli_query($conn, "SELECT * FROM users WHERE email LIKE '$email'");
+	   		$result = mysqli_fetch_array($query);
+	   		$count = mysqli_num_rows($query);
 	   			
 			$error = false;
 	   		if($count == 1 && $password == $result['password']){
 				$_SESSION['login_user'] = $result['id'];		
-				header("Location: ./?page=profile");					
+				header("Location: profile");					
 	   		}else{
 	   			$error = true;
 	   		}
@@ -42,7 +42,7 @@
 		   до ускорен процес за потвърждаване на поръчките, ще можете
 		   да съхранявате множество адреси за доставка, да преглеждате
 		   и проследявате заявки и много други.</p>
-		<a href="./?page=create" class="button" title="Създай профил" style="color:white;">Създай профил</a>
+		<a href="create" class="button" title="Създай профил" style="color:white;">Създай профил</a>
 	</section>
 	
 	<section class="login_sec">

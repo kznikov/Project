@@ -2,13 +2,13 @@
 		include_once 'dbconnect.php';
 		
 		 if(!isset($_SESSION['login_user']) ) {
- 			 header("Location: ./?page=login");
+ 			 header("Location: login");
  			 exit;
 		 }
 		 
 		 
-		 $res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
- 		 $userRow = mysql_fetch_array($res);
+		 $res = mysqli_query($conn, "SELECT * FROM users WHERE id=".$_SESSION['login_user']);
+ 		 $userRow = mysqli_fetch_array($res);
  		 
 ?>
 
@@ -18,13 +18,13 @@
 		<h5><img alt="user" src="./assets/images/user.png"/><span>Профил</span></h5>
 		<hr/>
 		<ul>
-			<li><a href="./?page=profile">ПРОФИЛ</a></li>
-			<li><a href="./?page=edit">ДЕТАЙЛИ</a></li>
-			<li><a href="./?page=address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
-			<li><a href="./?page=orders">ПОРЪЧКИ</a></li>
-			<li><a href="./?page=wishlist">ЖЕЛАНИ</a></li>
-			<li><a href="./?page=newsletter">БЮЛЕТИН</a></li>
-			<li><a href="./?page=logout">ИЗХОД</a></li>
+			<li><a href="profile">ПРОФИЛ</a></li>
+			<li><a href="edit">ДЕТАЙЛИ</a></li>
+			<li><a href="address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
+			<li><a href="orders">ПОРЪЧКИ</a></li>
+			<li><a href="wishlist">ЖЕЛАНИ</a></li>
+			<li><a href="newsletter">БЮЛЕТИН</a></li>
+			<li><a href="logout">ИЗХОД</a></li>
 		</ul>
 	</nav>
 	
@@ -50,13 +50,13 @@
 		<hr/>
 		<article>
 			<div>
-				<h3>Информация за контакт<a class="edit" href="./?page=edit">Редактирай</a></h3>
+				<h3>Информация за контакт<a class="edit" href="edit">Редактирай</a></h3>
 				<hr/>
 				<p><?= $userRow['name']." ".$userRow['lastname']?><br/><?= $userRow['email'] ?></p>
-				<a href="./?page=edit">Промени парола</a>
+				<a href="edit">Промени парола</a>
 			</div>
 			<div>
-				<h3>Бюлетини<a class="edit" href="./?page=newsletter">Редактирай</a></h3>
+				<h3>Бюлетини<a class="edit" href="newsletter">Редактирай</a></h3>
 				<hr/>
 				<p><?= ($userRow['subscription'] === "no" ? "Не е направен абонамент за бюлетин." : "Направен е абонамент за 'Основен абонамент'.") ?></p>
 			</div>
@@ -64,7 +64,7 @@
 		
 		<article>
 		
-		<h3>Плащане и доставка<a class="edit" href="./?page=address">Редактирай</a></h3>
+		<h3>Плащане и доставка<a class="edit" href="address">Редактирай</a></h3>
 		<hr/>
 		<?php if($userRow['address'] == ""){?>
 			<p>Не е добавена информация.</p>

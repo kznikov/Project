@@ -3,7 +3,7 @@
 		include_once 'dbconnect.php';
 		
 		 if(!isset($_SESSION['login_user']) ) {
- 			 header("Location: ./?page=login");
+ 			 header("Location: login");
  			 exit;
 		 }
  		 if(isset($_POST['save'])){
@@ -13,15 +13,15 @@
 	   			$subscription = "no";
 	   		}
 	   		$q = "UPDATE users SET subscription='".$subscription."' WHERE id=".$_SESSION['login_user'];
- 		 }
  		 
- 		if(mysql_query($q)){
-  			$_SESSION['subs'] = true;
-  			 header("Location: ./?page=profile");
- 		}
+ 			if(mysqli_query($conn, $q)){
+  				$_SESSION['subs'] = true;
+  				 header("Location: profile");
+ 			}
+ 		 }
  		
- 		 $res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
- 		 $userRow = mysql_fetch_array($res);
+ 		 $res = mysqli_query($conn, "SELECT * FROM users WHERE id=".$_SESSION['login_user']);
+ 		 $userRow = mysqli_fetch_array($res);
  		
  		
 ?>
@@ -32,13 +32,13 @@
 		<h5><img alt="user" src="./assets/images/user.png"/><span>Профил</span></h5>
 		<hr/>
 		<ul>
-			<li><a href="./?page=profile">ПРОФИЛ</a></li>
-			<li><a href="./?page=edit">ДЕТАЙЛИ</a></li>
-			<li><a href="./?page=address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
-			<li><a href="./?page=orders">ПОРЪЧКИ</a></li>
-			<li><a href="./?page=wishlist">ЖЕЛАНИ</a></li>
-			<li><a href="./?page=newsletter">БЮЛЕТИН</a></li>
-			<li><a href="./?page=logout">ИЗХОД</a></li>
+			<li><a href="profile">ПРОФИЛ</a></li>
+			<li><a href="edit">ДЕТАЙЛИ</a></li>
+			<li><a href="address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
+			<li><a href="orders">ПОРЪЧКИ</a></li>
+			<li><a href="wishlist">ЖЕЛАНИ</a></li>
+			<li><a href="newsletter">БЮЛЕТИН</a></li>
+			<li><a href="logout">ИЗХОД</a></li>
 		</ul>
 	</nav>
 	

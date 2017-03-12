@@ -1,16 +1,14 @@
 <?php
 
- error_reporting( ~E_DEPRECATED & ~E_NOTICE );
+error_reporting( ~E_DEPRECATED & ~E_NOTICE );
  
- $conn = mysql_connect('localhost','root','');
- $dbcon = mysql_select_db('users');
+ $conn = mysqli_connect('localhost','root','', 'users');
  
+ 
+  
  if ( !$conn ) {
-  die("Connection failed : " . mysql_error());
+ 	die("Connection failed : " . mysqli_error());
  }
  
- if ( !$dbcon ) {
-  die("Database Connection failed : " . mysql_error());
- }
 
 ?>
