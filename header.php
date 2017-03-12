@@ -17,10 +17,9 @@
 	$_SESSION['timeout']=time();
 
 	 if(isset($_SESSION['login_user'])){
-	 	$res = mysqli_query($conn, "SELECT * FROM users WHERE id=".$_SESSION['login_user']);
- 		$userRow = mysqli_fetch_array($res);
+	 	$res = mysql_query("SELECT * FROM users WHERE id=".$_SESSION['login_user']);
+ 		$userRow = mysql_fetch_array($res);
 	 }
-	 
 	 
 
 ?>
@@ -35,6 +34,8 @@
     <script src="assets/javascript/header.js" type="text/javascript"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
     <link href="assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
+	<link href="assets/css/aside-nav.css" rel="stylesheet" type="text/css"/>
+
 	
 	<style type="text/css">
 		li.hidden{
@@ -88,22 +89,23 @@
                 <li>Тел.: <span class="bold">(02) 91 823&nbsp;&nbsp;&nbsp;</span></li>
                 <li>Факс: <span class="bold">(02) 873 00 37&nbsp;&nbsp;&nbsp;</span></li>
                 <li>Сервиз: <span class="bold">0700 144 11&nbsp;&nbsp;&nbsp;</span></li>
-                <li class="show">Здравейте, <?= $userRow['name']." ".$userRow['lastname']?>!</li>
+                <li class="show">Здравейте, <?= $_SESSION['name']?>!</li>
             </ul>
+
 
 
             <ul class="header-ul header-nav1">
                 <li><a href="#">Форум</a></li>
-                <li><a href="profile">Профил</a></li>
-                <li><a href="wishlist">Желани</a></li>
-                <li><a href="news">Новини</a></li>
-                <li class="hidden"><a href="login" class="toggle2">Вход</a></li>
-                <li class="hidden"><a href="create" class="toggle2">Регистрация</a></li>
-                <li class="show"><a href="logout" class="toggle">Изход</a></li>                
+                <li><a href="?page=profile">Профил</a></li>
+                <li><a href="?page=wishlist">Желани</a></li>
+                <li><a href="?page=news">Новини</a></li>
+                <li class="hidden"><a href="?page=login" class="toggle2">Вход</a></li>
+                <li class="hidden"><a href="?page=create" class="toggle2">Регистрация</a></li>
+                <li class="show"><a href="?page=logout" class="toggle">Изход</a></li>                
             </ul>            
         </div>
         <div class="header-row3">
-            <a href="home"><img src="assets/images/logo.png" alt="logo" id="header-logo"/></a>
+            <a href="?page=home"><img src="assets/images/logo.png" alt="logo" id="header-logo"/></a>
             <form class="search-form" action="" method="get">
                 <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search">
                 <button type="submit" title="Търсене" id="search-button"><i class="fa fa-search"></i></button>
