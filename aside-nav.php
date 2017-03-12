@@ -1,6 +1,6 @@
 <aside class="aside-wrapper">
     <h4 id="aside-title">Категории продукти</h4>
-    <button class="accordion">Лаптопи</button>
+    <button class="accordion" id="first-category">Лаптопи</button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">HP</a></li>
@@ -156,7 +156,7 @@
         </ul>
     </div>
 
-    <button class="accordion no-items-nav">Скенери</button>
+    <button class="accordion-no-items">Скенери</button>
 
 
     <button class="accordion">Мрежови продукти</button>
@@ -222,7 +222,7 @@
         </ul>
     </div>
 
-    <button class="accordion no-items-nav">UPS устройства</button>
+    <button class="accordion-no-items">UPS устройства</button>
     
 
     <button class="accordion">Дънни платки</button>
@@ -313,7 +313,7 @@
         </ul>
     </div>
 
-    <button class="accordion no-items-nav">Оптични устройства</button>
+    <button class="accordion-no-items">Оптични устройства</button>
 
     <button class="accordion">Допълнителна гаранция</button>
     <div class="panel">
@@ -324,23 +324,9 @@
         </ul>
     </div>
 
-    <button class="accordion no-items-nav">Смарт часовници</button>
+    <button class="accordion-no-items">Смарт часовници</button>
 
 </aside>
 
-<script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+<script src="assets/javascript/aside-nav.js" type="text/javascript"></script>
 
-    for (i = 0; i < acc.length; i++) {
-        acc[i].onclick = function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        }
-    }
-</script>
