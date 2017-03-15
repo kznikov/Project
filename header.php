@@ -34,7 +34,7 @@
     <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
     <script src="assets/javascript/header.js" type="text/javascript"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
-    <link href="assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
+    <link href="./assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
 	
 	<style type="text/css">
 		li.hidden{
@@ -73,6 +73,9 @@
                 if ($page == "login") {
                     $pageTitle = 'Вход клиенти';
                 }
+                if ($page == "news") {
+                   $pageTitle = 'Новини';
+                }
                  if ($page == "create") {
                     $pageTitle = 'Създай нов клиентски профил';
                 }
@@ -103,7 +106,7 @@
             </ul>            
         </div>
         <div class="header-row3">
-            <a href="home"><img src="assets/images/logo.png" alt="logo" id="header-logo"/></a>
+            <a href="home"><img src="./assets/images/logo.png" alt="logo" id="header-logo"/></a>
             <form class="search-form" action="" method="get">
                 <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search">
                 <button type="submit" title="Търсене" id="search-button"><i class="fa fa-search"></i></button>

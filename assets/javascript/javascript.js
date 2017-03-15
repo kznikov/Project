@@ -299,3 +299,24 @@ $(document).ready(function(){
 			});
 		});
 
+
+
+	$(function() {
+		$(".pagination li").hover(function() {
+		    $(this).find('a').css("color", "white");
+	        }, function(){
+	        	$(this).find('a').css("color", "grey");
+        });
+	});
+
+	
+	$(function() {
+		$("#search_news").click(function(event) {
+			var value = $('#search_box').val();
+			if(value == ""){
+				event.preventDefault(); 
+			}
+        });
+	});
+	
+	
