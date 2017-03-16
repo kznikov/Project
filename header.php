@@ -11,7 +11,7 @@
 	$session_life = time() - $_SESSION['timeout'];
 	
 	if ($session_life > $inactive) {
-	    header("Location:logout.php");
+	    header("Location:?page=logout");
 	}
 	$_SESSION['timeout'] = time();
 	
@@ -114,17 +114,17 @@
 
             <ul class="header-ul header-nav1">
                 <li><a href="#">Форум</a></li>
-                <li><a href="profile">Профил</a></li>
-                <li><a href="wishlist">Желани</a></li>
-                <li><a href="news">Новини</a></li>
-                <li class="hidden"><a href="login" class="toggle2">Вход</a></li>
-                <li class="hidden"><a href="create" class="toggle2">Регистрация</a></li>
-                <li class="show"><a href="logout" class="toggle">Изход</a></li>                
+                <li><a href="./?page=profile">Профил</a></li>
+                <li><a href="./?page=wishlist">Желани</a></li>
+                <li><a href="./?page=news">Новини</a></li>
+                <li class="hidden"><a href="./?page=login" class="toggle2">Вход</a></li>
+                <li class="hidden"><a href="./?page=create" class="toggle2">Регистрация</a></li>
+                <li class="show"><a href="./?page=logout" class="toggle">Изход</a></li>                
             </ul>            
         </div>
         <div class="header-row3">
 
-            <a href="home"><img src="./assets/images/logo.png" alt="logo" id="header-logo"/></a>
+            <a href="./?page=home"><img src="./assets/images/logo.png" alt="logo" id="header-logo"/></a>
 
             <form class="search-form" action="" method="get">
                 <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search">

@@ -90,9 +90,9 @@
                 </ul>
 
                 <form class="subscribe-form" method="post" action="">
-                    <label for="email"> Бюлетин </label>
-                    <input type="email" name="subscription-mail" id="subscription-mail" placeholder="Въведете Вашия e-mail" title="Абонирай се за бюлетин">
-                    <input type="submit" name="subscribe-button" id="subscribe-button" value="Абониране" title="Абониране">
+                    <label for="./?page=email"> Бюлетин </label>
+                    <input type="./?page=email" name="subscription-mail" id="subscription-mail" placeholder="Въведете Вашия e-mail" title="Абонирай се за бюлетин">
+                    <input type="./?page=submit" name="subscribe-button" id="subscribe-button" value="Абониране" title="Абониране">
                 </form>
         </div>
         <div class="footer-wrapper">	
@@ -111,8 +111,8 @@
                 <div class="footer-column">
                     <h4>Онлайн клиенти</h4>
                     <ul class="footer-ul">
-                        <li><a href="login">Вход</a></li>
-                        <li><a href="create">Регистрация</a></li>
+                        <li><a href="./?page=login">Вход</a></li>
+                        <li><a href="./?page=create">Регистрация</a></li>
                         <li><a href="#">Условия за ползване</a></li>
                         <li><a href="#">Поръчки и доставки</a></li>
                     </ul>

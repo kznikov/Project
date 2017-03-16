@@ -17,7 +17,7 @@
 			$error = false;
 	   		if($count == 1 && $password == $result['password']){
 				$_SESSION['login_user'] = $result['id'];		
-				header("Location: profile");					
+				header("Location: ./?page=profile");					
 	   		}else{
 	   			$error = true;
 	   		}
@@ -42,7 +42,7 @@
 		   до ускорен процес за потвърждаване на поръчките, ще можете
 		   да съхранявате множество адреси за доставка, да преглеждате
 		   и проследявате заявки и много други.</p>
-		<a href="create" class="button" title="Създай профил" style="color:white;">Създай профил</a>
+		<a href="./?page=create" class="button" title="Създай профил" style="color:white;">Създай профил</a>
 	</section>
 	
 	<section class="login_sec">

@@ -30,32 +30,21 @@
 	   	$previewCount = mysqli_num_rows($query);
 	   	
 	   	$newest = mysqli_query($conn, "SELECT * FROM news ORDER BY p_date DESC LIMIT 5");
-	  
-	   	$pageNumber = str_replace("?pn=", "", strstr($_SERVER['REQUEST_URI'], "?pn="));
-	  
+	  	
+	   	if(isset($_GET['pn'])){
+	   			$pageNumber = $_GET['pn'];
+	   	}
+	   
 	   	$header = "Новини - МОСТ Компютърс";
-	   	if(is_numeric(strpos($_SERVER['REQUEST_URI'], "?type="))){
-	   		 $params = explode("&", str_replace("/Project_1/news?", "", $_SERVER['REQUEST_URI']));
-	   	 	 $type = str_replace("type=","",$params[0]);
-	   		 ($type == "news" ?  $header = "Анотации" : $header = "Ревюта");
-	   	}
 	   	
-	   	$isArticle = false;
-	   	$isSearch = false;
-	   	if(is_numeric(strpos($_SERVER['REQUEST_URI'], "?article="))){
-	   		$isArticle = true;
+	   	if(isset($_GET['article'])){
 	   		$header = "";
-	   	}elseif(is_numeric(strpos($_SERVER['REQUEST_URI'], "?search_news="))){
-	   		$isSearch = true;
-	   		$searchString = explode("&",urldecode(str_replace("?search_news=", "", mb_strstr($_SERVER['REQUEST_URI'], "?search_news="))));
-	   		$header = "Резултати: '".$searchString[0]."'";
-	   	}
-	   	elseif(is_numeric(strpos($_SERVER['REQUEST_URI'], "?type="))){
-	   		$isCategory = true;
-	   	}
-	   	
-	   	if($isCategory || $isSearch){
-	   		$pageNumber = str_replace("&pn=", "", strstr($_SERVER['REQUEST_URI'], "&pn="));
+	   	}elseif(isset($_GET['search_news'])){
+	   		$searchString = $_GET['search_news'];
+	   		$header = "Резултати: '".$searchString."'";
+	   	}elseif(isset($_GET['type'])){
+	   		$type = $_GET['type'];
+	   		 ($type == "news" ?  $header = "Анотации" : $header = "Ревюта");
 	   	}
 ?>
 <style>
@@ -76,23 +65,22 @@
 	<?php if(($pageNumber == 1 || !is_numeric($pageNumber)) && $header == "Новини - МОСТ Компютърс") echo "<h1>".$header."</h1>"; elseif($header != "Новини - МОСТ Компютърс")  echo "<h1>".$header."</h1>"; ?>
 	<section id="news_sec1">
 		<?php 
-			if(!$isArticle){
+			if(!isset($_GET['article'])){
 				echo "<hr/>"; 
-				if($isCategory){
-		   			//$q = mysqli_query($conn, "SELECT * FROM news WHERE type LIKE '".$header."'");
+				if(isset($_GET['type'])){
 					$q = "SELECT * FROM news WHERE type LIKE '".$header."' ORDER BY p_date DESC ";
-					$anchor = '<a href=" '.str_replace("index.php", "", $_SERVER['PHP_SELF']).'news?type='.$type.'&pn=';
+					$anchor = '<a href="./?page=news&type='.$type.'&pn=';
 					
-				}elseif($isSearch){
-					$searchWords = multiexplode(array(" ", ".", "_", "?", ",", ";"),$searchString[0]);
+				}elseif(isset($_GET['search_news'])){
+					$searchWords = multiexplode(array(" ", ".", "_", "?", ",", ";"),$searchString);
 	   				$q = "SELECT * FROM news WHERE MATCH(title) AGAINST ('".implode(" +", $searchWords)."' IN BOOLEAN MODE) ORDER BY p_date DESC ";
 	   				if(!mysqli_num_rows(mysqli_query($conn, $q))){
 						echo "<article id='info_msg'><img src='./assets/images/info.png'><p>Няма намерени съответствия.</p></article>";
 	   				}
-	   				$anchor = '<a href=" '.str_replace("index.php", "", $_SERVER['PHP_SELF']).'news?search_news='.$searchString[0].'&pn=';
+	   				$anchor = '<a href="./?page=news&search_news='.$searchString.'&pn=';
 				}else{
 					$q = "SELECT * FROM news ORDER BY p_date DESC ";
-					$anchor = '<a href=" '.str_replace("index.php", "", $_SERVER['PHP_SELF']).'news?pn=';
+					$anchor = '<a href="./?page=news&pn=';
 				}
 				$query = mysqli_query($conn, $q);
 		   	 	$rows = mysqli_num_rows($query);
@@ -169,7 +157,7 @@
 		   				<?php while($row = mysqli_fetch_array($querySimil, MYSQLI_ASSOC)){ 
 		   					$title = cyrToLat(mb_strtolower($row['title']))."-news-id=".$row['id'];
 		   					echo "<li>";
-		   					echo "<a href='./news?article=$title'><img src='./assets/images/news/".$row['image']."' title='".$row['title']."'></a>";
+		   					echo "<a href='./?page=news&article=$title'><img src='./assets/images/news/".$row['image']."' title='".$row['title']."'></a>";
 		   					echo "<p>".$row['title']."</p>";
 		   					echo "</li>";
 		   				}?>
@@ -179,7 +167,7 @@
 	   	<?php
 	   	  }
 	   		
-		if(!$isArticle){
+		if(!isset($_GET['article'])){
 			echo "<ul id='news_field'>";
 			while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
 				$arr = explode(" ", $row['p_date']);
@@ -189,11 +177,11 @@
 				?>
 						<li>
 							<div>
-								<h2><a href="./news?article=<?=$title?>" ><?= $row['title']?></a></h2>
+								<h2><a href="./?page=news&article=<?=$title?>" ><?= $row['title']?></a></h2>
 								<p><?= "Публикувано в ".$row['type']." на ".$date." от ".$row['published_by']."." ?></p>
-								<a href="./news?article=<?=$title?>" ><img alt="" src="./assets/images/news/<?=$row['image']?>"></a>
+								<a href="./?page=news&article=<?=$title?>" ><img alt="" src="./assets/images/news/<?=$row['image']?>"></a>
 								<p><?= mb_substr($row['content'], 0, 300);?></p>
-								<a href="./news?article=<?=$title?>">Пълен текст &#8594;</a>
+								<a href="./?page=news?article=<?=$title?>">Пълен текст &#8594;</a>
 							</div>
 						</li>
 				<?php
@@ -207,7 +195,8 @@
 		<article class="news_art">
 			<h3>Търси в блога</h3>
 			<hr/>
-			<form  action="" method="get">
+			<form  action="./?page=news" method="get">
+				<input type="hidden" name="page" value="news"placeholder="Търси в новини"/>
 				<input id="search_box" type="text" name="search_news" placeholder="Търси в новини"/>
 				<input id="search_news" type="submit" value="Търсене"/>
 			</form>
@@ -216,8 +205,8 @@
 			<h3>Категории</h3>
 			<hr/>
 			<ul>
-				<li><a href="./news?type=news&pn=1">Анотации</a><span> (<?=  $newsCount ?>)</span></li>
-				<li><a href="./news?type=reviews&pn=1">Ревюта</a><span> (<?=  $previewCount ?>)</span></li>
+				<li><a href="./?page=news&type=news&pn=1">Анотации</a><span> (<?=  $newsCount ?>)</span></li>
+				<li><a href="./?page=news&type=reviews&pn=1">Ревюта</a><span> (<?=  $previewCount ?>)</span></li>
 			</ul>
 		</article>
 		<article class="news_art">
@@ -227,14 +216,14 @@
 			echo "<ul>"; 
 				 while( $newNews = mysqli_fetch_array($newest)){
 				 	$title = cyrToLat(mb_strtolower($newNews['title']))."-news-id=".$newNews['id'];
-	   				echo "<li><a href='./news?article=".$title."' >".$newNews['title']."</a></li>";
+	   				echo "<li><a href='./?page=news&article=".$title."' >".$newNews['title']."</a></li>";
 	   			 }
 	   		echo "</ul>";	 
 			?>
 		</article>
 		
 	</section>
-	<?php if(!$isArticle){?>
+	<?php if(!isset($_GET['article'])){?>
 	<section class="pagination">
 		<?php if(mysqli_num_rows($query)){?> 
 		 <p>Общо <?=(($pageNum - 1) * $pageRows +1)."-".(($pageNum - 1) * $pageRows + $peaces)?> от <?=$rows ?></p>

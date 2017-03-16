@@ -3,7 +3,7 @@
 		include_once 'dbconnect.php';
 		
 		 if(!isset($_SESSION['login_user']) ) {
- 			 header("Location: login");
+ 			 header("Location: ./?page=login");
  			 exit;
 		 }
  		 if(isset($_POST['save'])){
@@ -16,7 +16,7 @@
  		 
  			if(mysqli_query($conn, $q)){
   				$_SESSION['subs'] = true;
-  				 header("Location: profile");
+  				 header("Location: ./?page=profile");
  			}
  		 }
  		
@@ -32,13 +32,13 @@
 		<h5><img alt="user" src="./assets/images/user.png"/><span>Профил</span></h5>
 		<hr/>
 		<ul>
-			<li><a href="profile">ПРОФИЛ</a></li>
-			<li><a href="edit">ДЕТАЙЛИ</a></li>
-			<li><a href="address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
-			<li><a href="orders">ПОРЪЧКИ</a></li>
-			<li><a href="wishlist">ЖЕЛАНИ</a></li>
-			<li><a href="newsletter">БЮЛЕТИН</a></li>
-			<li><a href="logout">ИЗХОД</a></li>
+			<li><a href="./?page=profile">ПРОФИЛ</a></li>
+			<li><a href="./?page=edit">ДЕТАЙЛИ</a></li>
+			<li><a href="./?page=address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
+			<li><a href="./?page=orders">ПОРЪЧКИ</a></li>
+			<li><a href="./?page=wishlist">ЖЕЛАНИ</a></li>
+			<li><a href="./?page=newsletter">БЮЛЕТИН</a></li>
+			<li><a href="./?page=logout">ИЗХОД</a></li>
 		</ul>
 	</nav>
 	

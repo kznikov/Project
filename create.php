@@ -38,7 +38,7 @@
 			 $_SESSION['created'] = true;
 			 $_SESSION['login_user'] = mysql_insert_id();
 			 $_SESSION['name'] = $name." ".$lastName;
-			 header("Location: profile");
+			 header("Location: ./?page=profile");
 		}
 	}
 		
@@ -98,7 +98,7 @@
 				<input class="button" name="register" type="submit" title="Продължи" value="Продължи" />
 			</div>
 		</form>
-		<a href="./login.php">Назад</a>
+		<a href="./?page=login">Назад</a>
 	</section>
 	
 
