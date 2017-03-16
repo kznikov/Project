@@ -320,3 +320,12 @@ $(document).ready(function(){
 	});
 	
 	
+	$(function() {
+		$(".cat_prod").hover(function(event) {
+			$(this).find('h4').css("color", "#b63b42");
+		}, function(){
+        	$(this).find('h4').css("color", "#727272");
+        });
+	});
+	
+	

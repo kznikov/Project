@@ -89,6 +89,9 @@
                 if ($page == "login") {
                     $pageTitle = 'Вход клиенти';
                 }
+                if ($page == "categories") {
+                    $pageTitle = 'Категории';
+                }
                 if ($page == "news") {
                    $pageTitle = 'Новини';
                 }
@@ -132,7 +135,7 @@
             </form>
 
             <ul class="header-ul header-nav2">
-                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
+                <li><i class="fa fa-balance-sle" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
                 <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency">BGN</span> &nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-currency">
                         <li id="BGN" onclick="selectBgn()">BGN - Български лев</li>
@@ -151,7 +154,7 @@
 
 
             <ul class="header-ul header-nav3">
-                <li><a href="#">Продукти</a></li>
+                <li><a href="?page=categories">Продукти</a></li>
                 <li><a href="#">Компоненти</a></li>
                 <li><a href="#">Лаптопи</a></li>
                 <li><a href="#">Таблети</a></li>
