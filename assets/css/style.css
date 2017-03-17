@@ -645,7 +645,17 @@ nav li{
 }
 
 
+#prod_sec{
+	float:left;
+	width: 80%;
+	margin-right: 30px;
+}
 
+#prod_sec2{
+
+	padding-top: 40px;
+	padding-left: 20xp;
+}
 
 
 

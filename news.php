@@ -10,19 +10,6 @@
 	    return  $launch;
 	}
 	
-
-	
-		//$time = date("d/m/Y");
-		
-	/*$query = "INSERT INTO news(type,published_by, image) VALUES('Ревюта', 'МОСТ Компютърс', 'news_pic1')";
-			mysqli_query($conn, "SET NAMES 'UTF8'");
-			
-	
-			 for($i=0;$i<=17;$i++){
-			 	 mysqli_query($conn, $query);
-			 }
-*/
-	
 		mysqli_query($conn, "SET NAMES 'UTF8'");
 		$query = mysqli_query($conn, "SELECT * FROM news WHERE type LIKE 'Анотации'");
 	   	$newsCount = mysqli_num_rows($query);
