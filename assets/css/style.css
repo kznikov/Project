@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter, #news, #categories{
+#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter, #news, #categories, #products{
 	font-size:1.2em;
 	margin: 0 auto;
 	color:#727272;
@@ -630,11 +630,9 @@ nav li{
 	float:left;
 	width: 15%;
 	margin-left: 1%;
-	margin-bottom: 20px;
 	border: 1px solid white; 
 	padding: 10px;
 	padding-top: 50px;
-	
 }
 
 #categories article:hover{

@@ -28,19 +28,8 @@
 
 
 <main id="edit_newsletter">
-	<nav class="nav">
-		<h5><img alt="user" src="./assets/images/user.png"/><span>Профил</span></h5>
-		<hr/>
-		<ul>
-			<li><a href="./?page=profile">ПРОФИЛ</a></li>
-			<li><a href="./?page=edit">ДЕТАЙЛИ</a></li>
-			<li><a href="./?page=address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
-			<li><a href="./?page=orders">ПОРЪЧКИ</a></li>
-			<li><a href="./?page=wishlist">ЖЕЛАНИ</a></li>
-			<li><a href="./?page=newsletter">БЮЛЕТИН</a></li>
-			<li><a href="./?page=logout">ИЗХОД</a></li>
-		</ul>
-	</nav>
+
+	<?php include_once 'profileNav.html';?>
 	
 	<section class="sec">
 		<h1>Абонамент за бюлетин</h1>

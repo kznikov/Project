@@ -10,7 +10,7 @@
  		 
  		 if(isset($_POST['save'])){
  		 	
- 		 	if($_POST['street'] != "" && $_POST['place'] != "" && $_POST['phone'] != ""
+ 		 	if($_POST['street'] != "" && $_POST['place'] != "" && $_POST['phone'] != "" && is_numeric($_POST['phone'])
  		 					 && $_POST['postcode'] != "" && $_POST['country'] != ""){
  		 		$street = htmlentities(trim($_POST['street']));
 	 		 	$place = htmlentities(trim($_POST['place']));
@@ -37,19 +37,7 @@
 
 
 <main id="edit_address">
-	<nav class="nav">
-		<h5><img alt="user" src="./assets/images/user.png"/><span>Профил</span></h5>
-		<hr/>
-		<ul>
-			<li><a href="./?page=profile">ПРОФИЛ</a></li>
-			<li><a href="./?page=edit">ДЕТАЙЛИ</a></li>
-			<li><a href="./?page=address">ПЛАЩАНЕ И ДОСТАВКА</a></li>
-			<li><a href="./?page=orders">ПОРЪЧКИ</a></li>
-			<li><a href="./?page=wishlist">ЖЕЛАНИ</a></li>
-			<li><a href="./?page=newsletter">БЮЛЕТИН</a></li>
-			<li><a href="./?page=logout">ИЗХОД</a></li>
-		</ul>
-	</nav>
+	<?php include_once 'profileNav.html';?>
 	
 	<section class="sec">
 		<h1>Плащане и доставка</h1>
@@ -91,7 +79,7 @@
 					<div >
 						<label>Телефон<span class="required"><sup>*</sup></span></label>
 						<input id="edit_phone" type="text" name="phone" value="<?=$userRow['phone_number'] ?>"/>
-						<span class="error">Това поле е задължително.</span>
+						<span class="error">Моля въведете валиден телефонен номер.</span>
 					</div>
 					<div class = "floated">
 						<label>Пощенски код<span class="required"><sup>*</sup></span></label>

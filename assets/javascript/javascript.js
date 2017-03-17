@@ -254,15 +254,15 @@ $(document).ready(function(){
 	        });
 			
 			
-
+			
 			$("#address_submit").click(function(event){
 				var form_data=$("#address_data").serializeArray();
 					for (var input in form_data){
 						var element=$("#edit_"+form_data[input]['name']);
-						if(element.attr('value').trim() != ""){
+						if(element.attr('value').trim() != "" ){
 							element.addClass("valid");
 						}
-						if(!element.val().trim()){
+						if(element.hasClass("invalid")){
 							element.removeClass("valid").addClass("invalid");
 						}
 					}
@@ -271,6 +271,15 @@ $(document).ready(function(){
 			
 			$('#address_data :text').on('input', function () {				
 				if($(this).val().trim()){
+					$(this).removeClass("invalid").addClass("valid");
+				}else{
+					$(this).removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			
+			$("#edit_phone").on('input', function () {				
+				if($.isNumeric($(this).val().trim())){
 					$(this).removeClass("invalid").addClass("valid");
 				}else{
 					$(this).removeClass("valid").addClass("invalid");

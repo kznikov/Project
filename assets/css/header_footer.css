@@ -61,7 +61,7 @@ body{
 .header-ul, .greeting{
     display: inline-block;
     box-sizing: border-box;
-    margin: 0;
+    margin: 0px;
     padding: 0% 3% 0% 2.5%;
     line-height: 2em;
 }
@@ -99,17 +99,17 @@ body{
 }
 
 #header-logo{
-    width: 8%;
-    margin-left: 2%;
+    width: 30%;
     display: inline-block;
 }
 
 form.search-form{
     display: inline-block;
-    width: 45%;
+    width: 40%;
+    margin-left:40px;
+    margin-bottom:10px;
     vertical-align: text-bottom;
-    padding-bottom: 2%;
-    margin-left: 13%; 
+
 }
 
 #search{

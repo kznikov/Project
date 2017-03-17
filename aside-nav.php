@@ -1,6 +1,6 @@
 <aside class="aside-wrapper">
     <h4 id="aside-title">Категории продукти</h4>
-    <button class="accordion" id="first-category">Лаптопи</button>
+    <button class="accordion" id="first-category"><a href = "./?page=products&category=laptops">Лаптопи</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">HP</a></li>
@@ -14,7 +14,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Таблети</button>
+    <button class="accordion"><a href = "./?page=products&category=tablets">Таблети</button></a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">ACER</a></li>
@@ -27,7 +27,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Монитори</button>
+    <button class="accordion"><a href = "./?page=products&category=monitors">Монитори</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">ASUS</a></li>
@@ -44,7 +44,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Дискове</button>
+    <button class="accordion"><a href = "./?page=products&category=disks">Дискове</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">Kingston</a></li>
@@ -65,7 +65,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Flash памети</button>
+    <button class="accordion"><a href = "./?page=products&category=flash_memory">Flash памети</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">A-DATA</a></li>
@@ -76,7 +76,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Телефони</button>
+    <button class="accordion"><a href = "./?page=products&category=phones">Телефони</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>NOKIA</a></li>
@@ -88,7 +88,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Принтери</button>
+    <button class="accordion"><a href = "./?page=products&category=printers">Принтери</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>HP</a></li>
@@ -101,7 +101,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Консумативи</button>
+    <button class="accordion"><a href = "./?page=products&category=supplies">Консумативи</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>За Лазерни принтери</a></li>
@@ -114,7 +114,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Аксесоари</button>
+    <button class="accordion"><a href = "./?page=products&category=accessories">Аксесоари</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Мишки</a></li>
@@ -136,7 +136,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Десктоп компютри</button>
+    <button class="accordion"><a href = "./?page=products&category=computers">Десктоп компютри</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Sapphfire</a></li>
@@ -149,17 +149,17 @@
         </ul>
     </div>
 
-    <button class="accordion">Работни станции</button>
+    <button class="accordion"><a href = "./?page=products&category=workstations">Работни станции</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href="#">HP</a></li>
         </ul>
     </div>
 
-    <button class="accordion-no-items">Скенери</button>
+    <button class="accordion-no-items"><a href = "./?page=products&category=scanners">Скенери</a></button>
 
 
-    <button class="accordion">Мрежови продукти</button>
+    <button class="accordion"><a href = "./?page=products&category=net_products">Мрежови продукти</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Рутери</a></li>
@@ -172,7 +172,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Памети</button>
+    <button class="accordion"><a href = "./?page=products&category=memories">Памети</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>За десктоп компютри</a></li>
@@ -181,14 +181,14 @@
         </ul>
     </div>
 
-    <button class="accordion">Фотоапарати</button>
+    <button class="accordion"><a href = "./?page=products&category=cameras">Фотоапарати</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>KODAK</a></li>
         </ul>
     </div>
 
-    <button class="accordion">Видео карти</button>
+    <button class="accordion"><a href = "./?page=products&category=video_cards">Видео карти</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>ASUS</a></li>
@@ -201,7 +201,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Процесори</button>
+    <button class="accordion"><a href = "./?page=products&category=processors">Процесори</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Intel</a></li>
@@ -211,7 +211,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Проектори</button>
+    <button class="accordion"><a href = "./?page=products&category=projectors">Проектори</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>BENQ</a></li>
@@ -222,10 +222,10 @@
         </ul>
     </div>
 
-    <button class="accordion-no-items">UPS устройства</button>
+    <button class="accordion-no-items"><a href = "./?page=products&category=ups_devices">UPS устройства</a></button>
     
 
-    <button class="accordion">Дънни платки</button>
+    <button class="accordion"><a href = "./?page=products&category=motherboards">Дънни платки</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>ASROCK</a></li>
@@ -237,7 +237,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Сървъри</button>
+    <button class="accordion"><a href = "./?page=products&category=servers">Сървъри</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Supermicro</a></li>
@@ -248,7 +248,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Вентилатори</button>
+    <button class="accordion"><a href = "./?page=products&category=fans">Вентилатори</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Cooler Master</a></li>
@@ -264,7 +264,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Кутии</button>
+    <button class="accordion"><a href = "./?page=products&category=boxes">Кутии</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>KME</a></li>
@@ -278,7 +278,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Захранващи модули</button>
+    <button class="accordion"><a href = "./?page=products&category=supply_modules">Захранващи модули</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>Fortron</a></li>
@@ -289,7 +289,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Контролери и кабели</button>
+    <button class="accordion"><a href = "./?page=products&category=controllers_cables">Контролери и кабели</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>HP</a></li>
@@ -297,7 +297,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Софтуер</button>
+    <button class="accordion"><a href = "./?page=products&category=software">Софтуер</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>HP</a></li>
@@ -305,7 +305,7 @@
         </ul>
     </div>
 
-    <button class="accordion">Сториджи</button>
+    <button class="accordion"><a href = "./?page=products&category=storages">Сториджи</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>HP</a></li>
@@ -313,9 +313,9 @@
         </ul>
     </div>
 
-    <button class="accordion-no-items">Оптични устройства</button>
+    <button class="accordion-no-items"><a href = "./?page=products&category=optical_devices">Оптични устройства</a></button>
 
-    <button class="accordion">Допълнителна гаранция</button>
+    <button class="accordion"><a href = "./?page=products&category=warranty">Допълнителна гаранция</a></button>
     <div class="panel">
         <ul class="aside-sub-nav">
             <li><a href='#'>За лаптопи</a></li>
@@ -324,7 +324,7 @@
         </ul>
     </div>
 
-    <button class="accordion-no-items">Смарт часовници</button>
+    <button class="accordion-no-items"><a href = "./?page=products&category=smartwatches">Смарт часовници</a></button>
 
 </aside>
 

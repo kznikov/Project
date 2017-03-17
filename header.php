@@ -19,7 +19,12 @@
 	    $res = mysqli_query($conn, "SELECT * FROM users WHERE id=".$_SESSION['login_user']);
 	    $userRow = mysqli_fetch_array($res);
 	}
-
+	
+	$categories = array("laptops"=>"Лаптопи", "tablets"=>"Таблети","monitors"=>"Монитори","disks"=>"Дискове","flash_memory"=>"Flash памети","phones"=>"Телефони","printers"=>"Принтери","supplies"=>"Консумативи",
+						"accessories"=>"Аксесоари","computers"=>"Десктоп компютри","workstations"=>"Работни станции","scanners"=>"Скенери","net_products"=>"Мрежови продукти","memories"=>"Памети","cameras"=>"Фотоапарати",
+						"video_cards"=>"Видео карти","processors"=>"Процесори", "projectors"=>"Проектори","usp_devices"=>"UPS устройства","motherboards"=>"Дънни платки","servers"=>"Сървъри","fans"=>"Вентилатори",
+						"boxes"=>"Кутии", "supply_modules"=>"Захранващи модули", "controllers_cables"=>"Контролери и кабели", "software"=>"Софтуер", "storages"=>"Сториджи", "optic_devices"=>"Оптични устройства", 
+						"warranty"=>"Допълнителна гаранция", "smartwatches"=>"Смарт часовници");
 ?>
 
 <!DOCTYPE HTML>
@@ -42,6 +47,13 @@
 		li.show{
 			<?php echo (isset($_SESSION['login_user'])) ? "display:inline-block;" : "display:none;"; ?>
 		}
+		<?php
+			if(isset($_GET['page'])){?>
+				#nav_<?=$_GET['page']?>{
+					color:grey;
+					 font-weight: bold;
+				}
+			<?php }?>
 	</style>
     <link href="assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/aside-nav.css" rel="stylesheet" type="text/css"/>
@@ -79,27 +91,35 @@
                 }
 
                 $pageTitle = 'MOST Computers';
-
-                if ($page == "home") {
-                    $pageTitle = 'MOST Computers';
+				
+                if(isset($_GET['category'])){
+                	$pageTitle = $categories[$_GET['category']];
                 }
-                if ($page == "profile") {
-                    $pageTitle = 'Профил';
-                }
-                if ($page == "login") {
-                    $pageTitle = 'Вход клиенти';
-                }
-                if ($page == "categories") {
-                    $pageTitle = 'Категории';
-                }
-                if ($page == "news") {
-                   $pageTitle = 'Новини';
-                }
-                 if ($page == "create") {
-                    $pageTitle = 'Създай нов клиентски профил';
-                }
-                if ($page == "pageNotFound") {
-                    $pageTitle = "404 Not Found";
+                switch($page){
+                	case "home":
+                		$pageTitle = 'MOST Computers';
+                		break;
+            	    case "profile":
+                   		 $pageTitle = 'Профил';
+                   		 break;                
+                	case "login":
+	                    $pageTitle = 'Вход клиенти';
+	                    break;         
+           	     	case "categories":
+                    	$pageTitle = 'Категории';
+                    	break;
+           	     	case "news":
+                   		$pageTitle = 'Новини';
+                   		break;     
+                 	case "create":
+                    	$pageTitle = 'Създай нов клиентски профил';
+                		break;
+                	case "wishlist":
+                    	$pageTitle = "Желани";
+                		break;
+                	case "pageNotFound":
+                    	$pageTitle = "404 Not Found";
+                		break;
                 }
                 echo '<article id="header-row1-right">' . $pageTitle . '</article>';
                 ?>
@@ -127,7 +147,7 @@
         </div>
         <div class="header-row3">
 
-            <a href="./?page=home"><img src="./assets/images/logo.png" alt="logo" id="header-logo"/></a>
+            <a href="./?page=home"><img src="./assets/images/logo.jpg" alt="logo" id="header-logo"/></a>
 
             <form class="search-form" action="" method="get">
                 <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search">
