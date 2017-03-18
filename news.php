@@ -183,7 +183,7 @@
 			<h3>Търси в блога</h3>
 			<hr/>
 			<form  action="./?page=news" method="get">
-				<input type="hidden" name="page" value="news"placeholder="Търси в новини"/>
+				<input type="hidden" name="page" value="news" placeholder="Търси в новини"/>
 				<input id="search_box" type="text" name="search_news" placeholder="Търси в новини"/>
 				<input id="search_news" type="submit" value="Търсене"/>
 			</form>

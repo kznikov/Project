@@ -1,6 +1,70 @@
 <?php
 	session_start();
+
 	include_once 'dbconnect.php';
+	
+	if(isset($_GET['currency']) && !isset($_COOKIE['currency'])){	
+		setcookie("currency", $_GET['currency']);
+		$_COOKIE['currency'] = $_GET['currency'];
+	}elseif(isset($_GET['currency']) && isset($_COOKIE['currency'])) {
+		//$_COOKIE['currency'] = $_GET['currency'];
+		 	setcookie("currency",  $_GET['currency']);
+		 	$_COOKIE['currency'] = $_GET['currency'];
+	}
+	
+	if(isset($_GET['currency'])){
+		$url = str_replace(strstr($_SERVER['REQUEST_URI'], "&currency="), "", $_SERVER['REQUEST_URI']);
+	}else{
+		$url = $_SERVER['REQUEST_URI'];
+	}
+	
+	if(isset($_COOKIE['currency']) && $_COOKIE['currency'] === "eur"){
+			$jsonString = file_get_contents ('http://api.fixer.io/latest');
+			$data = json_decode($jsonString);
+			//var_dump($data);
+			$x = $data->rates->BGN;
+	}else{
+		$x = 1;
+	}
+	
+	if (isset($_COOKIE['currency'])){
+		$currency = $_COOKIE['currency'];
+	}else{
+		$currency = "bgn";
+	}
+	
+	if(!isset($_COOKIE['order'])){ 
+		setcookie("order", "Model");
+		$_COOKIE['order'] = "Model";
+	}
+	if(!isset($_COOKIE['orderway'])){
+		setcookie("count", "20");
+		$_COOKIE['count'] = "20";
+	}
+	if(!isset($_COOKIE['count'])){
+		setcookie("orderway", "DESC");
+		$_COOKIE['orderway'] = "DESC";
+	}
+	
+	if(isset($_GET['order'])){
+		setcookie("order", $_GET['order']);
+		$_COOKIE['order'] = $_GET['order'];
+	}
+	if(isset($_GET['count'])){
+		setcookie("count", $_GET['count']);
+		$_COOKIE['count'] = $_GET['count'];
+	}
+	if(isset($_GET['orderway'])){
+		setcookie("orderway", $_GET['orderway']);
+		$_COOKIE['orderway'] = $_GET['orderway'];	  
+	}
+	
+	
+		
+		$order = "ORDER BY p.".$_COOKIE['order']." ";
+		$orderway = $_COOKIE['orderway'];
+		$count = $_COOKIE['count'];
+	
 	
 	//session expire
 	$inactive = 1800;
@@ -25,6 +89,9 @@
 						"video_cards"=>"Видео карти","processors"=>"Процесори", "projectors"=>"Проектори","usp_devices"=>"UPS устройства","motherboards"=>"Дънни платки","servers"=>"Сървъри","fans"=>"Вентилатори",
 						"boxes"=>"Кутии", "supply_modules"=>"Захранващи модули", "controllers_cables"=>"Контролери и кабели", "software"=>"Софтуер", "storages"=>"Сториджи", "optic_devices"=>"Оптични устройства", 
 						"warranty"=>"Допълнителна гаранция", "smartwatches"=>"Смарт часовници");
+
+	
+	
 ?>
 
 <!DOCTYPE HTML>
@@ -54,6 +121,16 @@
 					 font-weight: bold;
 				}
 			<?php }?>
+	
+		
+		#<?=$currency?>{
+			 pointer-events: none;
+			font-weight: bold;
+		}
+			
+		
+		
+		
 	</style>
     <link href="assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/aside-nav.css" rel="stylesheet" type="text/css"/>
@@ -153,15 +230,15 @@
                 <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search">
                 <button type="submit" title="Търсене" id="search-button"><i class="fa fa-search"></i></button>
             </form>
-
+			
             <ul class="header-ul header-nav2">
-                <li><i class="fa fa-balance-sle" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
-                <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency">BGN</span> &nbsp;&nbsp;&nbsp;
+                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
+                <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency"><?php if(isset($_COOKIE['currency'])) echo strtoupper($_COOKIE['currency']); else echo "BGN";?></span> &nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-currency">
-                        <li id="BGN" onclick="selectBgn()">BGN - Български лев</li>
+                        <li id="bgn" ><a href="<?= $url."&currency=bgn" ?>" >BGN - Български лев</a></li>
                         
                         </br>
-                        <li id="EUR" onclick="selectEur()">EUR - Евро</li>
+                        <li id="eur" ><a href="<?=$url."&currency=eur"?>" >EUR - Евро</a></li>
 
                     </ul>
                     

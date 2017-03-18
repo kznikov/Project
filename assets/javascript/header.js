@@ -17,13 +17,5 @@ $(document).ready(function(){
 });
 
 
-                            function selectBgn() {
-                                document.getElementById("selectedCurrency").innerHTML = "BGN";
-                                document.getElementById("currencySymbol").innerHTML = "лв";
-                            }
-                            
-                            function selectEur() {
-                                document.getElementById("selectedCurrency").innerHTML = "EUR";
-                                document.getElementById("currencySymbol").innerHTML = "€";
-                            }
+
                         

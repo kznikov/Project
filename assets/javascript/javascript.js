@@ -317,6 +317,14 @@ $(document).ready(function(){
 	        	$(this).find('a').css("color", "grey");
         });
 	});
+	
+	$(function() {
+		$("#pages  li").hover(function() {
+		    $(this).find('a').css("color", "white");
+	        }, function(){
+	        	$(this).find('a').css("color", "grey");
+        });
+	});
 
 	
 	$(function() {
@@ -337,4 +345,23 @@ $(document).ready(function(){
         });
 	});
 	
+	
+	
+	/*$("#order").change(function() {
+	     this.form.submit();
+	});
+	
+	
+	$("#count").change(function() {
+	     this.form.submit();
+	});*/
+
+	$('#order').change(function(){
+	    $('#order_form').submit();    
+	});
+	
+	
+	$('#count').change(function(){
+	    $('#count_form').submit();    
+	});
 	

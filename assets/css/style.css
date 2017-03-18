@@ -658,4 +658,187 @@ nav li{
 }
 
 
+.pagination2{
+	display: inline-block;
+	clear: both;
+	width: 100%;
+	
+		
+}
+
+#pages{
+	margin-left: 40%;
+	margin-bottom: 60px;
+}
+
+
+#pages li{
+	float:left;
+	margin-right:1px;
+	list-style:none;
+	width:30px;
+	height:30px;
+	text-align:center;
+	background-color: #f5f5f5;
+	font-size: 20px;
+}
+
+
+
+#pages li:hover{
+	background-color: #333333;
+	cursor: pointer;
+	color:white;
+}
+
+#pages li a{
+	text-decoration: none;
+	color:grey;
+	display:block;
+}
+
+.pagination2 p{
+	margin: 0px;
+}
+
+.pagination2 hr{
+	clear:both;
+}
+
+
+#prod_hr{
+	border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+
+}
+
+.pagination2 ul:FIRST-CHILD{
+	margin: 0px;
+	
+	display: inline-block;
+}
+
+.pagination2 label{
+	margin: 0px;
+}
+
+.pagination2 select{
+	height: 40px;
+	width:auto;
+
+}
+
+.pagination2 ul:FIRST-CHILD li{
+	list-style: none;
+	float: left;
+	margin-right: 40px;
+	padding: 0px;
+	font-size: 1.1em;
+	font-weight: bold; 
+	padding-right: 30px;
+}
+
+
+.pagination2 ul:FIRST-CHILD li:FIRST-CHILD{
+	margin-top:10px;
+	margin-left: -40px;
+}
+
+.pagination2 select{
+	color:grey;
+	outline: none;
+}
+
+
+
+#items{
+	margin: 0px;
+}
+
+
+#items li{
+	float:left;
+	width: 18%;
+	list-style:none;
+	border: 1px solid white;
+	margin-right:1%;
+	padding-left:6px;
+	height: 330px;
+}
+
+#items img{
+	width: 100%;
+}
+
+
+#items h2{
+	font-size: 1em;
+	padding: 0px;
+
+}
+
+#items  hr{
+	clear: both;
+}
+
+
+
+#items li:hover{
+	box-shadow: 0 0 10px grey;
+}
+
+
+#empty_category{
+	padding:0px;
+	margin-left:-20px;
+}
+
+#empty_category li{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	
+	
+	
+}
+
+#empty_category h2{
+	padding: 0px;
+}
+
+#empty_category img{
+	margin-right: 20px;
+}
+
+.line{
+	margin-bottom: 0px;
+	clear: both;
+}
+
+
+#product_box span{
+	display: block;
+	margin-bottom:5px;
+	font-weight: bold;
+}
+
+#price{
+	font-size: 0.8em;
+}
+
+#tax_price{
+	font-size: 0.9em;
+}
+
+
+#order_way{
+	display:inline-block;
+	font-size: 1.9em;
+	color: grey;
+}
+
+#order_way:hover{
+	color:#c1121c;
+}
 
