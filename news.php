@@ -168,7 +168,7 @@
 								<p><?= "Публикувано в ".$row['type']." на ".$date." от ".$row['published_by']."." ?></p>
 								<a href="./?page=news&article=<?=$title?>" ><img alt="" src="./assets/images/news/<?=$row['image']?>"></a>
 								<p><?= mb_substr($row['content'], 0, 300);?></p>
-								<a href="./?page=news?article=<?=$title?>">Пълен текст &#8594;</a>
+								<a href="./?page=news&article=<?=$title?>">Пълен текст &#8594;</a>
 							</div>
 						</li>
 				<?php

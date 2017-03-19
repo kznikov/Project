@@ -832,13 +832,23 @@ nav li{
 }
 
 
-#order_way{
+#desc{
 	display:inline-block;
 	font-size: 1.9em;
 	color: grey;
 }
 
-#order_way:hover{
+#asc{
+	display:inline-block;
+	font-size: 1.9em;
+	color: grey;
+}
+
+#desc:hover{
+	color:#c1121c;
+}
+
+#asc:hover{
 	color:#c1121c;
 }
 

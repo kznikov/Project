@@ -42,8 +42,8 @@
 		$_COOKIE['count'] = "20";
 	}
 	if(!isset($_COOKIE['count'])){
-		setcookie("orderway", "DESC");
-		$_COOKIE['orderway'] = "DESC";
+		setcookie("orderway", "ASC");
+		$_COOKIE['orderway'] = "ASC";
 	}
 	
 	if(isset($_GET['order'])){
@@ -125,6 +125,7 @@
 		
 		#<?=$currency?>{
 			 pointer-events: none;
+			 color:red;
 			font-weight: bold;
 		}
 			
