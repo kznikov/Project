@@ -895,12 +895,69 @@ nav li{
 	width: 20%;	
 }
 
-
-
-#stock{
-display: inline-block;;
+#floated{
+	float: left;
+}
+.stock{
+	float: right;
+	padding-right: 10px;
+	padding-bottom: 10px;
 }
 
+
+#single_price, #single_tax_price{
+	display: block;
+	font-weight: bold;
+
+}
+
+#single_tax_price{
+	font-size: 1.1em;
+}
+
+#single_price{
+		margin-top: 10px;
+}
+
+strong {
+	 font-size: 120%; 
+}
+
+#like{
+	display:inline-block;
+	width:32px;
+	text-align:center;
+	color:black;
+	font-size: 2.13em;
+	float: right;
+	position: relative;
+	bottom: 36px;
+	background-color: white;
+	margin-bottom: -80px;
+	display: none;
+}
+
+#compare{
+	display:inline-block;
+	width:32px;
+	text-align:center;
+	color:black;
+	font-size: 1.8em;
+	float: right;
+	position: relative;
+	bottom: 36px;
+	margin-left:3px;
+	margin-right:5px;
+	background-color: white;
+	margin-bottom: -30px;
+	display: none;
+}
+
+
+#like:hover, #compare:hover{
+	background-color: black;
+	color:white;
+}
 
 .overlay {
     height: 0%;

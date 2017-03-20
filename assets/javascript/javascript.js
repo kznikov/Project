@@ -384,3 +384,16 @@ $(document).ready(function(){
 
     });
 	
+	function show(x){
+		var a = x.querySelector("#like");
+		var b = x.querySelector("#compare");
+		a.style.display = "block";
+		b.style.display = "block";
+	}
+
+	function hide(x) {
+		var a = x.querySelector("#like");
+		var b = x.querySelector("#compare");
+		a.style.display = "none";
+		b.style.display = "none";
+	}
