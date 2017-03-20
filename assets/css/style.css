@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter, #news, #categories, #products{
+#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter, #news, #single_product, #categories, #products{
 	font-size:1.2em;
 	margin: 0 auto;
 	color:#727272;
@@ -836,12 +836,15 @@ nav li{
 	display:inline-block;
 	font-size: 1.9em;
 	color: grey;
+	transform:scale(1,1.2);
 }
 
 #asc{
 	display:inline-block;
 	font-size: 1.9em;
 	color: grey;
+	transform:scale(1,1.2);
+
 }
 
 #desc:hover{
@@ -851,4 +854,111 @@ nav li{
 #asc:hover{
 	color:#c1121c;
 }
+
+#single_product h1{
+	color:#959ea9;
+	font-size: 2em;
+	margin-top: 0px;
+	margin-bottom: 50px;
+}
+
+#single_product h3{
+	color:grey;
+	margin: 4px;
+	font-weight: normal;
+}
+
+#single_product section{
+	float: left;
+	margin-top:20px;
+}
+
+#sec_img img{
+	border: 0.1em solid #c9c9c9;
+	width: 320px;
+}
+
+
+#sec_img{
+	width: 30%;
+}
+
+
+#sec_prod{
+	width: 50%;	
+	border-right: 0.1em solid #c9c9c9;
+	display: inline-block;
+}
+
+
+#sec_info{
+	width: 20%;	
+}
+
+
+
+#stock{
+display: inline-block;;
+}
+
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.8);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.overlay-content img{
+	width: 700px;
+	    margin-bottom: 30px;
+	
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+
 

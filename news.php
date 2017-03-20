@@ -118,7 +118,7 @@
 				}
 				
 	   	  }else{
-	   	  		$newsId = str_replace("id=", "", strstr($_SERVER['REQUEST_URI'], "id="));
+	   	  		$newsId = str_replace("id=", "", strstr($_GET['article'], "id="));
 	   			$query = mysqli_query($conn, "SELECT * FROM news WHERE id=".$newsId);
 	   			$row = mysqli_fetch_array($query, MYSQLI_ASSOC);
 	   			$arr = explode(" ", $row['p_date']);

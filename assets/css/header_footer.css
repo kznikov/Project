@@ -42,6 +42,7 @@ body{
 #header-row1-left{
     display: inline-block;
     float: left;
+    margin-left: -20px;
 }
 
 #header-row1-right{

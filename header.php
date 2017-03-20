@@ -2,7 +2,7 @@
 	session_start();
 
 	include_once 'dbconnect.php';
-	
+	mysqli_query($conn, "SET NAMES 'UTF8'");
 	if(isset($_GET['currency']) && !isset($_COOKIE['currency'])){	
 		setcookie("currency", $_GET['currency']);
 		$_COOKIE['currency'] = $_GET['currency'];
@@ -37,11 +37,11 @@
 		setcookie("order", "Model");
 		$_COOKIE['order'] = "Model";
 	}
-	if(!isset($_COOKIE['orderway'])){
+	if(!isset($_COOKIE['count'])){
 		setcookie("count", "20");
 		$_COOKIE['count'] = "20";
 	}
-	if(!isset($_COOKIE['count'])){
+	if(!isset($_COOKIE['orderway'])){
 		setcookie("orderway", "ASC");
 		$_COOKIE['orderway'] = "ASC";
 	}
@@ -89,7 +89,13 @@
 						"video_cards"=>"Видео карти","processors"=>"Процесори", "projectors"=>"Проектори","usp_devices"=>"UPS устройства","motherboards"=>"Дънни платки","servers"=>"Сървъри","fans"=>"Вентилатори",
 						"boxes"=>"Кутии", "supply_modules"=>"Захранващи модули", "controllers_cables"=>"Контролери и кабели", "software"=>"Софтуер", "storages"=>"Сториджи", "optic_devices"=>"Оптични устройства", 
 						"warranty"=>"Допълнителна гаранция", "smartwatches"=>"Смарт часовници");
-
+	
+	if(isset($_GET['product'])){
+		$productId = str_replace("id=", "", strstr($_GET['product'], "id="));
+		$q = "SELECT * FROM products p JOIN ".$_GET['category']." c ON p.id = c.id HAVING p.id=".$productId;
+		$productQuery = mysqli_query($conn, $q);
+		$product = mysqli_fetch_array($productQuery, MYSQLI_ASSOC);
+	}
 	
 	
 ?>
@@ -194,6 +200,9 @@
                 		break;
                 	case "wishlist":
                     	$pageTitle = "Желани";
+                		break;
+                	case "singleProduct":
+                    	$pageTitle = $product['Model']."-".$categories[$_GET['category']];
                 		break;
                 	case "pageNotFound":
                     	$pageTitle = "404 Not Found";

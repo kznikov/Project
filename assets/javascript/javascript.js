@@ -365,3 +365,22 @@ $(document).ready(function(){
 	    $('#count_form').submit();    
 	});
 	
+	
+	
+	function openPic() {
+	    document.getElementById("myNav").style.height = "100%";
+	}
+
+	function closePic() {
+	    document.getElementById("myNav").style.height = "0%";
+	}
+
+	
+	
+	
+	new ImageZoom("#sec_img img", {
+	    maxZoom: 2,
+	    deadarea: 0.1,
+
+    });
+	
