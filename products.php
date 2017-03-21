@@ -107,7 +107,7 @@
 				}
 		}
 		
-				
+	
 ?>
 
 <style>
@@ -192,7 +192,7 @@
 				echo "<ul id='items'>";
 				$cnt = 0;
 				 while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
-				 	
+				 	$images = explode('/', $row['Picture']);
 					//$title = cyrToLat(mb_strtolower($row['title']))."-news-id=".$row['id'];
 					if($cnt == 5){
 						$cnt = 0;
@@ -202,7 +202,7 @@
 					$title = cyrToLat(mb_strtolower($row['Model']))."-item-id=".$row['Id'];
 					?>	
 					<li onmouseover="show(this)" onmouseout="hide(this)" >
-						<a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><img alt="" src="./assets/images/pic_1.jpg"></a>
+						<a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><img id="pics" alt="" src="./assets/images/products/<?=$images[0]?>"></a>
 						
 						<a id="compare" href="#">&#9878;</a>
 						<a id="like" href="#">&#x2665;</a>
@@ -216,7 +216,7 @@
 					$cnt++;
 				}?>
 				</ul>
-				<hr class = 'line'/>
+				<hr style="margin:0px;"/>
 				<ul id="pages"><?php echo $paginationCtrls; ?></ul>
 			<?php 
 			}else{?>
