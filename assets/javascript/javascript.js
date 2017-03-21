@@ -377,12 +377,12 @@ $(document).ready(function(){
 
 	
 	
-	
-	new ImageZoom("#sec_img img", {
+	new ImageZoom("#sec_img>img", {
 	    maxZoom: 2,
 	    deadarea: 0.1,
 
     });
+
 	
 	function show(x){
 		var a = x.querySelector("#like");
@@ -397,3 +397,24 @@ $(document).ready(function(){
 		a.style.display = "none";
 		b.style.display = "none";
 	}
+	
+	
+	
+	function changePic(x) {
+		var large = document.querySelector('#sec_img > img');
+		//var large_name = large.getAttribute('src');
+		document.querySelector('.overlay-content img').setAttribute("src", x.getAttribute('src'));
+		//large.removeAttribute("src");
+		large.setAttribute("src", x.getAttribute('src'));
+		//x.setAttribute("src", large_name);
+		console.log();
+		new ImageZoom("#sec_img>img", {
+		    maxZoom: 2,
+		    deadarea: 0.1,
+
+	    });
+	}
+	
+	
+	
+	
