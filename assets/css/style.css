@@ -69,6 +69,10 @@ input{
 	outline: none;
 }
 
+textarea{
+	outline: none;
+}
+
 
 input:hover{
 	border:1px solid grey;
@@ -113,12 +117,22 @@ label{
 .error_show{
 	color: red;
 	font-size: 13px;
+	
 }
-
 
 
 input.invalid{
 	border: 2px solid red;
+}
+
+textarea.invalid{
+	border: 2px solid red;
+	outline: none;
+}
+
+textarea.valid{
+	border: 2px solid green;
+	outline: none;
 }
 
 input.valid{
@@ -888,8 +902,12 @@ nav li{
 
 
 #sec_img article img{
-	width: 75px;
+	width: 78px;
 	height: 50px;
+	 -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
 }
 
 
@@ -900,6 +918,7 @@ nav li{
 .small_img:hover{
 	cursor:pointer;
 	clear: both;
+	box-shadow: 0 0 10px grey;
 }
 
 
@@ -1216,3 +1235,114 @@ strong {
 	background-color: #84060d;
 	color:green;
 }
+
+
+#sec_features{
+	clear: both;
+	width: 82%;
+}
+
+#sec_features hr{
+	clear: both;
+	margin: 0px;
+}
+
+
+.product_info{
+	border:0px;
+	height: 50px;
+	margin: 0px;
+	font-weight: bold;
+	color:#5f5f5f;
+	background-color:#eeeeee;
+	outline: none;
+	display: inline-block;
+}
+
+
+#buy_span{
+	color:green;
+}
+
+
+#hr_div{
+	border-bottom: 1px solid #eeeeee;
+	float: right;
+	width: 695px;
+	
+}
+
+#opinion{
+	display: none;
+}
+
+
+
+#features table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+
+#features th{
+	border-right: 1px solid #f5f5f5;
+  	width: 230px;
+    text-align: left;
+    padding: 8px;
+}
+
+#features td {
+	width: 700px;
+	 padding: 8px;
+}
+
+#features tr:nth-child(even){
+	background-color: #f2f2f2
+}
+
+
+#opinion h1{
+	font-size:1.7em;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#opinion p{
+	font-size:0.7em;
+	margin: 0px;
+}
+
+
+#opinion textarea {
+	display: block;
+}
+
+
+#submit_opinion{
+	margin-top: 20px;
+}
+
+
+
+
+.open_button{
+	background-color: white;
+	font-size:1em;
+	padding:13px;
+	padding-top:20px;
+	border: 1px solid #eeeeee;
+	border-bottom:0px;
+	outline: none;
+}
+
+.close_button{
+	background-color: #e5e5e5;
+	font-size:1em;
+	padding:13px;
+	border: 1px solid #eeeeee;
+	border-bottom:0px;
+	outline: none;
+
+}
+

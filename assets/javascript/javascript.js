@@ -1,4 +1,9 @@
-$(document).ready(function(){
+var imported = document.createElement('script');
+imported.src = './image_zoom.js';
+document.head.appendChild(imported);
+
+
+	$(document).ready(function(){
 			$('input[name="email"]').on('input', function() {
 				var input=$(this);
 				var re =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -306,8 +311,55 @@ $(document).ready(function(){
 					event.preventDefault(); 
 				}
 			});
+			
+			
+			
+			
+			
+			$('#form_opinion :text').on('input', function () {				
+				if($(this).val().trim()){
+					$(this).removeClass("invalid").addClass("valid");
+				}else{
+					$(this).removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			
+			$('#opinion_opinion').on('input', function () {
+				if($(this).val().trim()){
+					$(this).removeClass("invalid").addClass("valid");
+				}else{
+					$(this).removeClass("valid").addClass("invalid");
+				}
+			});
+					
+			
+			$("#submit_opinion").click(function(event){				
+				var form_data=$("#form_opinion").serializeArray();
+				var error_free=true;
+				console.log(form_data);
+				for (var input in form_data){
+					var element=$("#opinion_"+form_data[input]['name']);
+					var valid=element.hasClass("valid");
+					var error_element=$("span", element.parent());
+					if (!valid){
+						error_element.removeClass("error").addClass("error_show"); 
+						error_free=false;
+					}else{
+						error_element.removeClass("error_show").addClass("error");
+					}
+				}
+				if (!error_free){
+					event.preventDefault(); 
+				}
+			});
+			
+			
 		});
 
+	
+	
+	
 
 
 	$(function() {
@@ -414,6 +466,36 @@ $(document).ready(function(){
 
 	    });
 	}
+	
+	
+	function showFeatures(){
+		var opinion = document.getElementById('opinion');
+		var features = document.getElementById('features');
+		opinion.style.display = 'none';
+		features.style.display='block';
+		var buttonFeat = document.getElementById('features_button');
+		var buttonOp = document.getElementById('opinion_button');
+		buttonFeat.classList.remove("close_button");
+		buttonFeat.classList.add("open_button");
+		buttonOp.classList.remove("open_button");
+		buttonOp.classList.add("close_button");
+		
+	}
+	
+	function showOpinions(){
+		var opinion = document.getElementById('opinion');
+		var features = document.getElementById('features');
+		opinion.style.display = 'block';
+		features.style.display='none';
+		var buttonFeat = document.getElementById('features_button');
+		var buttonOp = document.getElementById('opinion_button');
+		buttonFeat.classList.remove("open_button");
+		buttonFeat.classList.add("close_button");
+		buttonOp.classList.remove("close_button");
+		buttonOp.classList.add("open_button");
+
+	}
+	
 	
 	
 	

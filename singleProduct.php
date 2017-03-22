@@ -3,6 +3,10 @@
 
 	include_once 'dbconnect.php';
 	$images = explode('/', $product['Picture']);
+	
+	
+	$columns = array_keys($product);
+	//var_dump($columns);
 ?>
 
 <link href="./assets/css/image_zoom.css" rel="stylesheet" type="text/css">
@@ -48,7 +52,7 @@
 			<input id="quantity" type="number" min="1" name="quantity"/>
 		</form>
 		<?php }else{?>
-			<a href="./?page=login"><img id="prof_pic" src="./assets/images/profile.png"/><span style="color:green;">Регистрирайте се,<br/>за да поръчате!</span></a>
+			<a href="./?page=login"><img id="prof_pic" src="./assets/images/profile.png"/><span id="buy_span">Регистрирайте се,<br/>за да поръчате!</span></a>
 		<?php }?>
 		<hr style="margin-top:20px;"/>
 		
@@ -79,6 +83,49 @@
 		<hr/ style="margin-left:10px;">
 		<p>* Поради голямата динамика на поръчките, е възможно продукта да бъде изчерпан преди обработка на Вашата поръчка. В такива случаи ще бъдете уведомени своевременно.
 		** В много редки случаи са възможни технически грешки в спецификациите на продуктите.</p>
+	</section>
+	
+	<section id="sec_features">
+		<button id="features_button" class="open_button" onclick="showFeatures()" class="product_info">Характеристики</button>
+		<button id="opinion_button" class="close_button" onclick="showOpinions()" class="product_info">Мнения</button>
+		<div id='hr_div'></div>
+		<article id="features">
+			<table>
+			  <tr>
+			    <th scope="row"><?= "Part #"?></th>
+			     <td><?=$product['Part #']?></td>
+			 </tr>
+			 <?php for($index = 10;$index<=20;$index++){?>
+			 <tr>
+			 	<th scope="row"><?=$columns[$index]?></th>
+			 	 <td><?php if(empty($product[$columns[$index]])) echo "No"; else echo $product[$columns[$index]]?></td>
+			 	</tr>
+			 <?php }?>
+			</table>
+			
+		</article >
+		<article id="opinion">
+			<h1>ДОБАВИ МНЕНИЕ</h1>
+			<p>за: <strong><?=$product['Model']?></strong></p>
+			<form id="form_opinion" action="" method="post">
+				<div>
+					<label>Псевдоним<span class="required"><sup>*</sup></span></label>
+					<input id="opinion_alias" type="text" name="alias" value=""/>
+					<span class="error">Това поле е задължително.</span>
+				</div>
+				<div>
+					<label>Заглавие<span class="required"><sup>*</sup></span></label>
+					<input id="opinion_title" type="text" name="title" value=""/>
+					<span class="error">Това поле е задължително.</span>
+				</div>
+				<div>
+					<label>Мнение<span class="required"><sup>*</sup></span></label>
+					<textarea id="opinion_opinion" rows="6" cols="50" name="opinion" value=""></textarea>
+					<span class="error">Това поле е задължително.</span>
+				</div>
+				<input id="submit_opinion" class="button" type="submit" name="submit" value="Добави"/>
+			</form>		
+		</article>
 	</section>
 	
 

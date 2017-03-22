@@ -216,7 +216,7 @@
 					$cnt++;
 				}?>
 				</ul>
-				<hr style="margin:0px;"/>
+				<hr style="clear:both;margin:0px;"/>
 				<ul id="pages"><?php echo $paginationCtrls; ?></ul>
 			<?php 
 			}else{?>
