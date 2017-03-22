@@ -92,7 +92,7 @@
 	
 	
 	$subCategories = array(
-							array("hp"=>"HP", "asus"=>"ASUS", "acer"=>"ACER", "packard_bell"=>"Packard Bell", "up_to_14.9"=>"до 14.9″", "15-16.9"=>"от 15″ до 16.9″", "over_17"=>"над 17″", "lenovo"=>"Lenovo"),
+							array("hp"=>"HP", "asus"=>"ASUS", "acer"=>"ACER", "packard_bell"=>"Packard Bell", "up_to_14.9"=>"до 14.9″", "15_16.9"=>"от 15″ до 16.9″", "over_17"=>"над 17″", "lenovo"=>"Lenovo"),
 							array("acer"=>"ACER", "tablet"=>"Tablet", "hp"=>"HP", "asus"=>"ASUS", "radius"=>"Radius", "lg"=>"LG", "lenovo"=>"Lenovo"),		
 							array("ASUS", "BENQ", "ACER", "от 20″ до 22″", "LG", "Packard Bell", "от 17″ до 19″", "HP", "от 23″ до 30″", "Аксесоари за монитори", "над 30″"),
 							array("Kingston", "Външни дискове", "A-DATA", "HP", "SSD дискове", "За десктоп компютри", "Intel","Western Digital", "Seagate", "За сървъри", "LG", "HITACHI", "Silicon Power", "За лаптопи", "Supermicro"),

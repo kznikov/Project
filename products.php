@@ -1,10 +1,19 @@
 <?php
-		
 	include_once 'dbconnect.php';
 	include_once 'convertTitle.php';
 		
+	function isNumericArr($arr){
+		foreach ($arr as $val){
+			if(is_numeric($val)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	if(isset($_GET['category'])){
 		$header = $categories[$_GET['category']];
+		$category = $_GET['category'];
 	}
 	
 	if(isset($_GET['pn'])){
@@ -12,7 +21,27 @@
 	}
 	
 	if(isset($_GET['subcat'])){
-		
+		$arr = explode("_", $_GET['subcat']);
+		if(!isNumericArr($arr)){
+			$arr[0] = strtoupper($arr[0]);
+			$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE Brand LIKE '$arr[0]' ".$order.$orderway." ";
+			$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
+			$head = str_replace("_", " ", strtoupper($_GET['subcat']));		
+		}else{
+			if($arr[0] === "up"){
+				$head = " до 14.9″ ";
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	<= $arr[2] ".$order.$orderway." ";
+			}elseif($arr[0] === "over"){
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	> $arr[1] ".$order.$orderway." ";
+				$head = " над 17″ ";
+			}else{
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	BETWEEN $arr[0] AND $arr[1] ".$order.$orderway." ";
+				$head = " от 15″ до 16.9″ ";
+			}
+		}
+	}else{
+		$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id ".$order.$orderway." ";
+		$anchor = '<a href="./?page=products&category='.$category.'&pn=';
 	}
 	
 	mysqli_query($conn, "SET NAMES 'UTF8'");
@@ -52,10 +81,7 @@
 	
 	
 		if(isset($_GET['category'])){
-				$category = $_GET['category'];
 			
-				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id ".$order.$orderway." ";
-				$anchor = '<a href="./?page=products&category='.$category.'&pn=';
 				
 				$query = mysqli_query($conn, $q);
 				if($query){
@@ -141,7 +167,7 @@
 <main id="products">
 <div id="slider-range2"></div>
 	<section id="prod_sec">
-		<h1><?=$header?></h1>
+		<h1><?=$header?> <?=(isset($_GET['subcat']) ? $head : "") ?></h1>
 		<hr/>
 		<?php if($query && mysqli_num_rows($query)){?>
 		<p><?= $categoriesDescriptions[$_GET['category']]?></p>
@@ -157,15 +183,18 @@
 			 	<label>Подреди по
 			 		<input name="page" type="hidden" value="products"/>
 			 		<input name="category" type="hidden" value="<?=$category?>"/>
+			 		<?php if (isset($_GET['subcat'])){ ?>
+			 		<input name="subcat" type="hidden" value="<?=$_GET['subcat']?>"/>
+			 		<?php }?>
 			 		<select id="order" name="order">
 						  <option <?php if(isset($_COOKIE['order']) && $_COOKIE['order'] == "Model") echo "selected='selected'";?> value="Model">Име</option>
 						  <option <?php if(isset($_COOKIE['order']) && $_COOKIE['order'] == "Price") echo "selected='selected'";?> value="Price">Цена</option>
 					</select>
 					<span id="asc_wrapper">
-						<a id="asc" href="?page=products&category=<?=$category?>&orderway=asc">&#8679;</a>
+						<a id="asc" href="?page=products&category=<?=$category?><?=(isset($_GET['subcat']) ? "&subcat=".$_GET['subcat'] : "") ?>&orderway=asc">&#8679;</a>
 					</span>
 					<span id="desc_wrapper">
-						<a id="desc" href="?page=products&category=<?=$category?>&orderway=desc">&#8681;</a>
+						<a id="desc" href="?page=products&category=<?=$category?><?=(isset($_GET['subcat']) ? "&subcat=".$_GET['subcat'] : "") ?>&orderway=desc">&#8681;</a>
 					</span>
 				</label>
 			 	</form>
@@ -176,6 +205,9 @@
 			 	<label>Покажи
 			 		<input name="page" type="hidden" value="products"/>
 			 		<input name="category" type="hidden" value="<?=$category?>"/>
+			 		<?php if (isset($_GET['subcat'])){ ?>
+			 		<input name="subcat" type="hidden" value="<?=$_GET['subcat']?>"/>
+			 		<?php }?>
 			 		<select id="count" name="count">
 						  <option <?php if(isset($_COOKIE['count']) && $_COOKIE['count'] == "20") echo "selected='selected'"?> value="20">20</option>
 						  <option <?php if(isset($_COOKIE['count']) && $_COOKIE['count'] == "40") echo "selected='selected'";?> value="40">40</option>
