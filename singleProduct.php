@@ -7,6 +7,29 @@
 	
 	$columns = array_keys($product);
 	//var_dump($columns);
+	
+	
+	if(isset($_POST['submit'])){
+		if(isset($_POST['star'])){
+			$stars = $_POST['star'];
+		}else{
+			$stars = 0;
+		}
+		$alias = trim(htmlentities($_POST['alias']));
+		$title = trim(htmlentities($_POST['title']));
+		$comment = trim(htmlentities($_POST['opinion']));
+		echo $product['id'];
+		if(!empty($alias) && !empty($title) && !empty($comment)){
+			$query = "INSERT INTO comments(id,title,alias,comment,rating) VALUES($productId,'$title','$alias','$comment',$stars);";
+			mysqli_query($conn, $query);
+		}
+	}
+	
+	$comments = "SELECT * FROM comments WHERE id=$productId";
+	$commentsQuery = mysqli_query($conn, $comments);
+	
+	
+	
 ?>
 
 <link href="./assets/css/image_zoom.css" rel="stylesheet" type="text/css">
@@ -105,9 +128,34 @@
 			
 		</article >
 		<article id="opinion">
+					<?php while($row = mysqli_fetch_array($commentsQuery, MYSQLI_ASSOC)){?>
+						<div>
+							<h2><?=$row['title']?></h2>
+							<p id="alias">Ревю от <strong><?=$row['alias']?></strong></p>
+							<?php if($row['rating']){?>
+								<p id="rating">Оценка
+									<div class="star-ratings-css">
+									  <div class="star-ratings-css-top" style="width: <?=$row['rating'] ?>%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+									  <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+									</div>
+									</p>
+							<?php }?>
+							<p id="comment"><?= $row['comment']?></p>
+							<p><em>(Публикувано на <?=$row['c_date']?>)</em></p>
+						</div>
+						<?php }?>
 			<h1>ДОБАВИ МНЕНИЕ</h1>
 			<p>за: <strong><?=$product['Model']?></strong></p>
 			<form id="form_opinion" action="" method="post">
+				<div>
+					<label id="ratings"><span id="stars">1 звезда &nbsp;&nbsp;&nbsp;2 звезди &nbsp;&nbsp;&nbsp;3 звезди&nbsp;&nbsp;&nbsp; 4 звезди &nbsp;&nbsp;&nbsp;5 звезди </span><hr style="width:500px"/></label>
+					<label style="float:left; margin-top:10px;">Оценка</label>
+					<input class="rating" type="radio" name="star" value="20">
+ 					 <input class="rating" type="radio" name="star" value="40">
+ 					 <input class="rating" type="radio" name="star" value="60">
+ 					 <input class="rating" type="radio" name="star" value="80">
+ 					 <input class="rating" type="radio" name="star" value="100">
+				</div>
 				<div>
 					<label>Псевдоним<span class="required"><sup>*</sup></span></label>
 					<input id="opinion_alias" type="text" name="alias" value=""/>

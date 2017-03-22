@@ -296,6 +296,7 @@ document.head.appendChild(imported);
 			$("#address_submit").click(function(event){				
 				var form_data=$("#address_data").serializeArray();
 				var error_free=true;
+				console.log(form_data);
 				for (var input in form_data){
 					var element=$("#edit_"+form_data[input]['name']);
 					var valid=element.hasClass("valid");
@@ -325,6 +326,7 @@ document.head.appendChild(imported);
 			});
 			
 			
+			
 			$('#opinion_opinion').on('input', function () {
 				if($(this).val().trim()){
 					$(this).removeClass("invalid").addClass("valid");
@@ -337,6 +339,9 @@ document.head.appendChild(imported);
 			$("#submit_opinion").click(function(event){				
 				var form_data=$("#form_opinion").serializeArray();
 				var error_free=true;
+				if(form_data.length == 4){
+					form_data.splice(0,1);
+				}
 				console.log(form_data);
 				for (var input in form_data){
 					var element=$("#opinion_"+form_data[input]['name']);
@@ -497,6 +502,9 @@ document.head.appendChild(imported);
 	}
 	
 	
+	$('input:checkbox').click(function() {
+	    $('input:checkbox').not(this).prop('checked', false);
+	});  
 	
 	
 	

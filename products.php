@@ -11,6 +11,10 @@
    		$pageNumber = $_GET['pn'];
 	}
 	
+	if(isset($_GET['subcat'])){
+		
+	}
+	
 	mysqli_query($conn, "SET NAMES 'UTF8'");
 	
 	$categoriesDescriptions = array("laptops"=>"МОСТ Компютърс е официален вносител на марките лаптопи HP, Asus, Lenovo, Acer, Packard Bell. Включените в категорията мобилни компютри са с подробни спецификации. За по-бърза навигация, използвайте удобните филтри.",
