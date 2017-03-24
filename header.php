@@ -318,7 +318,7 @@
 								$item = mysqli_fetch_array($q, MYSQLI_ASSOC);
 								echo "<li>";
 									echo "<a href='./?page=singleProduct&category=".$item['Category']."&product=$title'><img src='./assets/images/products/".$prod['pic']."'>".str_replace("u0022",'"',$prod['title'])."</a>";
-									echo "<a id='delete_product' href=''>&times;</a>";
+									echo "<a class='remove_item' id='delete_product' href='code=".$prod['id']."'>&times;</a>";
 									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
 								echo "</li>";
 
@@ -345,7 +345,8 @@
                 <li><a href="?page=products&category=phones">Смартфони</a></li>
             </ul>
             <script src="assets/javascript/header.js" type="text/javascript"></script>
-
+			<script src="assets/javascript/cartRemove.js" type="text/javascript"></script>
+			
         </div>
     </div>
 

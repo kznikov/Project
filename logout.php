@@ -6,10 +6,12 @@
   if(!empty($_SESSION['cart'])){
 	  $cart = json_encode($_SESSION['cart'], JSON_UNESCAPED_UNICODE | JSON_HEX_QUOT);
 	  var_dump($cart);
-	  $query = "UPDATE users SET shopping_cart='$cart' WHERE id=".$_SESSION['login_user'];
-	  mysqli_query($conn, $query);
+	 
+  }else{
+  	$cart = "";
   }
- 
+  $query = "UPDATE users SET shopping_cart='$cart' WHERE id=".$_SESSION['login_user'];
+  mysqli_query($conn, $query);
 	
   
  unset($_SESSION);	
