@@ -5,6 +5,7 @@
  			 header("Location: ./?page=login");
  			 exit;
 		 }
+		
 		 
 		 $res = mysqli_query($conn, "SELECT * FROM users WHERE id=".$_SESSION['login_user']);
  		 $userRow = mysqli_fetch_array($res);

@@ -2,6 +2,8 @@
 	session_start();
 
 	include_once 'dbconnect.php';
+	include_once 'convertTitle.php';
+	
 	mysqli_query($conn, "SET NAMES 'UTF8'");
 	if(isset($_GET['currency']) && !isset($_COOKIE['currency'])){	
 		setcookie("currency", $_GET['currency']);
@@ -133,6 +135,15 @@
 		$productQuery = mysqli_query($conn, $q);
 		$product = mysqli_fetch_array($productQuery, MYSQLI_ASSOC);
 	}
+	
+	
+	if(!empty($_SESSION['cart'])){
+		$total=0.0;
+		foreach ($_SESSION['cart'] as $val){
+			$total+=($val["price"]+($val["price"]*20/100))*$val['quantity'];
+		}
+	}
+	
 	
 	
 ?>
@@ -290,7 +301,31 @@
                     </ul>
                     
                 </li>
-                <li class="show"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Поръчка 0,00 <span id="currencySymbol">лв </span>&nbsp;&nbsp;&nbsp;</li>
+                <li id="show_cart" class="show">
+                	<i class="fa fa-shopping-cart" aria-hidden="true"></i> Поръчка(<?=count($_SESSION['cart'])?>)&nbsp;&nbsp;&nbsp;<?= number_format($total/$x, 2, ',', ' ') ?> 
+                	<span id="currencySymbol"><?php if(isset($_COOKIE['currency'])) echo ($_COOKIE['currency'] == "bgn" ? "лв." : "&#8364;"); else echo "лв."; ?> </span>&nbsp;&nbsp;&nbsp;
+                </li>
+                <div id="cart_div">
+					<?php if(empty($_SESSION['cart'])){
+						echo "<p style='margin:20px;'>Нямате продукти в количката.</p>";
+					}else{?>
+						<h3><img id="cart_img" src="./assets/images/shopping_cart.png">Добавени продукти</h3>
+						<hr/>
+						<ul>
+							<?php foreach ($_SESSION['cart'] as $prod) {
+								$title = cyrToLat(mb_strtolower($prod['title']))."-item-id=".$prod['realId'];
+								$q = mysqli_query($conn, "SELECT Category FROM products WHERE id=".$prod['realId']);
+								$item = mysqli_fetch_array($q, MYSQLI_ASSOC);
+								echo "<li>";
+									echo "<a href='./?page=singleProduct&category=".$item['Category']."&product=$title'><img src='./assets/images/products/".$prod['pic']."'>".str_replace("u0022",'"',$prod['title'])."</a>";
+									echo "<a id='delete_product' href=''>&times;</a>";
+									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
+								echo "</li>";
+
+							} ?>
+						</ul>
+					<?php }?>
+				</div>
             </ul>            
 
         </div>
@@ -299,15 +334,15 @@
 
             <ul class="header-ul header-nav3">
                 <li><a href="?page=categories">Продукти</a></li>
-                <li><a href="#">Компоненти</a></li>
-                <li><a href="#">Лаптопи</a></li>
-                <li><a href="#">Таблети</a></li>
-                <li><a href="#">Компютри</a></li>
-                <li><a href="#">Сървъри</a></li>
-                <li><a href="#">Принтери</a></li>
-                <li><a href="#">Консумативи</a></li>
-                <li><a href="#">Аксесоари</a></li>
-                <li><a href="#">Смартфони</a></li>
+                <li><a href="?page=products&category=components">Компоненти</a></li>
+                <li><a href="?page=products&category=laptops">Лаптопи</a></li>
+                <li><a href="?page=products&category=tablets">Таблети</a></li>
+                <li><a href="?page=products&category=computers">Компютри</a></li>
+                <li><a href="?page=products&category=servers">Сървъри</a></li>
+                <li><a href="?page=products&category=printers">Принтери</a></li>
+                <li><a href="?page=products&category=supplies">Консумативи</a></li>
+                <li><a href="?page=products&category=accessories">Аксесоари</a></li>
+                <li><a href="?page=products&category=phones">Смартфони</a></li>
             </ul>
             <script src="assets/javascript/header.js" type="text/javascript"></script>
 

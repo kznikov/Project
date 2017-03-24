@@ -31,12 +31,15 @@
 			if($arr[0] === "up"){
 				$head = " до 14.9″ ";
 				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	<= $arr[2] ".$order.$orderway." ";
+				$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
 			}elseif($arr[0] === "over"){
 				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	> $arr[1] ".$order.$orderway." ";
 				$head = " над 17″ ";
+				$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
 			}else{
 				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	BETWEEN $arr[0] AND $arr[1] ".$order.$orderway." ";
 				$head = " от 15″ до 16.9″ ";
+				$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
 			}
 		}
 	}else{

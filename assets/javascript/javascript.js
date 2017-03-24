@@ -4,6 +4,7 @@ document.head.appendChild(imported);
 
 
 	$(document).ready(function(){
+		
 			$('input[name="email"]').on('input', function() {
 				var input=$(this);
 				var re =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -360,6 +361,20 @@ document.head.appendChild(imported);
 			});
 			
 			
+			 $("#show_cart").mouseenter(function(){
+			        $("#cart_div").css("display", "block");
+			    });
+			    $("#show_cart").mouseleave(function(){
+			        $("#cart_div").css("display", "none");
+			    });
+			    $("#cart_div").mouseenter(function(){
+			        $("#cart_div").css("display", "block");
+			    });
+			    $("#cart_div").mouseleave(function(){
+			        $("#cart_div").css("display", "none");
+			    });
+			
+			
 		});
 
 	
@@ -507,4 +522,6 @@ document.head.appendChild(imported);
 	});  
 	
 	
+
+
 	

@@ -1430,3 +1430,71 @@ strong {
 #opinion #rating{
 	font-size: 0.8em;
 }
+
+
+
+#cart_div{
+	width: 350px;
+	border:1px solid #dbd6d6;
+	height: auto;
+	max-height:400px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color:white;
+	 position: absolute;
+	z-index:10;
+	display: none;
+	box-shadow: 0 0 10px grey;
+	border-radius:2%;
+	
+}
+
+
+#cart_div li{
+	display: block;
+	padding: 10px;
+}
+
+
+#cart_div img{
+	width: 60px;
+	height:40px;
+	float: left;
+	margin-right:10px;
+	border:1px solid #dbd6d6;
+}
+
+#cart_div a{
+	font-size: 0.8em;
+	line-height: 1.5em;
+	width: 270px;
+	vertical-align:middle;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	box-sizing:border-box;
+}
+
+#cart_div ul{
+	padding: 0px;	
+}
+
+
+
+#cart_div #delete_product{
+	margin-left:10px;
+	display:inline-block;
+	font-size: 2em;
+	width: 10px;
+	
+}
+
+
+#cart_div #cart_img{
+	border:0px;
+	width: 35px;
+	height: auto;
+}
+
+#cart_div span{
+	display: block;
+}

@@ -16,7 +16,10 @@
 	   			
 			$error = false;
 	   		if($count == 1 && $password == $result['password']){
-				$_SESSION['login_user'] = $result['id'];		
+				$_SESSION['login_user'] = $result['id'];
+				$_SESSION['cart'] = json_decode($result['shopping_cart'], true);
+				echo $result['shopping_cart'];
+				//var_dump(json_decode($result['shopping_cart'], true)); 
 				header("Location: ./?page=profile");					
 	   		}else{
 	   			$error = true;

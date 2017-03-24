@@ -36,7 +36,7 @@
 			 $query = "INSERT INTO users(name,lastname,email,password,subscription) VALUES('$name','$lastName','$email','$password','$subscription')";
 			 mysqli_query($conn, $query);
 			 $_SESSION['created'] = true;
-			 $_SESSION['login_user'] = mysql_insert_id();
+			 $_SESSION['login_user'] = mysqli_insert_id();
 			 $_SESSION['name'] = $name." ".$lastName;
 			 header("Location: ./?page=profile");
 		}

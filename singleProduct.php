@@ -25,7 +25,7 @@
 		}
 	}
 	
-	$comments = "SELECT * FROM comments WHERE id=$productId";
+	$comments = "SELECT title, alias, comment, DATE_FORMAT(c_date, '%d/%m/%Y %H:%i:%s') AS date, rating FROM comments WHERE id=$productId";
 	$commentsQuery = mysqli_query($conn, $comments);
 	
 	
@@ -69,10 +69,12 @@
 		<span id="single_tax_price">Цена с ДДС: <strong><?= number_format((float)$product['Price']*1.2/$x,2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></strong></span>
 		
 		<?php if(isset($_SESSION['login_user'])){?>
-		<form action="" method="get">
+		<form id="shopping_form" action="" method="post">
 			<input id="buy" class="button" type="submit" name="buy" value="Купи"/>
+			<input type="hidden" name="category" value="<?=$_GET['category']?>"/>
+			<input type="hidden" name="id" value="<?=$productId?>"/>
 			<label for="quantity">Кол.: </label>
-			<input id="quantity" type="number" min="1" name="quantity"/>
+			<input id="quantity" type="number" min="1" value=1 name="quantity"/>
 		</form>
 		<?php }else{?>
 			<a href="./?page=login"><img id="prof_pic" src="./assets/images/profile.png"/><span id="buy_span">Регистрирайте се,<br/>за да поръчате!</span></a>
@@ -141,7 +143,7 @@
 									</p>
 							<?php }?>
 							<p id="comment"><?= $row['comment']?></p>
-							<p><em>(Публикувано на <?=$row['c_date']?>)</em></p>
+							<p><em>(Публикувано на <?=$row['date']?>)</em></p>
 						</div>
 						<?php }?>
 			<h1>ДОБАВИ МНЕНИЕ</h1>
@@ -180,3 +182,5 @@
 	
 </main>
 <script src="./assets/javascript/image_zoom.js"></script>
+<script src="assets/javascript/cartUpdate.js" type="text/javascript"></script>
+
