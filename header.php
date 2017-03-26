@@ -255,6 +255,9 @@
                 	case "pageNotFound":
                     	$pageTitle = "404 Not Found";
                 		break;
+                	case "search":
+                    	$pageTitle = "Търсене";
+                		break;
                 }
                 echo '<article id="header-row1-right">' . $pageTitle . '</article>';
                 ?>
@@ -284,14 +287,15 @@
 
             <a href="./?page=home"><img src="./assets/images/logo.jpg" alt="logo" id="header-logo"/></a>
 
-            <form class="search-form" action="" method="get">
-                <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search">
+            <form class="search-form" action="./?page=search" method="get">
+                <input type="hidden" name="page" value="search">
+                <input type="search" placeholder="Търси в целия магазин..." maxlength="128" id="search" name="search_query">
                 <button type="submit" title="Търсене" id="search-button"><i class="fa fa-search"></i></button>
             </form>
 			
             <ul class="header-ul header-nav2">
                 <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
-                <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency"><?php if(isset($_COOKIE['currency'])) echo strtoupper($_COOKIE['currency']); else echo "BGN";?></span> &nbsp;&nbsp;&nbsp;
+                <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency"><?php if(isset($_COOKIE['currency'])) echo "<strong>".strtoupper($_COOKIE['currency'])."</strong>"; else echo "<strong>BGN</strong>";?></span> &nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-currency">
                         <li id="bgn" ><a href="<?= $url."&currency=bgn" ?>" >BGN - Български лев</a></li>
                         
@@ -317,13 +321,15 @@
 								$q = mysqli_query($conn, "SELECT Category FROM products WHERE id=".$prod['realId']);
 								$item = mysqli_fetch_array($q, MYSQLI_ASSOC);
 								echo "<li>";
-									echo "<a href='./?page=singleProduct&category=".$item['Category']."&product=$title'><img src='./assets/images/products/".$prod['pic']."'>".str_replace("u0022",'"',$prod['title'])."</a>";
+									echo "<a class='cart_anchor' href='./?page=singleProduct&category=".$item['Category']."&product=$title'><img src='./assets/images/products/".$prod['pic']."'>".str_replace("u0022",'"',$prod['title'])."</a>";
 									echo "<a class='remove_item' id='delete_product' href='code=".$prod['id']."'>&times;</a>";
 									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
 								echo "</li>";
 
 							} ?>
 						</ul>
+						<button id="first_button" class="button" >Виж всичко</button>
+						<button id="second_button" class="button" >Продължи към поръчка</button>
 					<?php }?>
 				</div>
             </ul>            

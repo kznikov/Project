@@ -1,14 +1,7 @@
 <?php
 	include_once 'dbconnect.php';
 	include_once 'convertTitle.php';
-	
-	
-	function multiexplode ($delimiters,$string) {
-	
-	    $ready = str_replace($delimiters, $delimiters[0], $string);
-	    $launch = explode($delimiters[0], $ready);
-	    return  $launch;
-	}
+	include_once 'multiExplode.php';
 	
 		mysqli_query($conn, "SET NAMES 'UTF8'");
 		$query = mysqli_query($conn, "SELECT * FROM news WHERE type LIKE 'Анотации'");

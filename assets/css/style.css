@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter, #news, #single_product, #categories, #products{
+#create, #login, #profile, #edit_page, #edit_address, #edit_newsletter, #news, #single_product, #categories, #products, #seach_results{
 	font-size:1.2em;
 	margin: 0 auto;
 	color:#727272;
@@ -684,13 +684,13 @@ nav li{
 		
 }
 
-#pages{
+.pages{
 	margin-left: 40%;
 	margin-bottom: 60px;
 }
 
 
-#pages li{
+.pages li{
 	float:left;
 	margin-right:1px;
 	list-style:none;
@@ -703,13 +703,13 @@ nav li{
 
 
 
-#pages li:hover{
+.pages li:hover{
 	background-color: #333333;
 	cursor: pointer;
 	color:white;
 }
 
-#pages li a{
+.pages li a{
 	text-decoration: none;
 	color:grey;
 	display:block;
@@ -768,12 +768,12 @@ nav li{
 
 
 
-#items{
+.items{
 	margin: 0px;
 }
 
 
-#items li{
+.items li{
 	float:left;
 	width: 18%;
 	list-style:none;
@@ -788,24 +788,24 @@ nav li{
     -webkit-transition:.5s;
 }
 
-#items img{
+.items img{
 	width: 100%;
 }
 
 
-#items h2{
+.items h2{
 	font-size: 1em;
 	padding: 0px;
 
 }
 
-#items  hr{
+.items  hr{
 	clear: both;
 }
 
 
 
-#items li:hover{
+.items li:hover{
 	box-shadow: 0 0 10px grey;
 
 }
@@ -839,17 +839,17 @@ nav li{
 }
 
 
-#product_box span{
+.product_box span{
 	display: block;
 	margin-bottom:5px;
 	font-weight: bold;
 }
 
-#price{
+.price{
 	font-size: 0.8em;
 }
 
-#tax_price{
+.tax_price{
 	font-size: 0.9em;
 }
 
@@ -974,7 +974,7 @@ strong {
 	 font-size: 120%; 
 }
 
-#like{
+.like{
 	display:inline-block;
 	width:32px;
 	text-align:center;
@@ -992,7 +992,7 @@ strong {
     -webkit-transition:.5s;
 }
 
-#compare{
+.compare{
 	display:inline-block;
 	width:32px;
 	text-align:center;
@@ -1013,7 +1013,7 @@ strong {
 }
 
 
-#like:hover, #compare:hover{
+.like:hover, .compare:hover{
 	background-color: black;
 	color:white;
 }
@@ -1497,4 +1497,47 @@ strong {
 
 #cart_div span{
 	display: block;
+}
+
+
+#cart_div button{
+	margin: 10px;
+	float: left;
+	
+}
+
+
+#first_button{
+	width: 100px;
+	margin-right: 0px;
+}
+
+#second_button{
+	width: 170px;
+	
+}
+
+
+.cart_anchor{
+	font-weight: bold;
+}
+
+
+.cart_anchor:hover{
+	color:#dc143c;
+}
+
+
+
+#search_sec{
+	float:left;
+	width: 80%;
+	margin-right: 30px;
+}
+
+
+
+#search_sec2{
+	padding-top: 40px;
+	padding-left: 20xp;
 }

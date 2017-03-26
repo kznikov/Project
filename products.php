@@ -146,11 +146,11 @@
 <style>
 	
 	
-	#pages li:nth-child(<?= ($pageNumber == 1 ? $pageNumber : $pageNumber+1)?>){
+	.pages li:nth-child(<?= ($pageNumber == 1 ? $pageNumber : $pageNumber+1)?>){
 		background-color:#e5e5e5;
 	}
 	
-	#pages li:nth-child(<?= ($pageNumber == 1 ? $pageNumber : $pageNumber+1) ?>):hover{
+	.pages li:nth-child(<?= ($pageNumber == 1 ? $pageNumber : $pageNumber+1) ?>):hover{
 		color:grey;
 		cursor:auto;
 	}
@@ -168,7 +168,6 @@
 
 
 <main id="products">
-<div id="slider-range2"></div>
 	<section id="prod_sec">
 		<h1><?=$header?> <?=(isset($_GET['subcat']) ? $head : "") ?></h1>
 		<hr/>
@@ -221,14 +220,14 @@
 			
 			 </ul>
 			 <hr id = "prod_hr"/>
-			  <ul id="pages"><?php echo $paginationCtrls; ?></ul>
+			  <ul class="pages"><?php echo $paginationCtrls; ?></ul>
 			  <hr class = 'line'/>
 		</article>
 		 <?php }?>
-		<article id="product_box">
+		<article class="product_box">
 			<?php
 			if($query && mysqli_num_rows($query)){
-				echo "<ul id='items'>";
+				echo "<ul class='items'>";
 				$cnt = 0;
 				 while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
 				 	$images = explode('/', $row['Picture']);
@@ -243,12 +242,12 @@
 					<li onmouseover="show(this)" onmouseout="hide(this)" >
 						<a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><img id="pics" alt="" src="./assets/images/products/<?=$images[0]?>"></a>
 						
-						<a id="compare" href="#">&#9878;</a>
-						<a id="like" href="#">&#x2665;</a>
+						<a class="compare" href="#">&#9878;</a>
+						<a class="like" href="#">&#x2665;</a>
 						<h2><a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><?= $row['Model']?></a></h2>
 						<div class="price_box">
-							<span id="price">Цена без ДДС: <?= number_format((float)$row['Price']/$x, 2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></span>
-							<span id="tax_price">Цена с ДДС: <?= number_format((float)$row['Price']*1.2/$x,2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></span>
+							<span class="price">Цена без ДДС: <?= number_format((float)$row['Price']/$x, 2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></span>
+							<span class="tax_price">Цена с ДДС: <?= number_format((float)$row['Price']*1.2/$x,2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></span>
 						</div>
 					</li>
 					<?php
@@ -256,7 +255,7 @@
 				}?>
 				</ul>
 				<hr style="clear:both;margin:0px;"/>
-				<ul id="pages"><?php echo $paginationCtrls; ?></ul>
+				<ul class="pages"><?php echo $paginationCtrls; ?></ul>
 			<?php 
 			}else{?>
 			<ul id="empty_category">

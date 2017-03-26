@@ -391,7 +391,7 @@ document.head.appendChild(imported);
 	});
 	
 	$(function() {
-		$("#pages  li").hover(function() {
+		$(".pages  li").hover(function() {
 		    $(this).find('a').css("color", "white");
 	        }, function(){
 	        	$(this).find('a').css("color", "grey");
@@ -457,15 +457,15 @@ document.head.appendChild(imported);
 
 	
 	function show(x){
-		var a = x.querySelector("#like");
-		var b = x.querySelector("#compare");
+		var a = x.querySelector(".like");
+		var b = x.querySelector(".compare");
 		a.style.display = "block";
 		b.style.display = "block";
 	}
 
 	function hide(x) {
-		var a = x.querySelector("#like");
-		var b = x.querySelector("#compare");
+		var a = x.querySelector(".like");
+		var b = x.querySelector(".compare");
 		a.style.display = "none";
 		b.style.display = "none";
 	}
