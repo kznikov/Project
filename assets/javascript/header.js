@@ -14,6 +14,14 @@ $(document).ready(function(){
     $("#currency-selector, .dropdown-currency").mouseleave(function(){
         $(".dropdown-currency").css("display", "none");
     });
+    
+    //compare list:
+    $("#compare-list, .dropdown-compare").mouseenter(function(){
+        $(".dropdown-compare").css("display", "block");
+    });
+    $("#compare-list, .dropdown-compare").mouseleave(function(){
+        $(".dropdown-compare").css("display", "none");
+    });    
 });
 
 

@@ -3,6 +3,7 @@
 
 	include_once 'dbconnect.php';
 	include_once 'convertTitle.php';
+        include_once 'convertTitle.php';
 	
 	mysqli_query($conn, "SET NAMES 'UTF8'");
 	if(isset($_GET['currency']) && !isset($_COOKIE['currency'])){	
@@ -146,7 +147,31 @@
 		}
 	}
 	
-	
+        //compare option:
+        function createCompareList($str) {
+            $list = explode(";", $str);
+            array_shift($list);
+            return $list = array_values(array_unique($list));
+        }
+        
+        $compareList = array();
+        
+        if(isset($_SESSION['compareList'])) {
+            if(isset($_POST['comparedId'])) {
+                $_SESSION['compareList'] = $_SESSION['compareList'] . ";" . $_POST['comparedId'];
+                $compareList = createCompareList($_SESSION['compareList']);
+            } else {
+                $compareList = explode(";", $_SESSION['compareList']);
+                $compareList = createCompareList($_SESSION['compareList']);
+            }
+        } else {
+            $_SESSION['compareList'] = "";
+        }
+        
+        if(isset($_POST['clear-all-comparedIds'])) {
+            $_SESSION['compareList'] = "";
+            $compareList = array();
+        }
 	
 ?>
 
@@ -157,7 +182,8 @@
     <script type="text/javascript" src="./assets/javascript/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/0a902a9652.js"></script>
     <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
-	<script src="assets/javascript/header.js" type="text/javascript"></script>
+    <script src="assets/javascript/header.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/jquery-ui-1.12.1/jquery-ui.css">
     <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery.js"></script>
@@ -176,6 +202,7 @@
     </script>
 	
     <link href="./assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
+    
 	
 	<style type="text/css">
 		li.hidden{
@@ -315,7 +342,35 @@
             </form>
 			
             <ul class="header-ul header-nav2">
-                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
+                <li id="compare-list"><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(<?=count($compareList);?>)&nbsp;&nbsp;&nbsp;</li>
+                    
+                        <?php
+                            if(count($compareList) > 0) {
+                                echo "<ul class='dropdown-compare' id='dropdown-compare'>";
+                                for($index=0; $index < count($compareList); $index++) {
+                                    $compareListItem = $compareList[$index];
+                                    $query = "SELECT Model FROM products WHERE Id = $compareListItem";
+                                    $result = mysqli_query($conn, $query);
+                                    $comparedName = mysqli_fetch_array($result)[0];
+                                    $category = "laptops";
+                                    $title = cyrToLat(mb_strtolower($comparedName))."-item-id=".$compareListItem;
+                                    echo "<li id='$compareListItem' class='compared-product'>"
+                                            . "<a href='?page=singleProduct&category=$category&product=$title' class='compared-link'>"
+                                            . "$comparedName"
+                                            . "</a>"
+                                            . "</li>";
+                                            
+                                }
+                                echo "<hr>"
+                                    . "<button class='button'>Сравни</button>"
+                                    . "<button class='button' id='clear-comparison-list-button'>Изчисти</button>"
+                                    . "<form action='' method='post' class='hidden' id='clear-comparison-list-form'>"
+                                        . "<input type='hidden' name='clear-all-comparedIds' value='delete'>"
+                                    . "</form>"
+                                    . "</ul>";
+                            }
+                        ?>
+                            
                 <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency"><?php if(isset($_COOKIE['currency'])) echo "<strong>".strtoupper($_COOKIE['currency'])."</strong>"; else echo "<strong>BGN</strong>";?></span> &nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-currency">
                         <li id="bgn" ><a href="<?= $url."&currency=bgn" ?>" >BGN - Български лев</a></li>
@@ -376,4 +431,5 @@
 			
         </div>
     </div>
-
+    
+    <script src="assets/javascript/compare.js" type="text/javascript"></script>
