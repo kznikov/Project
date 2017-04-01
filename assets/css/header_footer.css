@@ -169,12 +169,27 @@ form.search-form{
     border-radius:7px;
 }
 
-.dropdown-currency li{
+.dropdown-compare {
+    float: right;
+    display: none;
+    margin-top: 0%;
+    position: absolute;
+    background-color: white;
+    border: solid #dbd6d6 1px;
+    padding: 0 0.3%;   
+    box-shadow: 0 0 10px grey;
+    border-radius:7px; 
+}
+
+.dropdown-currency li {
     list-style: none;
     padding-bottom: 2%;
 }
 
-
+.dropdown-compare li {
+    list-style: none;
+    padding-bottom: 2%;
+}
 
 .header-row4{
     background-color: #D7CEC7;

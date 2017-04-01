@@ -144,7 +144,17 @@
 		}
 	}
 	
-	
+        //compare option:
+        $compareList = array();
+        if(isset($_SESSION['compareList'])) {
+            if(isset($_POST['comparedId'])) {
+                $_SESSION['compareList'] = $_SESSION['compareList'] . ";" . $_POST['comparedId'];
+                $compareList = explode(";", $_SESSION['compareList']);
+                array_shift($compareList);
+            }
+        } else {
+            $_SESSION['compareList'] = "";
+        }              
 	
 ?>
 
@@ -155,10 +165,12 @@
     <script type="text/javascript" src="./assets/javascript/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/0a902a9652.js"></script>
     <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
-	<script src="assets/javascript/header.js" type="text/javascript"></script>
+    <script src="assets/javascript/header.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
 
     <link href="./assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
+    
 	
 	<style type="text/css">
 		li.hidden{
@@ -294,7 +306,18 @@
             </form>
 			
             <ul class="header-ul header-nav2">
-                <li><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(0)&nbsp;&nbsp;&nbsp;</li>
+                <li id="compare-list"><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(<?=count($compareList);?>)&nbsp;&nbsp;&nbsp;</li>
+                    <ul class="dropdown-compare">
+                        <?php
+                            for($index=0; $index < count($compareList); $index++) {
+                                $compareListItem = $compareList[$index];
+                                $query = "SELECT Model FROM products WHERE Id = $compareListItem";
+                                $result = mysqli_query($conn, $query);
+                                $comparedName = mysqli_fetch_array($result)[0];
+                                echo "<li id='$compareListItem' class='compared-product'> $comparedName </li>";
+                            }
+                        ?>
+                    </ul>
                 <li id="currency-selector"><i class="fa fa-exchange" aria-hidden="true"></i> Валута: <span id="selectedCurrency"><?php if(isset($_COOKIE['currency'])) echo "<strong>".strtoupper($_COOKIE['currency'])."</strong>"; else echo "<strong>BGN</strong>";?></span> &nbsp;&nbsp;&nbsp;
                     <ul class="dropdown-currency">
                         <li id="bgn" ><a href="<?= $url."&currency=bgn" ?>" >BGN - Български лев</a></li>
@@ -355,4 +378,5 @@
 			
         </div>
     </div>
-
+    
+    <script src="assets/javascript/compare.js" type="text/javascript"></script>

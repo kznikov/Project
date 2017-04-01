@@ -242,8 +242,11 @@
 					<li onmouseover="show(this)" onmouseout="hide(this)" >
 						<a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><img id="pics" alt="" src="./assets/images/products/<?=$images[0]?>"></a>
 						
-						<a class="compare" href="#">&#9878;</a>
-						<a class="like" href="#">&#x2665;</a>
+						<a class="compare" href="#" id="<?=$row['Id']?>">&#9878;</a>
+                                                <form action="" method="post" class="hidden" id="form-<?=$row['Id']?>">
+                                                    <input type="hidden" name="comparedId" value="<?=$row['Id']?>">
+                                                </form>
+						<a class="like" href="#" id="<?=$row['Id']?>">&#x2665;</a>
 						<h2><a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><?= $row['Model']?></a></h2>
 						<div class="price_box">
 							<span class="price">Цена без ДДС: <?= number_format((float)$row['Price']/$x, 2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></span>
