@@ -170,15 +170,19 @@ form.search-form{
 }
 
 .dropdown-compare {
-    float: right;
-    display: none;
-    margin-top: 0%;
-    position: absolute;
-    background-color: white;
-    border: solid #dbd6d6 1px;
-    padding: 0 0.3%;   
-    box-shadow: 0 0 10px grey;
-    border-radius:7px; 
+	width: 350px;
+	border:1px solid #dbd6d6;
+	height: auto;
+	max-height:400px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color:white;
+	position: absolute;
+	z-index:10;
+	display: none;
+	box-shadow: 0 0 10px grey;
+	border-radius:2%;
+	padding: 1%;
 }
 
 .dropdown-currency li {
@@ -189,6 +193,20 @@ form.search-form{
 .dropdown-compare li {
     list-style: none;
     padding-bottom: 2%;
+    display: block;
+}
+
+.compared-link:hover {
+    color: crimson;
+}
+
+#dropdown-compare button{
+	margin: 10px;
+	float: left;
+        width: 35%;
+        height: 1.85em;
+        display: inline-block;
+        margin: 1%;
 }
 
 .header-row4{
