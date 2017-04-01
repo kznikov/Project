@@ -127,11 +127,13 @@
 	);
 	$cnt=0;
 	
+
+	
 	
 	
 	if(isset($_GET['product'])){
 		$productId = str_replace("id=", "", strstr($_GET['product'], "id="));
-		$q = "SELECT * FROM products p JOIN ".$_GET['category']." c ON p.id = c.id HAVING p.id=".$productId;
+		$q = "SELECT * FROM products p JOIN ".$_GET['category']." c ON p.id = c.id WHERE p.id=".$productId;
 		$productQuery = mysqli_query($conn, $q);
 		$product = mysqli_fetch_array($productQuery, MYSQLI_ASSOC);
 	}
@@ -157,7 +159,22 @@
     <script type="text/javascript" src="./assets/javascript/javascript.js"></script>
 	<script src="assets/javascript/header.js" type="text/javascript"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/jquery-ui-1.12.1/jquery-ui.css">
+    <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery.js"></script>
+  <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+   
 
+    
+   		 $(window).on('load', function() {
+			// Animate loader off screen
+			$(".se-pre-con").fadeTo(400,1).fadeOut("slow");
+			set
+		});
+    
+    </script>
+	
     <link href="./assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
 	
 	<style type="text/css">
@@ -205,11 +222,14 @@
 <?php echo (isset($_SESSION['login_user'])) ? "display:inline-block;" : "display:none;"; ?>
     }
 </style>
+
 </head>
 <body>
+<div class="se-pre-con"></div>
     <div class="header-wrapper">
         <div class="header-container1">
             <div class="header-row1">
+            
                 <article id="header-row1-left">Най-добрите цени за компютри, компоненти, лаптопи, сървъри, принтери, консумативи</article>
                 <?php
                 if (isset($_GET['page'])) {
@@ -283,6 +303,7 @@
                 <li class="show"><a href="./?page=logout" class="toggle">Изход</a></li>                
             </ul>            
         </div>
+   
         <div class="header-row3">
 
             <a href="./?page=home"><img src="./assets/images/logo.jpg" alt="logo" id="header-logo"/></a>
@@ -323,7 +344,7 @@
 								echo "<li>";
 									echo "<a class='cart_anchor' href='./?page=singleProduct&category=".$item['Category']."&product=$title'><img src='./assets/images/products/".$prod['pic']."'>".str_replace("u0022",'"',$prod['title'])."</a>";
 									echo "<a class='remove_item' id='delete_product' href='code=".$prod['id']."'>&times;</a>";
-									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
+									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x*1.2, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
 								echo "</li>";
 
 							} ?>

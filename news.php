@@ -53,7 +53,10 @@
 					
 				}elseif(isset($_GET['search_news'])){
 					$searchWords = multiexplode(array(" ", ".", "_", "?", ",", ";"),$searchString);
-	   				$q = "SELECT * FROM news WHERE MATCH(title) AGAINST ('".implode(" +", $searchWords)."' IN BOOLEAN MODE) ORDER BY p_date DESC ";
+					foreach ($searchWords as $key=>$word) {
+						$searchWords[$key] = "+".$word."*";
+					}
+	   				$q = "SELECT * FROM news WHERE MATCH(title) AGAINST ('".implode(" ", $searchWords)."' IN BOOLEAN MODE) ORDER BY p_date DESC ";
 	   				if(!mysqli_num_rows(mysqli_query($conn, $q))){
 						echo "<article id='info_msg'><img src='./assets/images/info.png'><p>Няма намерени съответствия.</p></article>";
 	   				}

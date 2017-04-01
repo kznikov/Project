@@ -18,9 +18,14 @@
 	   		if($count == 1 && $password == $result['password']){
 				$_SESSION['login_user'] = $result['id'];
 				$_SESSION['cart'] = json_decode($result['shopping_cart'], true);
-				echo $result['shopping_cart'];
-				//var_dump(json_decode($result['shopping_cart'], true)); 
-				header("Location: ./?page=profile");					
+				//echo $result['shopping_cart'];
+				//var_dump(json_decode($result['shopping_cart'], true));
+				if(isset($_GET['last_product'])){
+					header("Location: ./?page=singleProduct&category=".$_GET['product_category']."&product=".$_GET['last_product']);	
+				}else{
+					header("Location: ./?page=profile");
+				}
+									
 	   		}else{
 	   			$error = true;
 	   		}
