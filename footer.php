@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="copy-right">
-                <p>© 1997-2016 MOST Computers. Всички права запазени.</p>
+                <p>© 1997-2016 KRADEN Computers. Вашият компютър е при нас.</p>
             </div>
         </div>
     </div>

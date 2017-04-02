@@ -324,13 +324,13 @@
                 <li><a href="./?page=news">Новини</a></li>
                 <li class="hidden"><a href="./?page=login" class="toggle2">Вход</a></li>
                 <li class="hidden"><a href="./?page=create" class="toggle2">Регистрация</a></li>
-                <li class="show"><a href="./?page=logout" class="toggle">�?зход</a></li>                
+                <li class="show"><a href="./?page=logout" class="toggle">�?зход</a></li>                
             </ul>            
         </div>
    
         <div class="header-row3">
 
-            <a href="./?page=home"><img src="./assets/images/logo.jpg" alt="logo" id="header-logo"/></a>
+            <a href="./?page=home"><img src="./assets/images/logo-2.png" alt="logo" id="header-logo"/></a>
 
             <form class="search-form" action="./?page=search" method="get">
                 <input type="hidden" name="page" value="search">
@@ -372,7 +372,7 @@
                                         . "Сравни"                                        
                                         . "</button>"
                                         . "</a>"
-                                    . "<button class='button' id='clear-comparison-list-button'>�?зчисти</button>"
+                                    . "<button class='button' id='clear-comparison-list-button'>Изчисти</button>"
                                     . "<form action='' method='post' class='hidden' id='clear-comparison-list-form'>"
                                         . "<input type='hidden' name='clear-all-comparedIds' value='delete'>"
                                     . "</form>"
