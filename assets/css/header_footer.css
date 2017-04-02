@@ -196,17 +196,50 @@ form.search-form{
     display: block;
 }
 
+.compared-link-wrapper{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 80%;
+    vertical-align: top;
+}
+
 .compared-link:hover {
     color: crimson;
 }
 
+.remove-item-wrapper{
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 2em;
+    float: right;
+}
+
+.remove-item-wrapper a{
+    font-size: 1em;
+}
+
+.remove-item-wrapper a:hover{
+    font-size: 1.2em;
+}
+
+#compare-button-link {
+    float: left;
+    width: 30%;
+    margin: 1%;
+}
+
+#compare-button{
+    width: 100%;
+}
+
 #dropdown-compare button{
-	margin: 10px;
-	float: left;
-        width: 35%;
         height: 1.85em;
         display: inline-block;
-        margin: 1%;
+}
+
+#clear-comparison-list-button {
+    width: 30%;
+    margin: 1%;
 }
 
 .header-row4{

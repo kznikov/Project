@@ -1,6 +1,5 @@
 <?php
 	session_start();
-
 	include_once 'dbconnect.php';
 	include_once 'convertTitle.php';
         include_once 'convertTitle.php';
@@ -130,9 +129,10 @@
 	
 	
 	
+	
 	if(isset($_GET['product'])){
 		$productId = str_replace("id=", "", strstr($_GET['product'], "id="));
-		$q = "SELECT * FROM products p JOIN ".$_GET['category']." c ON p.id = c.id HAVING p.id=".$productId;
+		$q = "SELECT * FROM products p JOIN ".$_GET['category']." c ON p.id = c.id WHERE p.id=".$productId;
 		$productQuery = mysqli_query($conn, $q);
 		$product = mysqli_fetch_array($productQuery, MYSQLI_ASSOC);
 	}
@@ -145,30 +145,26 @@
 		}
 	}
 	
-        //compare option:
-        function createCompareList($str) {
-            $list = explode(";", $str);
-            array_shift($list);
-            return $list = array_values(array_unique($list));
-        }
-        
-        $compareList = array();
-        
+        //compare option:       
         if(isset($_SESSION['compareList'])) {
             if(isset($_POST['comparedId'])) {
-                $_SESSION['compareList'] = $_SESSION['compareList'] . ";" . $_POST['comparedId'];
-                $compareList = createCompareList($_SESSION['compareList']);
-            } else {
-                $compareList = explode(";", $_SESSION['compareList']);
-                $compareList = createCompareList($_SESSION['compareList']);
-            }
+                $_SESSION['compareList'][] = $_POST['comparedId'];
+                $_SESSION['compareList'] = array_values(array_unique($_SESSION['compareList']));
+            } 
         } else {
-            $_SESSION['compareList'] = "";
+            $_SESSION['compareList'] = array();
         }
         
-        if(isset($_POST['clear-all-comparedIds'])) {
-            $_SESSION['compareList'] = "";
-            $compareList = array();
+	if(isset($_POST['clear-all-comparedIds'])) {
+            $_SESSION['compareList'] = array();
+        }
+        
+        if(isset($_POST['itemToDelete'])) {
+            $itemToDelete = $_POST['itemToDelete'];
+            if(($key = array_search($itemToDelete, $_SESSION['compareList'])) !== false) {
+                unset($_SESSION['compareList'][$key]);
+                $_SESSION['compareList'] = array_values($_SESSION['compareList']);
+            }
         }
 	
 ?>
@@ -183,7 +179,21 @@
     <script src="assets/javascript/header.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="./assets/jquery-ui-1.12.1/jquery-ui.css">
+    <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery.js"></script>
+  <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery-ui.js"></script>
+    
+    <script type="text/javascript">
+   
+    
+   		 $(window).on('load', function() {
+			// Animate loader off screen
+			$(".se-pre-con").fadeTo(400,1).fadeOut("slow");
+			set
+		});
+    
+    </script>
+	
     <link href="./assets/css/header_footer.css" rel="stylesheet" type="text/css"/>
     
 	
@@ -227,28 +237,28 @@
     li.hidden{
 <?php echo (isset($_SESSION['login_user'])) ? "display:none;" : "display:inline-block;"; ?>
     }
-
     li.show{
 <?php echo (isset($_SESSION['login_user'])) ? "display:inline-block;" : "display:none;"; ?>
     }
 </style>
+
 </head>
 <body>
+<div class="se-pre-con"></div>
     <div class="header-wrapper">
         <div class="header-container1">
             <div class="header-row1">
+            
                 <article id="header-row1-left">Най-добрите цени за компютри, компоненти, лаптопи, сървъри, принтери, консумативи</article>
                 <?php
                 if (isset($_GET['page'])) {
                     $page = $_GET['page'];
-
                     if (!file_exists("./" . $page . ".php")) {
                         $page = "pageNotFound";
                     }
                 } else {
                     $page = "home";
                 }
-
                 $pageTitle = 'MOST Computers';
 				
                 if(isset($_GET['category'])){
@@ -285,6 +295,12 @@
                 	case "search":
                     	$pageTitle = "Търсене";
                 		break;
+                	case "shoppingCart":
+                    	$pageTitle = "Количка";
+                		break;
+                	case "checkout":
+                    	$pageTitle = "Поръчка";
+                		break;
                 }
                 echo '<article id="header-row1-right">' . $pageTitle . '</article>';
                 ?>
@@ -310,6 +326,7 @@
                 <li class="show"><a href="./?page=logout" class="toggle">Изход</a></li>                
             </ul>            
         </div>
+   
         <div class="header-row3">
 
             <a href="./?page=home"><img src="./assets/images/logo.jpg" alt="logo" id="header-logo"/></a>
@@ -321,27 +338,39 @@
             </form>
 			
             <ul class="header-ul header-nav2">
-                <li id="compare-list"><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(<?=count($compareList);?>)&nbsp;&nbsp;&nbsp;</li>
+                <li id="compare-list"><i class="fa fa-balance-scale" aria-hidden="true"></i> Сравни(<?=count($_SESSION['compareList']);?>)&nbsp;&nbsp;&nbsp;</li>
                     
                         <?php
-                            if(count($compareList) > 0) {
+                            if(count($_SESSION['compareList']) > 0) {
                                 echo "<ul class='dropdown-compare' id='dropdown-compare'>";
-                                for($index=0; $index < count($compareList); $index++) {
-                                    $compareListItem = $compareList[$index];
+                                for($index=0; $index < count($_SESSION['compareList']); $index++) {
+                                    $compareListItem = $_SESSION['compareList'][$index];
                                     $query = "SELECT Model FROM products WHERE Id = $compareListItem";
                                     $result = mysqli_query($conn, $query);
                                     $comparedName = mysqli_fetch_array($result)[0];
                                     $category = "laptops";
                                     $title = cyrToLat(mb_strtolower($comparedName))."-item-id=".$compareListItem;
                                     echo "<li id='$compareListItem' class='compared-product'>"
+                                            . "<span class='compared-link-wrapper'>"
                                             . "<a href='?page=singleProduct&category=$category&product=$title' class='compared-link'>"
                                             . "$comparedName"
                                             . "</a>"
+                                            . "</span>"
+                                            . "<span class='remove-item-wrapper'>"
+                                            . "<a class='remove-item' id='$compareListItem' href='#' title='Премахни този артикул'>&times;"
+                                            . "</a>"
+                                            . "</span>"
+                                            . "<form action='' method='post' class='hidden' id='form-comparelist-$compareListItem'>"
+                                            . "<input type='hidden' name='itemToDelete' value='$compareListItem'/></form>"
                                             . "</li>";
                                             
                                 }
                                 echo "<hr>"
-                                    . "<button class='button'>Сравни</button>"
+                                    . "<a id='compare-button-link' href='?page=compare' onclick=\"window.open('?page=compare', 'newwindow', 'width=900, height=600'); return false;\">"
+                                    . "<button class='button' id='compare-button'>"                
+                                        . "Сравни"                                        
+                                        . "</button>"
+                                        . "</a>"
                                     . "<button class='button' id='clear-comparison-list-button'>Изчисти</button>"
                                     . "<form action='' method='post' class='hidden' id='clear-comparison-list-form'>"
                                         . "<input type='hidden' name='clear-all-comparedIds' value='delete'>"
@@ -380,11 +409,10 @@
 									echo "<a class='remove_item' id='delete_product' href='code=".$prod['id']."'>&times;</a>";
 									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
 								echo "</li>";
-
 							} ?>
 						</ul>
-						<button id="first_button" class="button" >Виж всичко</button>
-						<button id="second_button" class="button" >Продължи към поръчка</button>
+						<button id="first_button" class="button" onclick='window.location.assign("./?page=shoppingCart")' >Виж всичко</button>
+						<button id="second_button" class="button" onclick='window.location.assign("./?page=checkout")' >Продължи към поръчка</button>
 					<?php }?>
 				</div>
             </ul>            

@@ -9,16 +9,21 @@ and open the template in the editor.
 
 ob_start();
 
-include_once('./header.php');
+//include_once('./header.php');
 
 if(isset($_GET['page'])){
     $page = $_GET['page'];
+    
+    if($page != "compare") {
+        include_once('./header.php');
+    }
     
     if(!file_exists("./" . $page . ".php")){
         $page = "pageNotFound";
     }
 }
 else{
+    include_once('./header.php');
     $page = "home";
 }
 
@@ -30,4 +35,8 @@ $file = "./" . $page . ".php";
     <?php include ("$file"); ?>
 </div>
         
-<?php include_once('./footer.php'); ?>
+<?php
+if($page != "compare") {
+    include_once('./footer.php');
+}
+?>
