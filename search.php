@@ -284,7 +284,6 @@
 		  <?php 
 		 //$result = mysqli_query($conn, "SELECT DISTINCT(Brand) FROM products WHERE category LIKE '".$category."'");
 		 $result = mysqli_query($conn, "SELECT COUNT(Brand), Brand FROM products WHERE MATCH(Model) AGAINST ('".implode(" ", $searchWords)."' IN BOOLEAN MODE) GROUP by Brand");
-		 echo "<input class='models' type='checkbox'  onclick='window.location.assign(\"./?page=search&search_query=".$searchString."\")'><span>Всички</span><br/>";
 	     
 		 while($res = mysqli_fetch_array($result)){
 	     	echo "<input class='models' type='checkbox'  onclick='window.location.assign(\"./?page=search&search_query=".$searchString."&brand=".$res['Brand']."\")'><span>".strtoupper($res['Brand'])." (".$res['COUNT(Brand)'].")"."</span><br/>";

@@ -28,7 +28,7 @@
 	$comments = "SELECT title, alias, comment, DATE_FORMAT(c_date, '%d/%m/%Y %H:%i:%s') AS date, rating FROM comments WHERE id=$productId";
 	$commentsQuery = mysqli_query($conn, $comments);
 	
-	
+
 	
 ?>
 

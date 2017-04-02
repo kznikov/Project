@@ -1609,6 +1609,7 @@ strong {
 	background-color: #f2f2f2;
 }
 
+
 	
 
 #cart_table input{
@@ -1632,6 +1633,7 @@ strong {
 	float: right;
 	width: 190px;	
 	height: 40px;
+	display: inline-block;
 }
 
 

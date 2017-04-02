@@ -8,9 +8,14 @@
 		$q = "SELECT * FROM products p JOIN ".$_POST['category']." c ON p.id = c.id HAVING p.id=".$productId;
 		$productQuery = mysqli_query($conn, $q);
 		$product = mysqli_fetch_array($productQuery, MYSQLI_ASSOC);
+		
+		
 
-
-		if(!empty($_POST["quantity"])) {
+		if(!empty($_POST["quantity"]) && is_numeric($_POST['quantity'])) {
+			if($product['Num of Items in Stock'] < $_POST['quantity']){
+				echo "Количеството, което сте избрали надхвърля наличността на артикула! Моля опитайте отново!";
+				die();
+			}
 			$productByCode = $product;
 			//var_dump($productByCode);
 			$arr = explode("/", $productByCode['Picture']);

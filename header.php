@@ -147,7 +147,7 @@
 		}
 	}
 	
-        //compare option:       
+        //compare option:     
         if(isset($_SESSION['compareList'])) {
             if(isset($_POST['comparedId'])) {
                 $_SESSION['compareList'][] = $_POST['comparedId'];

@@ -5,6 +5,7 @@ document.head.appendChild(imported);
 
 	$(document).ready(function(){
 		
+		
 			$('input[name="email"]').on('input', function() {
 				var input=$(this);
 				var re =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -517,10 +518,18 @@ document.head.appendChild(imported);
 	}
 	
 	
+	
 	$('input:checkbox').click(function() {
 	    $('input:checkbox').not(this).prop('checked', false);
 	});  
 	
+	
+	
+	$(document).ready(function(){
+		$('#cart_button2').click(function() {
+		    $('#update').submit();
+		});
+	});
 	
 	
 	

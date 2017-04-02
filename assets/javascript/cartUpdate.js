@@ -19,10 +19,15 @@ $(document).ready(function() {
         })
            
             .done(function(data) {
-    
                 console.log(data); 
+            if(data.length < 4){
+            	 window.location.reload();        
+            }else{
+	    		alert(data);
+	    		return false;
+            }
                //$("#cart_div").html(data);
-               window.location.reload();              
+                    
                 	
             });
         
