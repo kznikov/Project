@@ -146,6 +146,59 @@
 			$total+=($val["price"]+($val["price"]*20/100))*$val['quantity'];
 		}
 	}
+        
+        //page title:
+        if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    if (!file_exists("./" . $page . ".php")) {
+                        $page = "pageNotFound";
+                    }
+                } else {
+                    $page = "home";
+                }
+                $pageTitle = 'KRADEN Computers';
+				
+                if(isset($_GET['category'])){
+                	$pageTitle = $categories[$_GET['category']];
+                }
+                switch($page){
+                	case "home":
+                		$pageTitle = 'KRADEN Computers';
+                		break;
+            	    case "profile":
+                   		 $pageTitle = 'Профил';
+                   		 break;                
+                	case "login":
+	                    $pageTitle = 'Вход клиенти';
+	                    break;         
+           	     	case "categories":
+                    	$pageTitle = 'Категории';
+                    	break;
+           	     	case "news":
+                   		$pageTitle = 'Новини';
+                   		break;     
+                 	case "create":
+                    	$pageTitle = 'Създай нов клиентски профил';
+                		break;
+                	case "wishlist":
+                    	$pageTitle = "Желани";
+                		break;
+                	case "singleProduct":
+                    	$pageTitle = $product['Model']."-".$categories[$_GET['category']];
+                		break;
+                	case "pageNotFound":
+                    	$pageTitle = "404 Not Found";
+                		break;
+                	case "search":
+                    	$pageTitle = "Търсене";
+                		break;
+                	case "shoppingCart":
+                    	$pageTitle = "Количка";
+                		break;
+                	case "checkout":
+                    	$pageTitle = "Поръчка";
+                		break;
+                }
 	
         //compare option:     
         if(isset($_SESSION['compareList'])) {
@@ -173,7 +226,7 @@
 
 <!DOCTYPE HTML>
 <head>
-    <title></title>
+    <title><?php echo $pageTitle?></title>
     <meta charset="UTF-8">
     <script type="text/javascript" src="./assets/javascript/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/0a902a9652.js"></script>
@@ -182,6 +235,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/jquery-ui-1.12.1/jquery-ui.css">
+    <link href="assets/css/home-page.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery.js"></script>
   <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery-ui.js"></script>
     
@@ -252,57 +306,6 @@
             
                 <article id="header-row1-left">Най-добрите цени за компютри, компоненти, лаптопи, сървъри, принтери, консумативи</article>
                 <?php
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
-                    if (!file_exists("./" . $page . ".php")) {
-                        $page = "pageNotFound";
-                    }
-                } else {
-                    $page = "home";
-                }
-                $pageTitle = 'MOST Computers';
-				
-                if(isset($_GET['category'])){
-                	$pageTitle = $categories[$_GET['category']];
-                }
-                switch($page){
-                	case "home":
-                		$pageTitle = 'MOST Computers';
-                		break;
-            	    case "profile":
-                   		 $pageTitle = 'Профил';
-                   		 break;                
-                	case "login":
-	                    $pageTitle = 'Вход клиенти';
-	                    break;         
-           	     	case "categories":
-                    	$pageTitle = 'Категории';
-                    	break;
-           	     	case "news":
-                   		$pageTitle = 'Новини';
-                   		break;     
-                 	case "create":
-                    	$pageTitle = 'Създай нов клиентски профил';
-                		break;
-                	case "wishlist":
-                    	$pageTitle = "Желани";
-                		break;
-                	case "singleProduct":
-                    	$pageTitle = $product['Model']."-".$categories[$_GET['category']];
-                		break;
-                	case "pageNotFound":
-                    	$pageTitle = "404 Not Found";
-                		break;
-                	case "search":
-                    	$pageTitle = "Търсене";
-                		break;
-                	case "shoppingCart":
-                    	$pageTitle = "Количка";
-                		break;
-                	case "checkout":
-                    	$pageTitle = "Поръчка";
-                		break;
-                }
                 echo '<article id="header-row1-right">' . $pageTitle . '</article>';
                 ?>
             </div>

@@ -7,9 +7,8 @@
                     <article>
                         <i class="fa fa-info-circle"></i>
                         <span id="aboutUs-info">
-                            МОСТ Компютърс ООД е създадена през 1990 година. Компанията е водещ дистрибутор на хардуер и софтуер като предлага търговия на едро с всички видове компоненти за компютри и периферия.
-                            <br/><br/>MOST Computers е дългосрочен дистрибутор на <a href="#">HP</a>, <a href="#">Intel</a>, <a href="#">AMD</a>, <a href="#">Asus</a>, <a href="#">Acer</a>, <a href="#">Nokia</a>, <a href="#">Supermicro</a>, <a href="#">Lenovo</a>, <a href="#">Adata</a>, <a href="#">Kingston</a>, <a href="#">HTC</a>, <a href="#">LG</a>, <a href="#">Microsoft</a>, <a href="#">Canon</a>, <a href="#">Asrock</a>, <a href="#">Nvidia</a>, <a href="#">Palit</a>, <a href="#">Seagate</a>, <a href="#">Sapphire</a>, <a href="#">Logitech</a>, <a href="#">A4Tech</a>, <a href="#">Cooler Master</a>, <a href="#">Gigabyte</a>, <a href="#">D-Link</a>, <a href="#">Fractal Design</a> и други водещи марки. 
-                            <br/><br/><a href="#" id="aboutUs-more-info"> повече за МОСТ Компютърс</a>
+                            KRADEN Компютърс ООД е създадена през 2017 година. Компанията е водещ дистрибутор на хардуер и софтуер като предлага търговия на едро с всички видове компоненти за компютри и периферия.
+                            <br/><br/>KRADEN Computers е дългосрочен дистрибутор на <a href="#">HP</a>, <a href="#">Intel</a>, <a href="#">AMD</a>, <a href="#">Asus</a>, <a href="#">Acer</a>, <a href="#">Nokia</a>, <a href="#">Supermicro</a>, <a href="#">Lenovo</a>, <a href="#">Adata</a>, <a href="#">Kingston</a>, <a href="#">HTC</a>, <a href="#">LG</a>, <a href="#">Microsoft</a>, <a href="#">Canon</a>, <a href="#">Asrock</a>, <a href="#">Nvidia</a>, <a href="#">Palit</a>, <a href="#">Seagate</a>, <a href="#">Sapphire</a>, <a href="#">Logitech</a>, <a href="#">A4Tech</a>, <a href="#">Cooler Master</a>, <a href="#">Gigabyte</a>, <a href="#">D-Link</a>, <a href="#">Fractal Design</a> и други водещи марки. 
                         </span>
                     </article>
                 </div>

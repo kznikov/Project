@@ -1,6 +1,4 @@
-<script>
-    document.title = "DEKS Computers";
-</script>
+
 
 <div class="home-main">
 
@@ -74,9 +72,60 @@
     </div>
 
     <script src="assets/javascript/home-page.js" type="text/javascript"></script>
+    
 </div>
+
 
 
 <?php
 include_once './aside-nav.php';
 ?>
+
+<div class='news-wrapper'>
+         <h2 class="news-head">Анотации на продукти </h2><hr>
+         <?php
+            $query = "SELECT * FROM news WHERE type='Анотации' ORDER BY p_date DESC LIMIT 3";
+            $resultSet = mysqli_query($conn, $query);
+            function trim_text($text, $count){
+                    $text = str_replace("  ", " ", $text);
+                    $string = explode(" ", $text);
+                    for ( $wordCounter = 0; $wordCounter <= $count; $wordCounter++ ){
+                        $trimed .= $string[$wordCounter];
+                        if ( $wordCounter < $count ){ $trimed .= " "; }
+                        else { $trimed .= "..."; }
+                    }
+                    $trimed = trim($trimed);
+                    return $trimed;
+                    } 
+            while ($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC)) {              
+                $content = trim_text($row['content'], 30);
+                $title = cyrToLat(mb_strtolower($row['title']));
+                echo "<article class='home-page-news'>"
+                . "<img src='./assets/images/news/" . $row['image'] . "' alt='news image' class='homepage-news-image'>"
+                . "<a href='?page=news&article=$title-news-id=" . $row['id'] . "' class='hp-link-to-news'>"
+                . "<span class='homepage-news-title'>" . $row['title'] . "</span> </a>"
+                . "<div class='homepage-news-content'>" . $content . "</div>"
+                . "<a href='?page=news&article=$title-news-id=" . $row['id'] . "'> Виж текста > </a>"
+                . "</article>";
+            }
+         ?>
+</div>
+<div class='news-wrapper'>
+         <h2 class="news-head"> Ревюта </h2><hr>
+         <?php
+            $query = "SELECT * FROM news WHERE type='Ревюта' ORDER BY p_date DESC LIMIT 3";
+            $resultSet = mysqli_query($conn, $query);
+
+            while ($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC)) {              
+                $content = trim_text($row['content'], 30);
+                $title = cyrToLat(mb_strtolower($row['title']));
+                echo "<article class='home-page-news'>"
+                . "<img src='./assets/images/news/" . $row['image'] . "' alt='news image' class='homepage-news-image'>"
+                . "<a href='?page=news&article=$title-news-id=" . $row['id'] . "' class='hp-link-to-news'>"
+                . "<span class='homepage-news-title'>" . $row['title'] . "</span> </a>"
+                . "<div class='homepage-news-content'>" . $content . "</div>"
+                . "<a href='?page=news&article=$title-news-id=" . $row['id'] . "'> Виж текста > </a>"
+                . "</article>";
+            }
+         ?>
+</div>

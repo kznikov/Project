@@ -121,6 +121,7 @@ form.search-form{
         line-height: 2em;
         width: 75%;
         margin-right: 0;
+        margin-bottom: 4%;
         background-color: #efeded;
         border:0.5px solid #bab6b6;
         padding: 1% 0 1% 2%;
@@ -138,7 +139,7 @@ form.search-form{
     color: grey;
     background-color: #efeded;
     line-height: 2em;
-    margin-left: -7%;
+    margin-left: -8%;
     box-shadow: none;
     border: none;
 }
@@ -250,6 +251,7 @@ form.search-form{
 .header-nav3{
     width: 100%;
     padding: 0;
+    font-size: 1.3em;
 }
 
 .header-nav3 li{
@@ -541,8 +543,15 @@ hr{
     display: none;
 }
 
-.carousel-header{
+.carousel-header {
     margin-top: 10%;
+    margin-bottom: 0;
+    color: #565656;
+    font-weight: normal;
+}
+
+.news-head {
+    margin-top: 30%;
     margin-bottom: 0;
     color: #565656;
     font-weight: normal;
