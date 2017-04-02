@@ -2,7 +2,6 @@
 	session_start();
 	include_once 'dbconnect.php';
 	include_once 'convertTitle.php';
-        include_once 'convertTitle.php';
 	
 	mysqli_query($conn, "SET NAMES 'UTF8'");
 	if(isset($_GET['currency']) && !isset($_COOKIE['currency'])){	
