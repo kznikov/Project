@@ -129,7 +129,7 @@ if (isset($_COOKIE['currency'])){
             ?>
             
             <header>
-                <h3> Сравни продуктите </h3>
+                <h1> Сравни продуктите </h1>
             </header>
             <div class="main-container">
                 <table class='comparison-table'>
@@ -152,11 +152,11 @@ if (isset($_COOKIE['currency'])){
                     echo "<tr>";
                     for ($item = -1; $item < count($comparisonList); $item++) {
                         if ($item < 0) {
-                            echo "<td></td>";
+                            echo "<td class='header-empty'></td>";
                         } else {
                             $images = explode('/', $comparisonList[$item]['Picture']);
                             $pic = $images[0];
-                            echo "<td>"
+                            echo "<td class='header-row'>"
                             . "<img class='product-pic' src='./assets/images/products/" . $pic . "' alt='product picture'>"
                             . "<p>" . $comparisonList[$item]['Model'] . "</p>"
                             . "<p class='price'>Цена без ДДС: " . number_format((float)$comparisonList[$item]['Price']/$x, 2, ',', '') . ($currency == 'bgn' ? ' лв.' : ' &euro;'). "</br>" //$comparisonList[$item]['Price']
@@ -168,18 +168,27 @@ if (isset($_COOKIE['currency'])){
                         }
                     }
                     echo "</tr>";
-
+                    
+                    $rowCount = 0;
+                    
                     for ($row = 0; $row < count($comparedKeys); $row++) {
                         if ($comparedKeys[$row] !== 'Id' && $comparedKeys[$row] !== 'Category' && $comparedKeys[$row] !== 'Model' && $comparedKeys[$row] !== 'Picture' && $comparedKeys[$row] !== 'Price') {
-                            if ($comparedKeys[$row] === 'Brand') {
-                                echo "<tr><th> Производител </th>";
+                            $rowCount++;
+                            if($rowCount % 2 == 0) {
+                                $rowClass = "evenRow";
                             } else {
-                                echo "<tr><th>" . $comparedKeys[$row] . "</th>";
+                                $rowClass = "oddRow";
+                            }
+                            
+                            if ($comparedKeys[$row] === 'Brand') {
+                                echo "<tr><th class='$rowClass'> Производител </th>";
+                            } else {
+                                echo "<tr><th class='$rowClass'>" . $comparedKeys[$row] . "</th>";
                             }
                         }
                         for ($productIndex = 0; $productIndex < count($comparisonList); $productIndex++) {
                             if ($comparedKeys[$row] !== 'Id' && $comparedKeys[$row] !== 'Category' && $comparedKeys[$row] !== 'Model' && $comparedKeys[$row] !== 'Picture' && $comparedKeys[$row] !== 'Price') {
-                                echo "<td>" . $comparisonList[$productIndex][$comparedKeys[$row]] . "</td>";
+                                echo "<td class='$rowClass'>" . $comparisonList[$productIndex][$comparedKeys[$row]] . "</td>";
                             }
                         }
                         echo "</tr>";

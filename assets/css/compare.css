@@ -1,31 +1,45 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
 main {
-    font-size:1em;
+    font-size:1.2em;
     margin: 2% auto;
     color:#727272;
     font-family:  'Roboto Condensed', Helvetica, sans-serif;
 }
 
-h3 {
-    margin: 1% 1% 0 0;
+h1 {
+    margin: 1% 1% 0 5%;
 }
 
 table {
     border-collapse: collapse;
 }
 
-td {
+.header-row {
     border: 1px solid #e2dcdc;
+}
+
+.header-empty {
+    border-bottom: 1px solid #e2dcdc;
+}
+
+td {
+    border: none;
     padding: 1% 1% 0.5% 1%;
     vertical-align: bottom;
+    border-right: 1px solid #e2dcdc;
 }
 
 th {
-    border: 1px solid #e2dcdc;
+    border: none;
     padding: 1% 0.5% 0.5% 0.5%;
     vertical-align: bottom;
     word-wrap:break-word;
+    border-right: 1px solid #e2dcdc;
+}
+
+.evenRow {
+    background-color: #f4f4f4;
 }
 
 .product-pic {
@@ -63,11 +77,12 @@ th {
 .compare-page-buy-button{
 	text-align:center;
 	border:0px;
-	width:auto;
+	width:20%;
         line-height: 3em;
 	outline:none;
 	background-color:#c1121c;
 	color:white;
+        font-size: 0.85em;
 }
 
 
