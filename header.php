@@ -305,6 +305,12 @@
                 	case "search":
                     	$pageTitle = "Търсене";
                 		break;
+                	case "shoppingCart":
+                    	$pageTitle = "Количка";
+                		break;
+                	case "checkout":
+                    	$pageTitle = "Поръчка";
+                		break;
                 }
                 echo '<article id="header-row1-right">' . $pageTitle . '</article>';
                 ?>
@@ -399,13 +405,13 @@
 								echo "<li>";
 									echo "<a class='cart_anchor' href='./?page=singleProduct&category=".$item['Category']."&product=$title'><img src='./assets/images/products/".$prod['pic']."'>".str_replace("u0022",'"',$prod['title'])."</a>";
 									echo "<a class='remove_item' id='delete_product' href='code=".$prod['id']."'>&times;</a>";
-									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x*1.2, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
+									echo "<span>".$prod['quantity']."x".number_format($prod['price']/$x, 2, ',', ' ').($currency =="bgn" ? " лв." : "&#8364;")."</span>";
 								echo "</li>";
 
 							} ?>
 						</ul>
-						<button id="first_button" class="button" >Виж всичко</button>
-						<button id="second_button" class="button" >Продължи към поръчка</button>
+						<button id="first_button" class="button" onclick='window.location.assign("./?page=shoppingCart")' >Виж всичко</button>
+						<button id="second_button" class="button" onclick='window.location.assign("./?page=checkout")' >Продължи към поръчка</button>
 					<?php }?>
 				</div>
             </ul>            
