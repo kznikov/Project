@@ -77,7 +77,7 @@
 			<input id="quantity" type="number" min="1" value=1 name="quantity"/>
 		</form>
 		<?php }else{?>
-			<a href="./?page=login"><img id="prof_pic" src="./assets/images/profile.png"/><span id="buy_span">Регистрирайте се,<br/>за да поръчате!</span></a>
+			<a href="./?page=login&last_product=<?=$_GET['product']?>&product_category=<?=$_GET['category']?>"><img id="prof_pic" src="./assets/images/profile.png"/><span id="buy_span">Регистрирайте се,<br/>за да поръчате!</span></a>
 		<?php }?>
 		<hr style="margin-top:20px;"/>
 		
@@ -137,7 +137,7 @@
 							<?php if($row['rating']){?>
 								<p id="rating">Оценка
 									<div class="star-ratings-css">
-									  <div class="star-ratings-css-top" style="width: <?=$row['rating'] ?>%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+									  <div class="star-ratings-css-top" style="width: <?=$row['rating']?>%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
 									  <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
 									</div>
 									</p>

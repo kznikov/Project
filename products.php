@@ -1,7 +1,10 @@
 <?php
 	include_once 'dbconnect.php';
 	include_once 'convertTitle.php';
-		
+	
+	
+	
+	
 	function isNumericArr($arr){
 		foreach ($arr as $val){
 			if(is_numeric($val)){
@@ -24,28 +27,36 @@
 		$arr = explode("_", $_GET['subcat']);
 		if(!isNumericArr($arr)){
 			$arr[0] = strtoupper($arr[0]);
-			$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE Brand LIKE '$arr[0]' ".$order.$orderway." ";
+			$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE Brand LIKE '$arr[0]' ";
 			$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
 			$head = str_replace("_", " ", strtoupper($_GET['subcat']));		
 		}else{
 			if($arr[0] === "up"){
 				$head = " до 14.9″ ";
-				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	<= $arr[2] ".$order.$orderway." ";
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	<= $arr[2] ";
 				$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
 			}elseif($arr[0] === "over"){
-				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	> $arr[1] ".$order.$orderway." ";
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	> $arr[1] ";
 				$head = " над 17″ ";
 				$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
-			}else{
-				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	BETWEEN $arr[0] AND $arr[1] ".$order.$orderway." ";
+			}elseif(!is_numeric($_GET['subcat'])){
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	BETWEEN $arr[0] AND $arr[1] ";
 				$head = " от 15″ до 16.9″ ";
 				$anchor = '<a href="./?page=products&category='.$category.'&subcat='.$_GET['subcat'].'&pn=';
+			}else{
+				$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id WHERE `Размер на екрана`	< -123 ";
+				$head = "";
 			}
+			
 		}
+		$maxPriceSubCat = "AND Brand LIKE '".$_GET['subcat']."'";
 	}else{
-		$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id ".$order.$orderway." ";
+		$q = "SELECT * FROM products p JOIN $category c ON p.id = c.id ";
 		$anchor = '<a href="./?page=products&category='.$category.'&pn=';
 	}
+	
+	
+	
 	
 	mysqli_query($conn, "SET NAMES 'UTF8'");
 	
@@ -80,12 +91,57 @@
 									 "warranty"=>"", 
 									 "smartwatches"=>"");
 
+	
+	
+	
+	
+		$maxPriceQuery = mysqli_query($conn, "SELECT MAX(Price) from products WHERE category LIKE '$category' $maxPriceSubCat");
+		//echo "SELECT MAX(Price) from products WHERE category LIKE '$category' $maxPriceSubCat";
+		while($maxPrice = mysqli_fetch_array($maxPriceQuery)){
+			$max = $maxPrice["MAX(Price)"]+2;
+		}
+		//echo $max;
+		
+		if($_COOKIE['currency'] == "eur"){
+			$curr =  "&#8364;";
+			$frontMax = $max/$x;
+		}else{
+			$curr =  "лв.";
+			$frontMax = $max;
+		}
+		
+		if(isset($_POST['amount1'])){
+			$price1 = $_POST['amount1']*$x;
+			$price2 = $_POST['amount2']*$x;
+			$price1 = $price1/1.2;
+			$price2 = $price2/1.2 ;
+						
+			if(isset($_GET['subcat'])){
+				$priceRange = " AND p.Price BETWEEN $price1 AND $price2 ";
+				$price1 = $price1/$x;
+				$price2 = $price2/$x;
+			}else{
+				$priceRange = " WHERE p.Price BETWEEN $price1 AND $price2 ";
+				$price1 = $price1/$x;
+				$price2 = $price2/$x;
+			}
+			
+		}else{
+			$price1 = 0;
+			$price2 = $frontMax;
+			$priceRange = "";
+		}
+	
+		$maxPriceSubCat = "";
+		
+		$q = $q.$priceRange.$order.$orderway." ";
+		//echo $q;	
+	
 		
 	
 	
 		if(isset($_GET['category'])){
 			
-				
 				$query = mysqli_query($conn, $q);
 				if($query){
 					$rows = mysqli_num_rows($query);
@@ -139,8 +195,8 @@
 	    			}
 				}
 		}
+
 		
-	
 ?>
 
 <style>
@@ -164,6 +220,28 @@
 	}
 		
 </style>
+
+ <script type="text/javascript">
+  
+  $(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: <?= $frontMax*1.2?>,
+      values: [ <?= $price1*1.2 ?>, <?= $price2*1.2 ?> ],
+      slide: function( event, ui ) {
+        $( "#amount" ).html( ui.values[ 0 ] + '<?php echo " ".$curr;?>' + " - " + ui.values[ 1 ] + '<?php echo " ".$curr;?>');
+		$( "#amount1" ).val(ui.values[ 0 ]);
+		$( "#amount2" ).val(ui.values[ 1 ]);
+      },
+    	change: function(event, ui) {
+          $("#price_filter").submit();
+      	}
+    });
+    $( "#amount" ).html(  $( "#slider-range" ).slider( "values", 0 ) + '<?php echo " ".$curr;?>' +
+     " - " + $( "#slider-range" ).slider( "values", 1 )+ '<?php echo " ".$curr;?>' ); 
+  });
+  </script>
 
 
 
@@ -275,8 +353,36 @@
 	</section>
 	<?php if($query && mysqli_num_rows($query)){?>
 	<section id="prod_sec2">
-		<h4>Филтри</h4>
-		<hr/>
+		<h4>Цена</h4>
+		 <p>
+		  	<p id="amount"></p>
+		  </p>
+		
+		  <div id="slider-range"></div>
+		
+		  <form id="price_filter" method="post" action="">
+		    <input type="hidden" id="amount1" name="amount1">
+		    <input type="hidden" id="amount2" name="amount2">
+		
+		  </form>
+		  <h4>Марка</h4>
+		  <br/>
+		  <?php 
+		 //$result = mysqli_query($conn, "SELECT DISTINCT(Brand) FROM products WHERE category LIKE '".$category."'");
+		 $result = mysqli_query($conn, "SELECT COUNT(Brand), Brand FROM products WHERE Category LIKE '".$category."' GROUP by Brand");
+		 echo "<input class='models' type='checkbox'  onclick='window.location.assign(\"./?page=products&category=".$category."\")'><span>Всички</span><br/>";
+
+		 while($res = mysqli_fetch_array($result)){
+	     	echo "<input class='models' type='checkbox'  onclick='window.location.assign(\"./?page=products&category=".$category."&subcat=".$res['Brand']."\")'><span>".strtoupper($res['Brand'])." (".$res['COUNT(Brand)'].")"."</span><br/>";
+	     }
+		  		
+		  
+		  
+		  
+		  ?>
+		 
+		  
+		<hr style="margin-top:40px;"/>
 	</section>
 	<?php } 
 		include_once './aside-nav.php';

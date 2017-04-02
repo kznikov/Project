@@ -18,16 +18,61 @@
 	
 	$order = "ORDER BY ".$_COOKIE['order']." ";
 	
-	if(isset($_GET['search_query'])){
-			$searchString = $_GET['search_query'];
+	
+	if(isset($_GET['brand'])){
+		$brand = " AND Brand LIKE '".$_GET['brand']."' ";
+	}else{
+		$brand = "";
+	}
+	
+	
+	
+		if(isset($_GET['search_query'])){
+				$searchString = $_GET['search_query'];
 				$searchWords = multiexplode(array(" ", ".", "_", "?", ",", ";"),$searchString);
 				foreach ($searchWords as $key=>$word) {
 					$searchWords[$key] = "+".$word."*";
 				}
+				
+				$maxPriceQuery = mysqli_query($conn, "SELECT MAX(Price) from products WHERE MATCH(Model) AGAINST ('".implode(" ", $searchWords)."' IN BOOLEAN MODE)");
+				//echo "SELECT MAX(Price) from products WHERE category LIKE '$category' $maxPriceSubCat";
+				while($maxPrice = mysqli_fetch_array($maxPriceQuery)){
+					$max = $maxPrice["MAX(Price)"]+2;
+				}
+				//echo $max;
+				
+				if($_COOKIE['currency'] == "eur"){
+					$curr =  "&#8364;";
+					$frontMax = $max/$x;
+				}else{
+					$curr =  "лв.";
+					$frontMax = $max;
+				}
+				
+				if(isset($_POST['amount1'])){
+					$price1 = $_POST['amount1']*$x;
+					$price2 = $_POST['amount2']*$x;
+					$price1 = $price1/1.2;
+					$price2 = $price2/1.2;
+								
+					$priceRange = "AND Price BETWEEN $price1 AND $price2 ";
+					$price1 = $price1/$x;
+					$price2 = $price2/$x;
+					
+				}else{
+					$price1 = 0;
+					$price2 = $frontMax;
+					$priceRange = "";
+				}
+			
+				$maxPriceSubCat = "";
+	
+				
+				
 
-	   			$q = "SELECT * FROM products WHERE MATCH(Model) AGAINST ('".implode(" ", $searchWords)."' IN BOOLEAN MODE) ".$order.$orderway." ";
+	   			$q = "SELECT * FROM products WHERE MATCH(Model) AGAINST ('".implode(" ", $searchWords)."' IN BOOLEAN MODE) ".$priceRange.$brand.$order.$orderway." ";
 	   			$anchor = '<a href="./?page=search&search_query='.$searchString.'&pn=';		
-		
+				//echo $q;
 				$query = mysqli_query($conn, $q);
 				if($query){
 					$rows = mysqli_num_rows($query);
@@ -106,6 +151,29 @@
 	}
 		
 </style>
+
+<script type="text/javascript">
+  
+  $(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: <?= $frontMax*1.2?>,
+      values: [ <?= $price1*1.2 ?>, <?= $price2*1.2 ?> ],
+      slide: function( event, ui ) {
+        $( "#amount" ).html( ui.values[ 0 ] + '<?php echo " ".$curr;?>' + " - " + ui.values[ 1 ] + '<?php echo " ".$curr;?>');
+		$( "#amount1" ).val(ui.values[ 0 ]);
+		$( "#amount2" ).val(ui.values[ 1 ]);
+      },
+    	change: function(event, ui) {
+          $("#price_filter").submit();
+      	}
+    });
+    $( "#amount" ).html(  $( "#slider-range" ).slider( "values", 0 ) + '<?php echo " ".$curr;?>' +
+     " - " + $( "#slider-range" ).slider( "values", 1 )+ '<?php echo " ".$curr;?>' ); 
+  });
+  </script>
+
 
 
 
@@ -199,8 +267,32 @@
 	</section>
 	<?php if($rows){?>
 	<section id="search_sec2">
-		<h4>Филтри</h4>
-		<hr/>
+		<h4>Цена</h4>
+		 <p>
+		  	<p id="amount"></p>
+		  </p>
+		
+		  <div id="slider-range"></div>
+		
+		  <form id="price_filter" method="post" action="">
+		    <input type="hidden" id="amount1" name="amount1">
+		    <input type="hidden" id="amount2" name="amount2">
+		
+		  </form>
+		  <h4>Марка</h4>
+		  <br/>
+		  <?php 
+		 //$result = mysqli_query($conn, "SELECT DISTINCT(Brand) FROM products WHERE category LIKE '".$category."'");
+		 $result = mysqli_query($conn, "SELECT COUNT(Brand), Brand FROM products WHERE MATCH(Model) AGAINST ('".implode(" ", $searchWords)."' IN BOOLEAN MODE) GROUP by Brand");
+		 echo "<input class='models' type='checkbox'  onclick='window.location.assign(\"./?page=search&search_query=".$searchString."\")'><span>Всички</span><br/>";
+	     
+		 while($res = mysqli_fetch_array($result)){
+	     	echo "<input class='models' type='checkbox'  onclick='window.location.assign(\"./?page=search&search_query=".$searchString."&brand=".$res['Brand']."\")'><span>".strtoupper($res['Brand'])." (".$res['COUNT(Brand)'].")"."</span><br/>";
+	     }
+		  
+		  ?>
+
+		<hr style="margin-top:40px;"/>
 	</section>
 	<?php } 
 		include_once './aside-nav.php';

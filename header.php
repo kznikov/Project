@@ -127,6 +127,8 @@
 	);
 	$cnt=0;
 	
+
+	
 	
 	
 	
@@ -184,7 +186,6 @@
   <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery-ui.js"></script>
     
     <script type="text/javascript">
-   
     
    		 $(window).on('load', function() {
 			// Animate loader off screen
@@ -323,7 +324,7 @@
                 <li><a href="./?page=news">Новини</a></li>
                 <li class="hidden"><a href="./?page=login" class="toggle2">Вход</a></li>
                 <li class="hidden"><a href="./?page=create" class="toggle2">Регистрация</a></li>
-                <li class="show"><a href="./?page=logout" class="toggle">Изход</a></li>                
+                <li class="show"><a href="./?page=logout" class="toggle">�?зход</a></li>                
             </ul>            
         </div>
    
@@ -371,7 +372,7 @@
                                         . "Сравни"                                        
                                         . "</button>"
                                         . "</a>"
-                                    . "<button class='button' id='clear-comparison-list-button'>Изчисти</button>"
+                                    . "<button class='button' id='clear-comparison-list-button'>�?зчисти</button>"
                                     . "<form action='' method='post' class='hidden' id='clear-comparison-list-form'>"
                                         . "<input type='hidden' name='clear-all-comparedIds' value='delete'>"
                                     . "</form>"
