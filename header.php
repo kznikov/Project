@@ -262,7 +262,7 @@
    		 $(window).on('load', function() {
 			// Animate loader off screen
 			$(".se-pre-con").fadeTo(400,1).fadeOut("slow");
-			set
+			
 		});
     
     </script>

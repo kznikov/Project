@@ -3,6 +3,8 @@ imported.src = './image_zoom.js';
 document.head.appendChild(imported);
 
 
+
+
 	$(document).ready(function(){
 		
 		
@@ -317,6 +319,63 @@ document.head.appendChild(imported);
 			
 			
 			
+			$("#address_submit2").click(function(event){
+				var form_data=$("#checkout_data").serializeArray();
+					form_data.pop();
+					form_data.pop();	
+					for (var input in form_data){
+						var element=$("#edit_"+form_data[input]['name']);
+						if(element.attr('value').trim() != "" ){
+							element.addClass("valid");
+						}
+						if(element.hasClass("invalid")){
+							element.removeClass("valid").addClass("invalid");
+						}
+					}
+			});
+			
+			
+			$('#checkout_data :text').on('input', function () {				
+				if($(this).val().trim()){
+					$(this).removeClass("invalid").addClass("valid");
+				}else{
+					$(this).removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			
+			$("#edit_phone").on('input', function () {				
+				if($.isNumeric($(this).val().trim())){
+					$(this).removeClass("invalid").addClass("valid");
+				}else{
+					$(this).removeClass("valid").addClass("invalid");
+				}
+			});
+			
+			$("#address_submit2").click(function(event){				
+				var form_data=$("#checkout_data").serializeArray();
+				var error_free=true;
+				console.log(form_data);
+				form_data.pop();
+				form_data.pop();
+				for (var input in form_data){
+					var element=$("#edit_"+form_data[input]['name']);
+					var valid=element.hasClass("valid");
+					var error_element=$("span", element.parent());
+					if (!valid){
+						error_element.removeClass("error").addClass("error_show"); 
+						error_free=false;
+					}else{
+						error_element.removeClass("error_show").addClass("error");
+					}
+				}
+				if (!error_free){
+					event.preventDefault(); 
+				}
+			});
+			
+			
+			
 			
 			
 			$('#form_opinion :text').on('input', function () {				
@@ -523,13 +582,9 @@ document.head.appendChild(imported);
 	    $('input:checkbox').not(this).prop('checked', false);
 	});  
 	
+
+
 	
-	
-	$(document).ready(function(){
-		$('#cart_button2').click(function() {
-		    $('#update').submit();
-		});
-	});
 	
 	
 	
