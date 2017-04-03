@@ -3,6 +3,22 @@ session_start();
 include_once 'dbconnect.php';
 mysqli_set_charset($conn, "utf8");
 
+//save button:
+if(isset($_POST['itemToSave'])) {
+    if(isset($_SESSION['login_user'])) {
+        $query = "SELECT product_Id FROM wishlist WHERE product_Id = " . $_POST['itemToSave'] . " AND user_Id = " . $_SESSION['login_user'] . ";"; 
+        $resultSet = mysqli_query($conn, $query);
+        $countExistingItems = mysqli_num_rows($resultSet);
+        if($countExistingItems === 0) {
+            $stmt = "INSERT INTO wishlist VALUES (" . $_SESSION['login_user'] . ", " . $_POST['itemToSave'] . ", NULL);";
+            $result = mysqli_query($conn, $stmt);
+        }
+        header("Location: ./?page=wishlist");
+    } else {
+        header("Location: ./?page=login");
+    }
+}
+
 //delete product from compare list:
 if(isset($_POST['itemToDelete'])) {
     $itemToDelete = $_POST['itemToDelete'];
@@ -156,14 +172,17 @@ if (isset($_COOKIE['currency'])){
                         } else {
                             $images = explode('/', $comparisonList[$item]['Picture']);
                             $pic = $images[0];
+                            $id = $comparisonList[$item]['Id'];
                             echo "<td class='header-row'>"
                             . "<img class='product-pic' src='./assets/images/products/" . $pic . "' alt='product picture'>"
                             . "<p>" . $comparisonList[$item]['Model'] . "</p>"
                             . "<p class='price'>Цена без ДДС: " . number_format((float)$comparisonList[$item]['Price']/$x, 2, ',', '') . ($currency == 'bgn' ? ' лв.' : ' &euro;'). "</br>" //$comparisonList[$item]['Price']
                             . "Цена с ДДС: " . number_format((float)$comparisonList[$item]['Price']*1.2/$x,2, ',', '').($currency == "bgn" ? " лв." : " &euro;") . "</p>"
-                            . "<button class='compare-page-buy-button' id=" . $comparisonList[$item]['Id'] . ">"
-                            . "Купи </button>"
-                            . "<a href='#' class='seve-link'>Запази<a>"
+                              . "<button class='compare-page-save-button' id=" . $id . ">"
+                            . "<a href='#' class='save-link' id='$id'>Запази</a></button>"
+                            . "<form action='' method='post' class='hidden' id='saveToWl-form-$id'>"
+                                 . "<input type='hidden' name='itemToSave' value='$id'/>"
+                            . "</form>"
                             . "</td>";
                         }
                     }

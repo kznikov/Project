@@ -1,9 +1,6 @@
 <?php
 	include_once 'dbconnect.php';
-	include_once 'convertTitle.php';
-	
-	
-	
+	include_once 'convertTitle.php';	
 	
 	function isNumericArr($arr){
 		foreach ($arr as $val){
@@ -325,6 +322,9 @@
                                                     <input type="hidden" name="comparedId" value="<?=$row['Id']?>">
                                                 </form>
 						<a class="like" href="#" id="<?=$row['Id']?>">&#x2665;</a>
+                                                <form action="" method="post" class="hidden" id="form-wish-<?=$row['Id']?>">
+                                                    <input type="hidden" name="wishedId" value="<?=$row['Id']?>">
+                                                </form>
 						<h2><a href="?page=singleProduct&category=<?=$category?>&product=<?=$title?>"><?= $row['Model']?></a></h2>
 						<div class="price_box">
 							<span class="price">Цена без ДДС: <?= number_format((float)$row['Price']/$x, 2, ',', '').($currency == "bgn" ? " лв." : " &euro;") ?></span>

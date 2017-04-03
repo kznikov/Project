@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 
 main {
-    font-size:1.2em;
+    font-size:1em;
     margin: 2% auto;
     color:#727272;
     font-family:  'Roboto Condensed', Helvetica, sans-serif;
@@ -74,11 +74,11 @@ th {
     font-size: 0.85em;
 }
 
-.compare-page-buy-button{
+.compare-page-save-button{
 	text-align:center;
 	border:0px;
-	width:20%;
-        line-height: 3em;
+	width:30%;
+        line-height: 2.5em;
 	outline:none;
 	background-color:#c1121c;
 	color:white;
@@ -86,21 +86,18 @@ th {
 }
 
 
-.compare-page-buy-button:hover{
+.compare-page-save-button:hover{
 	background-color: #820108;
 	cursor: pointer;
 }
 
-.seve-link {
+.save-link {
     display: block;
-    font-size: 0.85em;
+    width: 100%;
+    cursor: pointer;
     text-decoration: none;
     padding-top: 3%;
-    color: #565656;
-}
-
-.seve-link:hover{
-    color: crimson;
+    color: white;
 }
 
 .hidden {

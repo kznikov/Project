@@ -21,5 +21,24 @@ $(document).ready(function () {
         var itemId = this.id;
         $(`#form-comparelist-${itemId}`).submit();
     }));
+    
+    //add item to wishlist from compare page:
+    $(".compare-page-save-button").on('click', (function () {
+        var itemId = this.id;
+        $(`#saveToWl-form-${itemId}`).submit();
+    }));
+    
+    //add item to wishlist from products page:
+    $(".like").on('click', (function () {
+        var itemId = this.id;
+        $(`#form-wish-${itemId}`).submit();
+    }));
+    
+    //remove item from wishlist:
+    $(".wl-del-button").on('click', (function () {
+        var itemId = this.id;
+        $(`#form-wlDel-${itemId}`).submit();
+    }));
+        
 });
 

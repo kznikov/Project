@@ -124,12 +124,7 @@
 							array("За лаптопи", "За сървъри", "За десктоп компютри"),
 							array()																																																																									
 	);
-	$cnt=0;
-	
-
-	
-	
-	
+	$cnt=0;	
 	
 	if(isset($_GET['product'])){
 		$productId = str_replace("id=", "", strstr($_GET['product'], "id="));
@@ -220,6 +215,29 @@
                 $_SESSION['compareList'] = array_values($_SESSION['compareList']);
             }
         }
+        
+        //wishlist:
+        if(isset($_SESSION['login_user'])) {
+            if(isset($_SESSION['wishlist'])) {
+                if(isset($_POST['wishedId'])) {
+                    $_SESSION['wishlist'][] = $_POST['wishedId'];
+                    $_SESSION['wishlist'] = array_values(array_unique($_SESSION['wishlist']));
+                    $query = "SELECT product_Id FROM wishlist WHERE product_Id = " . $_POST['wishedId'] . " AND user_Id = " . $_SESSION['login_user'] . ";"; 
+                    $resultSet = mysqli_query($conn, $query);
+                    $countExistingLikes = mysqli_num_rows($resultSet);
+                    if($countExistingLikes == 0) {
+                        $q = "INSERT INTO wishlist VALUES (" . $_SESSION['login_user'] . ", " . $_POST['wishedId'] . ", NULL);";
+                        mysqli_query($conn, $q);
+                    }
+                } 
+            } else {
+                $query = "SELECT * FROM wishlist WHERE user_Id =" . $_SESSION['login_user'] . ";";
+                $resultSet = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_array($resultSet, MYSQLI_ASSOC)) {
+                    $_SESSION['wishlist'] [] = $row['product_Id'];
+                }
+            }
+        }
 	
 ?>
 
@@ -235,6 +253,7 @@
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/jquery-ui-1.12.1/jquery-ui.css">
     <link href="assets/css/home-page.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/wishlist.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery.js"></script>
   <script type="text/javascript" src="./assets/jquery-ui-1.12.1/jquery-ui.js"></script>
     
@@ -322,7 +341,13 @@
             <ul class="header-ul header-nav1">
                 <li><a href="#">Форум</a></li>
                 <li><a href="./?page=profile">Профил</a></li>
-                <li><a href="./?page=wishlist">Желани</a></li>
+                <li><a href="./?page=wishlist">Желани
+                    <?php
+                    if(isset($_SESSION['login_user'])) {
+                        echo "(" . count($_SESSION['wishlist']) . ")";                 
+                    }
+                    ?>
+                    </a></li>
                 <li><a href="./?page=news">Новини</a></li>
                 <li class="hidden"><a href="./?page=login" class="toggle2">Вход</a></li>
                 <li class="hidden"><a href="./?page=create" class="toggle2">Регистрация</a></li>
@@ -348,10 +373,11 @@
                                 echo "<ul class='dropdown-compare' id='dropdown-compare'>";
                                 for($index=0; $index < count($_SESSION['compareList']); $index++) {
                                     $compareListItem = $_SESSION['compareList'][$index];
-                                    $query = "SELECT Model FROM products WHERE Id = $compareListItem";
+                                    $query = "SELECT Model, Category FROM products WHERE Id = $compareListItem";
                                     $result = mysqli_query($conn, $query);
-                                    $comparedName = mysqli_fetch_array($result)[0];
-                                    $category = "laptops";
+                                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                                    $comparedName = $row['Model'];
+                                    $category = $row['Category'];
                                     $title = cyrToLat(mb_strtolower($comparedName))."-item-id=".$compareListItem;
                                     echo "<li id='$compareListItem' class='compared-product'>"
                                             . "<span class='compared-link-wrapper'>"

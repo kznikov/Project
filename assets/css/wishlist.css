@@ -1,0 +1,42 @@
+#wl-sec {
+    width: 75%;
+    box-sizing: border-box;
+    margin-top: 0.5%;
+}
+
+#wl-table {
+    border-collapse: collapse;
+}
+
+#wl-table th, #wl-table td {
+    padding: 3% 1%;
+    text-align: left;
+}
+
+#wl-table th {
+    border-bottom: solid 1px #e2e2e2;
+}
+
+.wl-img-col {
+   width: 20%; 
+}
+
+.wl-productName-col {
+    width: 50%;
+}
+
+.wl-price-col {
+    width: 25%;
+}
+
+.wishlist-pic {
+    width: 90%;
+}
+
+.wl-del-button {
+    font-size: 2em;
+}
+
+.wl-del-button:hover {
+    font-size: 2.5em;
+}
