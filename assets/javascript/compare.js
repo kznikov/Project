@@ -39,6 +39,12 @@ $(document).ready(function () {
         var itemId = this.id;
         $(`#form-wlDel-${itemId}`).submit();
     }));
+    
+    //edit wishlist comment:
+    $(".wl-save-link").on('click', (function () {
+        var itemId = this.id;
+        $(`#wl-comment-form-${itemId}`).submit();
+    }));
         
 });
 
