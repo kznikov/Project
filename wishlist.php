@@ -27,6 +27,15 @@ if(isset($_POST['itemToDeleteFromWl'])) {
     $result = mysqli_query($conn, $query);
 }
 
+//edit comment:
+if(isset($_POST['wl-comment']) && isset($_POST['edited-id']) && is_numeric($_POST['edited-id']) && $_POST['edited-id'] > 0) {
+    $comment = str_replace("'", "''", trim(htmlentities(($_POST['wl-comment']))));
+    $editedId = $_POST['edited-id'] + 0;
+    $query = "UPDATE wishlist SET user_comment = '" . $comment . "' WHERE user_id = " . $_SESSION['login_user'] . " AND product_Id = $editedId;";
+//    echo $query;
+    $result = mysqli_query($conn, $query);
+}
+
 ?>
 
 
@@ -60,7 +69,12 @@ if(isset($_POST['itemToDeleteFromWl'])) {
                         $id = $row['product_Id'];
                         echo "<tr>"
                             . "<td class='wl-img-col'><img class='wishlist-pic' src='./assets/images/products/" . $pic . "' alt='product picture'></td>"
-                            . "<td class='wl-productName-col'><a href='?page=singleProduct&category=$category&product=$productName'>" . $row['Model'] . "</a></td>"
+                            . "<td class='wl-productName-col'><a href='?page=singleProduct&category=$category&product=$productName'>" . $row['Model'] . "</a>"
+                            . "<form action='' method='post' id='wl-comment-form-$id'>"
+                                . "<textarea class='wl-comment' name='wl-comment' rows='3' cols='5' onfocus='focusComment(this)' onblur='focusComment(this)'>" . $row['user_comment'] . "</textarea>"
+                                . "<input type='hidden' name='edited-id'value='$id'>"
+                                . "</form>"
+                            . "<a href='#' class='wl-save-link' id='$id'>Запази коментар</a></td>"
                             . "<td class='wl-price-col'>Цена без ДДС: " . number_format((float)$row['Price']/$x,2, ',', '').($currency == "bgn" ? " лв." : " &euro;")
                               . "</br> Цена с ДДС: " . number_format((float)$row['Price']*1.2/$x,2, ',', '').($currency == "bgn" ? " лв." : " &euro;") . "</td>"
                             . "<td><a href='#' class='wl-del-button' title='Изтрий този артикул' id='$id'>&times;</a>"
