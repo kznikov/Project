@@ -40,3 +40,18 @@
 .wl-del-button:hover {
     font-size: 2.5em;
 }
+
+.wl-comment {
+    display: block;
+    width: 100%;
+    color: #565656;
+}
+
+.wl-comment:focus {
+    color: black;
+}
+
+.wl-save-link {
+    float:right;
+    font-size: 0.85em;
+}
