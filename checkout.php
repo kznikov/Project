@@ -62,7 +62,7 @@
 			  <li id="shipping">
 				  <h1><span style="font-size: 2em;">&#10103;</span> Начин на доставка</h1>
 				  <p>Получаване от офис</p>
-				  <input type="radio" name="shipping" value='Получаване от офис - Вземете своята поръчка от офиса на МОСТ Компютърс (гр. София)'/><span>Вземете своята поръчка от офиса на МОСТ Компютърс (гр. София) 0,00 <?= ($currency =="bgn" ? " лв." : "&#8364;") ?></span><br/>
+				  <input type="radio" name="shipping" value='Получаване от офис - Вземете своята поръчка от офиса на МОСТ Компютърс (гр. София)'><span>Вземете своята поръчка от офиса на МОСТ Компютърс (гр. София) 0,00 <?= ($currency =="bgn" ? " лв." : "&#8364;")?></span><br/>
 				  <p>Безплатна доставка</p>
 				  <input type="radio" name="shipping" value='Безплатна доставка - Безплатна доставка за поръчки над <?= number_format(200/$x, 2, ",", " ")?> <?= ($currency =="bgn" ? " лв." : "&#8364;")?>'/><span>Безплатна доставка за поръчки над <?= number_format(200/$x, 2, ",", " ")?> <?= ($currency =="bgn" ? " лв." : "&#8364;")?> 0,00 <?= ($currency =="bgn" ? " лв." : "&#8364;")?></span><br/>
 				  <p>Доставка с куриер</p>
@@ -82,6 +82,7 @@
 		  
 	   </form>
 	   <?php }else{
+	   
   			 echo "<table id='checkout_table'>
 				  <thead>
 				 	<tr>
@@ -111,18 +112,41 @@
 				echo "</table>";
 				
 				echo "</form>";
+				
+				if(is_numeric(strpos( $_POST['shipping'], "Получаване от офис - Вземете")) || is_numeric(strpos($_POST['shipping'], "Безплатна доставка - Безп"))){
+					$shippingPrice = 0;
+					
+				}else{
+					$shippingPrice = 7;
+					
+				}
+			
+				
 			?>		
 
-		<article>
-			<div>
-				<p>Междинна сума <span>&nbsp;&nbsp;&nbsp;<?=number_format($priceSum, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?><span></p>
-				<p><?= $_POST['shipping']?><span>&nbsp;&nbsp;&nbsp;<?=number_format($priceSum*0.2, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?><span></p>
-				<p>ДДС <span>&nbsp;&nbsp;&nbsp;<?=number_format($priceSum*0.2, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?><span></p>
-				<p id="total">Общо <span>&nbsp;&nbsp;<?=number_format($priceSum*1.2, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?><span></p>
-			</div>
-			<button id="checkout_button" class="button" onclick='window.location.assign("./?page=checkout")' >Продължи към поръчка</button>	
-		</article>			   
+		
+		<table id="checkout_total">
+				<tr>
+					<td>Междинна сума</td>
+					<td><?=number_format($priceSum, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?></td>
+				</tr>
+				<tr>
+					<td>Опаковане и доставка (<?= $_POST['shipping']?>)</td>
+					<td><?=number_format($shippingPrice/$x, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?></td>
+				</tr>
+				<tr>
+					<td>ДДС </td>
+					<td>&nbsp;&nbsp;&nbsp;<?=number_format($priceSum*0.2, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?></td>
+				</tr>
+				<tr>
+					<td style='font-size:1.3em; font-width:bolder;'>Общо </td>
+					<td style='font-size:1.3em; font-width:bolder;'><?=number_format(($priceSum+$shippingPrice/$x)*1.2, 2, ",", " ").($currency =="bgn" ? " лв." : " &#8364;") ?></td>
+				</tr>
+			
+			<a id="checkout_order_button" class="button" href='?page=orders&complete=true'>Поръчай</a>			   
+	   </table>
 	   <?php }?>
+	   
 	</section>
 
 </main>

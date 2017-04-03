@@ -1658,6 +1658,7 @@ strong {
 	height: 50px;
 	font-size:1.1em;
 	margin-top: 40px;
+	
 }
 
 #shopping_cart article div{
@@ -1764,4 +1765,32 @@ strong {
 
 #item_name{
 	width: 840px;
+}
+
+
+#checkout_total{
+	float: right;
+	margin-right: -110px;
+}
+
+#checkout_total td{
+	text-align: right;
+}
+
+
+
+#checkout_order_button{
+	float: right;
+	width: 150px;
+	height: 50px;
+	font-size:1.1em;
+	margin-top: 130px;
+	line-height:3em;
+	color:white;
+
+}
+
+
+#checkout_total td{
+	font-size: 1.2em;
 }
